@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html> <!--xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" NOT WORKING???-->
+<head>
+<meta charset="UTF-8">
+<title>Holiday Planner</title>
+
+ 	<meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+	<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/font-awesome.min.css" rel="stylesheet">
+    <link href="assets/css/main.css" rel="stylesheet">
+    <link href="assets/css/custom_style.css" rel="stylesheet">
+
+    <script src="js/vendor/jquery/jquery-1.12.1.min.js"></script>
+    <script src="js/vendor/bootstrap/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+</head>
+<body>
+	<div class="login-page" style="background-image: url(assets/img/winter-index-img.png); background-size: 100%;">
+	    <header>
+	        <div class="custom-header-container" style="padding-top: 3%; padding-bottom: 3%">
+	            <nav class="navbar-default">
+	                <div class="container">
+	                    <div class="row">
+	                        <div class="col-md-12" style="text-align: center;">
+	                            <!--  <img src="assets/img/holiday.png" width="4%" height="4%"/>-->
+	                            <a href="https://www.facebook.com" target="blank"> <img src="assets/img/icons/facebook.png" width="4%" height="4%" align="left"/></a>
+	                            <a href="https://www.instagram.com" target="blank"> <img src="assets/img/icons/instagram.png" width="4%" height="4%" align="left"/></a>
+	                            <h1>Holiday<img src="assets/img/holiday.png" width="3%" height="3%" />Planner</h1>
+	                        </div>
+	                    </div>
+	                </div>
+	            </nav>
+	        </div>
+	    </header>
+	
+	    <div class="custom-body-container">
+	        <div class="row header-info">
+	            <div class="col-md-12">
+	                <div class="basic-panel header-info" style="text-align: center; background-color: transparent; border: none " >
+	                 <h3>Holiday Planner: </h3>
+	                 <h4>Plan all your holidays and vacations:</h4>
+	                	<h1>Holiday<img src="assets/img/holiday.png" width="3%" height="3%" />Planner</h1>
+	                   
+	                </div>
+	            </div>
+	        </div>
+	        <!--<div class="row login-container">-->
+	           <!--<div class="col-md-7">-->
+	                <!--<div class="basic-panel hidden-sm hidden-xs">
+	                    <img class="img-responsive " src="assets/img/outdoor.jpg"/>
+	                </div>-->
+	            <!--</div>-->
+	           <div id="login-modal" class="modal fade" tabindex="-1" role="dialog">
+	        	<div class="modal-dialog modal-sm">
+	            <div class="modal-content">
+	                <div class="modal-header">
+	                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	                    <h4 class="modal-title">Log in</h4>
+	                </div>
+	                <div class="modal-body">
+	                <form id="login-form" class="basic-panel" >
+	                    <div class="form-group">
+	                        <label for="username">Потребител</label>
+	                        <div class="input-group">
+	                            <span class="input-group-addon"><i class="fa fa-user"></i></span>
+	                            <input type="text" class="form-control" id="username" name="username" placeholder="Потребител">
+	                        </div>
+	                        <p class="help-block">Полето "потребител" е празно</p>
+	                    </div>
+	                    <div class="form-group">
+	                        <label for="password">Парола</label>
+	                        <div class="input-group">
+	                            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+	                            <input type="password" class="form-control" id="password" name="password" placeholder="Парола">
+	                        </div>
+	                        <p class="help-block">Полето "парола" е празно</p>
+	                    </div>
+	                    <input type="hidden" name="action" value="login">
+	                    <button id="login" type="submit" class="btn btn-primary">Влез</button>
+	                    <button id="register" type="button" class="btn btn-success pull-right">Регистрация</button>
+	                </form>
+	            </div>
+	           
+	                </div><!-- /.modal-content -->
+	        </div><!-- /.modal-dialog -->
+	      <!--   </div>  login-modal -->
+	       </div>
+	        
+	<!--<div sec:authorize="isAuthenticated()"> NOT WORKING??-->
+	<!-- GET ALL ROLES <ul class="list-group" style="min-height:241px;" id="comments-list">                                                
+		<li class="list-group-item" style="display: none;" id="cloneMe">
+		    <div class="row">
+		        <div class="col-sm-2 col-xs-3">
+		            <img src="assets/img/icons/clear_sky.png" class="thumbnail img-responsive">
+		        </div>
+		        <div class="col-sm-7 col-xs-6">
+		            <span class="label label-success"><span class="current-temp">27</span> ℃</span>
+		            <h4>Пловдив</h4>
+		            <p>Времето беше супер. Разхождах се по главната. Купих си сладолед и пих вода от чешмичката на джумаята. </p>
+		        </div>
+		        <div class="col-sm-3 col-xs-3">
+		            <button type="button" class="btn btn-danger pull-right remove-post"><span class="glyphicon glyphicon-remove"></span><span class="hidden-xs"> Изтрий</span></button>
+		        </div>
+		    </div>
+		</li> 
+	</ul>
+	<button class="btn btn-success" onclick="getAllRoles()">Add Role</button> --><!--  </div>   -->    
+	
+	        <div id="register-modal" class="modal fade" tabindex="-1" role="dialog">
+	        <div class="modal-dialog modal-sm">
+	            <div class="modal-content">
+	                <div class="modal-header">
+	                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	                    <h4 class="modal-title">Регистрация на нов потребител</h4>
+	                </div>
+	                <div class="modal-body">
+	
+	                    <form id="register-form" action="/register" method="POST">
+	                        <div class="form-group">
+	                            <label for="register-user">Потребител</label>
+	                            <input type="text" class="form-control" id="register-user" name="username" placeholder="Потребител">
+	                            <p class="help-block">Полето "потребител" е празно</p>
+	                        </div>
+	                        <div class="form-group">
+	                            <label for="register-email">Email</label>
+	                            <input type="email" class="form-control" id="register-email" name="email" placeholder="example@gmail.com">
+	                            <p class="help-block">Полето "Email" е празно</p>
+	                        </div>
+	                        <div class="form-group">
+	                            <label for="register-pass">Парола</label>
+	                            <input type="password" class="form-control" id="register-pass" name="password" placeholder="Парола">
+	                            <p class="help-block">Полето "парола" е празно</p>
+	                        </div>
+	                        <div class="form-group">
+	                            <label for="confirm-register-pass">Повтори паролата</label>
+	                            <input type="password" class="form-control" id="confirm-register-pass" name="repeatPassword" placeholder="Парола">
+	                            <p class="help-block">Полето "парола" е празно</p>
+	                        </div>
+	                    </form>
+	
+	                </div>
+	                <div class="modal-footer">
+	                    <button type="button" class="btn btn-default" data-dismiss="modal">Затвори</button>
+	                    <button type="submit" form="register-form"  class="btn btn-success">Регистрирай</button>
+	                </div>
+	            </div><!-- /.modal-content -->
+	        </div><!-- /.modal-dialog -->
+	    </div><!-- /.register-modal -->
+	        
+	    </div> <!-- custom-body-container end-->
+	    
+	</div> <!--login-page-->
+
+
+<footer>
+	  <div class="custom-footer-container">
+	<div class="footer-button-div">
+		<button id="register" type="button" class="login-button" data-toggle="modal" data-target="#login-modal">Login</button>
+		<button id="register" type="button" class="signup-button" data-toggle="modal" data-target="#register-modal">Sign Up</button>
+	</div>
+	 </div>
+	
+</footer>
+
+<script>
+    bindEvents();    
+    
+    function getAllRoles(){
+		$.ajax({
+			url: "/role/all",
+			method: "GET",
+			success: function(data){
+				data.forEach(function(role){
+					addRoleToUI(role.code, role.description);
+				});  				
+			}    			
+		});
+		
+	}
+
+    function addRoleToUI(code, description, id){
+		var theNewRole = $('#cloneMe').clone();
+		
+		theNewRole.find('h4').text(code);
+		theNewRole.find('p').text(description);
+		//theNewRole.find('.current-temp').text(temp);
+		//theNewRole.attr('id', '');
+		
+		//image = 'assets/img/icons/';
+		//if(icons[icon] == undefined){
+		//	image += "clear_sky.png";
+		//}else{
+		//	image += icons[icon];
+		//}
+		
+		//theNewRole.find('img').attr('src', image);   
+		
+		//theNewRole.find('button').click(function(){
+		//	deleteComment(id, theNewComment);
+		//});
+		
+		$('#comments-list').prepend(theNewRole);
+		
+		theNewRole.show();    		
+	}
+    
+    function getAllUsers(){
+		$.ajax({
+			url: "/all",
+			method: "GET",
+			success: function(data){
+				data.forEach(function(user){
+					addUserToUI(user.code, user.description);
+				});  				
+			}    			
+		});
+		
+	}
+    
+    $('#login-form').submit(function(e){
+    	e.preventDefault();
+    	
+    	$.ajax({
+    		url: "login",
+    		method: "POST",
+    		data: {
+    			username : $('#username').val(),
+    			password : $('#password').val()
+    		},
+    		success: function(data){
+    			window.location.replace(data);
+    		},
+    		fail : function(){
+    			alert("Request failed.....");
+    		}    		
+    	});
+    	
+    });
+
+</script>
+</body>
+</html>
