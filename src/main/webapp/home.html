@@ -153,19 +153,21 @@
             </div>
             <!-- add activity begin -->
             
-  <div style="margin-top:20px; margin-bottom:20px">         
- 	<label for="activitiy-select-search">Search by Activity type:</label>
-            <select id="activitiy-select-search" name="activity_id" class="form-control" onchange="getAllUserActivitiesByActivityId(value)">
-               <option id="activitySelectSearchCloneMe" value="1" style="display:none" >Select vacantion type...</option>
-            </select>
-            
-    <label for="activitiy-search-string">Search by Activity title:</label>
-            
-     <div class="search-container">
-      <input type="text" id="activitiy-search-string" onkeyup="getAllUserActivitiesByTitle(value)"/>
-     
-  </div>
-         </div>
+  <form id="userActivity-search-form"  method="GET">
+	  <div style="margin-top:20px; margin-bottom:20px">         
+	 	<label for="activitiy-select-search">Search by Activity type:</label>
+	            <select id="activitiy-select-search" name="activity_id" class="form-control" ><!-- onchange="getAllUserActivitiesByActivityId(value)" -->
+	               <option id="activitySelectSearchCloneMe" value="1" style="display:none" >Select vacantion type...</option>
+	            </select>
+	            
+	    <label for="activitiy-search-string">Search by Activity title:</label>           
+	     <div class="search-container">
+	      <input type="text" id="activitiy-search-string" name="title"><!-- onkeyup="getAllUserActivitiesByTitle(value)"/ -->    
+	 	 </div>
+	 	  <button id="searchUserActivity" type="submit" form="userActivity-search-form" class="btn btn-success">Search</button>
+      </div>
+  </form>         
+  
                                  
            <div class="card" id="userActivityCloneMe" style="display:none;" onclick="renderUserActivityForm(id)">
 			  <img src="" alt="Activity" style="width:100%">
@@ -234,6 +236,40 @@
  		
  		$('#activity-form-modal').modal('show');
  	}
+  	
+  	function getAllUserActivitiesBy(title, activity_id){  	
+  		console.log(title);
+ 		//if(activity_id > 0){
+ 			//var doc = document.getElementById("userActivitiy-list");
+ 	        //doc.innerHTML = '';	
+			
+      		$.ajax({
+      			url: "/userActivity/getBy",
+      			method: "GET",
+      			data: {title: title, 
+      					activity_id: activity_id},
+      			success: function(data){
+      					//addUserActivityToUI(activity.title, activity.description, activity.imagePath, activity.id, activity.activity);
+         		data.forEach(function(activity){
+         			console.log(activity);
+         			var theActivity = $('#userActivityCloneMe').clone();
+         		theActivity.find('img').attr('src', activity.imagePath);
+         		theActivity.find('h2').text(activity.title);
+         		theActivity.find('p').text(activity.description);
+         		theActivity.attr('id', activity.id);
+         		
+         		theActivity.find('button').click(function(){
+         			deleteUserActivity(id, theActivity);
+         		});
+
+         		$('#userActivitiy-list').prepend(theActivity);
+         		theActivity.show();   		
+      			}); 
+      			}
+      		});
+  		//}
+ 	}
+  	
      
   	function getAllUserActivitiesByActivityId(activity_id){  	
    
@@ -303,7 +339,44 @@
   	
   	
          $(document).ready(function(){
+        	// getAllUserActivitiesBy(7, 7); 
+        	
+        //search begin
+        	
+        	const search_text = document.getElementById("activitiy-search-string") ;	
+         	const search_activity_id = document.getElementById("activitiy-select-search");
          	
+         const searchForm = document.forms['userActivity-search-form'];
+         const searchFormData = new FormData();
+         
+         const handleSearchSubmit = (event) => {
+            event.preventDefault();	  
+            //const form = document.forms['userActivity-search-form'];
+			
+			searchFormData.append("title", searchForm.title.value);
+        	searchFormData.append("activity_id", searchForm.activity_id.value);	
+			
+        	for (const p of searchFormData){
+        		console.log(p);
+        	}
+			
+            console.log(searchFormData);
+            	      	
+            fetch("http://localhost:8080/userActivity/getBy", {
+                method: "get",
+                body: searchFormData
+            }).then(response => response.text())
+            .then((response) => {
+                console.log(response);
+                console.log("here");
+            })
+            .catch((error) => ("Something went wrong!", error));
+         };
+         
+         searchForm.addEventListener("submit", handleSearchSubmit);    	
+         
+         //search end
+        	
          	function addActivityToSelect(title, description, id){
 
          		var theActivity = $('#activitySelectCloneMe').clone();

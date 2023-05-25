@@ -7,6 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class HolidayPlannerApplication {
 
 	public static void main(String[] args) {
+		
+		MainClass.main(null);
 		SpringApplication.run(HolidayPlannerApplication.class, args);
 	}
 

@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -65,14 +66,24 @@ public class UserActivityController {
 	
 	@GetMapping(path = "/userActivity/getByActivityId")
 	public  List<UserActivityEntity> getUserActivityByActivityId(@RequestParam(value = "activity_id")int activity_id){
-		
-		return userActivityService.getByActivityId(activity_id);	
+		System.out.println("/userActivity/getByActivityId");
+		return userActivityService.getBy(activity_id);	
 	}
 	
 	@GetMapping(path = "/userActivity/getByTitle")
 	public  List<UserActivityEntity> getByTitle(@RequestParam(value = "title") String title){
-		
-		return userActivityService.getByTitle(title);	
+		System.out.println("/userActivity/getByTitle");
+		return userActivityService.getBy(title);	
+	}
+	
+	@RequestMapping(value = "/userActivity/getBy", params = {"title", "activity_id"})
+	public  List<UserActivityEntity> getBy(@RequestParam(value = "title") String title, 
+											@RequestParam(value = "activity_id")int activity_id){
+		System.out.println("/userActivity/getBy");
+		System.out.println(title);
+		System.out.println(activity_id);
+		System.out.println(userActivityService.getBy(title, activity_id));
+		return userActivityService.getBy(title, activity_id);	
 	}
 	
 	

@@ -74,6 +74,10 @@ public class ActivityService {
 		return user;
 	}*/
 	
+	public ActivityEntity getById(int id){
+		return activtyRepository.findById(id);
+	}	
+	
 	public List<ActivityEntity> getAll(){
 		return activtyRepository.findAll();
 	}	

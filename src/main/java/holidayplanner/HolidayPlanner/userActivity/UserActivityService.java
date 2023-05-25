@@ -1,15 +1,9 @@
 package holidayplanner.HolidayPlanner.userActivity;
 
-import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 
-import javax.persistence.criteria.Join;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -128,26 +122,29 @@ public class UserActivityService {
 		return null;
 	}	
 	
-	public List<UserActivityEntity> getByActivityId(int activity_id){	
+	public List<UserActivityEntity> getBy(int activity_id){	
 		
 		List<UserActivityEntity> optinalUserActivity = userActivtyRepository.findByActivityId(activity_id);	
 		
 		return optinalUserActivity;
 	}	
 	
-	public List<UserActivityEntity> getByTitle(String title){	
+	public List<UserActivityEntity> getBy(String title){	
 		
 		List<UserActivityEntity> optinalUserActivity = userActivtyRepository.findByTitle(title);	
 		
 		return optinalUserActivity;
 	}	
 	
-	/*public List<UserActivityEntity> getByTitleAndActivityId(String title){	
+	public List<UserActivityEntity> getBy(String title, int activity_id){	
 		
-		List<UserActivityEntity> optinalUserActivity = userActivtyRepository.findByTitleAndActivityId(title);	
+		ActivityEntity activity = new ActivityEntity();
+		activity = activtyRepository.findById(activity_id);
+		
+		List<UserActivityEntity> optinalUserActivity = userActivtyRepository.findByTitleAndActivityId(title, activity);	
 		
 		return optinalUserActivity;
-	}	*/
+	}	
 	
 	public List<UserActivityEntity> getAll(){	
 		return userActivtyRepository.findAll();

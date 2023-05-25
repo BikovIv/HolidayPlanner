@@ -69,11 +69,12 @@ public class Startup {
 				+ "but with early planning, you can manage it."); 
 	}
 	
-	@EventListener
+	@EventListener 
     public void onApplicationEvent(ContextRefreshedEvent event) {
 		/*initRoles();
 		registerDev();
 		initActivities();*/
-		//System.out.println(userActivityService.getByTitleAndActivityId("7"));
+		System.out.println("getBy(7, 7)	");
+		System.out.println(userActivityService.getBy("7", 7)	);
     }
 }
