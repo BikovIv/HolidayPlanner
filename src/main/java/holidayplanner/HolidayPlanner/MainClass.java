@@ -19,16 +19,17 @@ public class MainClass {
 		profile.setParameter(Profile.MAIN_PORT, "1099");
 		profile.setParameter(Profile.GUI, "true");
 		
-		AgentContainer mainContainer =  rt.createMainContainer(profile);
+		AgentContainer mainContainer =  rt.createMainContainer(profile); //Start jade container gui
 		
 		try {
+			//add agents to container gui
+			AgentController ag1 = mainContainer.createNewAgent("holidayAgent", "holidayplanner.HolidayPlanner.HolidayPlannerAgent", null);
+			AgentController ag2 = mainContainer.createNewAgent("clientAgent", "holidayplanner.HolidayPlanner.ClientAgent", null);
+
+			ag2.start();
+			ag1.start();
 			
-			AgentController ag = mainContainer.createNewAgent("buyer", "holidayplanner.HolidayPlanner.HolidayPlannerAgent", null);
-			
-			//AgentController ag2 = mainContainer.createNewAgent("pizzaria", "uni.fmi.masters.PizzariaAgent", null);
-			
-			ag.start();
-			//ag2.start();
+			System.out.println("Agents started!");
 			
 		} catch (StaleProxyException e) {
 			// TODO Auto-generated catch block
