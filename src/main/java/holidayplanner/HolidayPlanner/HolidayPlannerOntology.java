@@ -12,12 +12,15 @@ import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.model.AddAxiom;
 import org.semanticweb.owlapi.model.AxiomType;
 import org.semanticweb.owlapi.model.IRI;
+import org.semanticweb.owlapi.model.OWLAnonymousIndividual;
 import org.semanticweb.owlapi.model.OWLAxiom;
 import org.semanticweb.owlapi.model.OWLClass;
 import org.semanticweb.owlapi.model.OWLClassExpression;
 import org.semanticweb.owlapi.model.OWLDataFactory;
+import org.semanticweb.owlapi.model.OWLDataProperty;
 import org.semanticweb.owlapi.model.OWLEntity;
 import org.semanticweb.owlapi.model.OWLIndividual;
+import org.semanticweb.owlapi.model.OWLLiteral;
 import org.semanticweb.owlapi.model.OWLNamedIndividual;
 import org.semanticweb.owlapi.model.OWLObjectProperty;
 import org.semanticweb.owlapi.model.OWLObjectPropertyExpression;
@@ -277,7 +280,8 @@ public ArrayList<Town> getTownByName(String town){
 	}
 	
 	
-	public void addTrip(String tripType, String tripName, String town, String townType) {
+	public void addTrip(String tripType, String tripName, String town, String townType, String placeToStayType,
+						String placeToStayName, double costByNight) {
 		
 		OWLClass tripClass = dataFactory.getOWLClass(
 				IRI.create(ontologyIRIStr + tripName));
@@ -287,6 +291,9 @@ public ArrayList<Town> getTownByName(String town){
 				IRI.create(ontologyIRIStr + town));
 		//System.out.println("Onto - addTrip - townClassIRI - " + IRI.create(ontologyIRIStr + town));
 		
+		OWLClass placeToStayClass = dataFactory.getOWLClass(
+				IRI.create(ontologyIRIStr + placeToStayName));
+		
 		//ako izbraniq grad ne sashtestvuva go dobavqme kam saotvetnata kategoriq
 		if(!holidayPlannerOntology.containsClassInSignature(IRI.create(ontologyIRIStr + town))) {
 			//System.out.println(townClass + " doens not exist and will be added first");
@@ -294,6 +301,14 @@ public ArrayList<Town> getTownByName(String town){
 			//System.out.println("addTown("+townType+", "+town+"); will be executed" );
 			addTown(townType, town);
 		}
+		
+		//ako izbranoto mqsto za otsqdane ne sashtestvuva go dobavqme kam saotvetnata kategoriq
+				if(!holidayPlannerOntology.containsClassInSignature(IRI.create(ontologyIRIStr + placeToStayName))) {
+					//System.out.println(townClass + " doens not exist and will be added first");
+					
+					//System.out.println("addTown("+townType+", "+town+"); will be executed" );
+					addPlaceToStay( placeToStayType/*Hotel/Motel*/, placeToStayName, costByNight);
+				}
 		
 		OWLObjectProperty hasTown = dataFactory.
 				getOWLObjectProperty(IRI.create(
@@ -315,15 +330,41 @@ public ArrayList<Town> getTownByName(String town){
 		
 		//System.out.println("Onto - addTrip - subClassOf - " + subClassOf);
 		
+		OWLObjectProperty hasPlaceToStay = dataFactory.
+				getOWLObjectProperty(IRI.create(
+						ontologyIRIStr + "hasPlaceToStay"));
+		
+		OWLClassExpression clssExpressionPlaceToStay = dataFactory.
+				getOWLObjectSomeValuesFrom(hasPlaceToStay, placeToStayClass);
+		
+		OWLSubClassOfAxiom newAxiomPlace = dataFactory. //????
+				getOWLSubClassOfAxiom(tripClass, clssExpressionPlaceToStay);
+		
+		OWLClass paretClassplc = dataFactory.getOWLClass(
+				IRI.create(ontologyIRIStr + placeToStayType));
+	
+		//System.out.println("Onto - addTrip - paretClass - " + paretClass);
+		
+		OWLSubClassOfAxiom subClassOfplace = dataFactory.
+				getOWLSubClassOfAxiom(placeToStayClass, paretClassplc);
+		
+		
 
 		AddAxiom axiom = new AddAxiom(holidayPlannerOntology, subClassOf);
 		AddAxiom addAxiom = new AddAxiom(holidayPlannerOntology, newAxiom);
+		AddAxiom addAxiompls = new AddAxiom(holidayPlannerOntology, newAxiomPlace);
+		
+		AddAxiom addAxiomplc = new AddAxiom(holidayPlannerOntology, subClassOfplace);
+		
 		
 		//System.out.println("Onto - addTrip - axiom - " + axiom);
 		
 		List<AddAxiom> changes = new ArrayList<>(); ;
 		changes.add(axiom);
 		changes.add(addAxiom);
+		changes.add(addAxiompls);
+		
+		changes.add(addAxiomplc);
 		
 		//ontoManager.applyChange(axiom);
 		ontoManager.applyChanges(changes);
@@ -354,6 +395,40 @@ public ArrayList<Town> getTownByName(String town){
 		changes.add(axiom);
 		
 		//ontoManager.applyChange(axiom);
+		ontoManager.applyChanges(changes);
+
+		saveOntology();		
+	}
+
+	public void addPlaceToStay(String placeToStayType/*Hotel/Motel*/, String placeToStayName, double costByNight) {
+
+		OWLClass placeToStayClass = dataFactory.getOWLClass(
+				IRI.create(ontologyIRIStr + placeToStayName));
+
+		OWLClass paretClass = dataFactory.getOWLClass(
+				IRI.create(ontologyIRIStr + placeToStayType));
+		
+		OWLSubClassOfAxiom subClassOf = dataFactory.
+				getOWLSubClassOfAxiom(placeToStayClass, paretClass);
+		
+		AddAxiom axiom = new AddAxiom(holidayPlannerOntology, subClassOf);
+		
+        // Get the data property
+        OWLDataProperty dataProperty = dataFactory.getOWLDataProperty(IRI.create(ontologyIRIStr + "hasCostByNight"));
+
+        // Create the data property value
+        OWLLiteral dataPropertyValue = dataFactory.getOWLLiteral(costByNight);
+
+        // Create the class restriction
+        OWLClassExpression classRestriction = dataFactory.getOWLDataHasValue(dataProperty, dataPropertyValue);
+
+        // Create the subclass axiom
+        OWLAxiom classAxiom = dataFactory.getOWLSubClassOfAxiom(placeToStayClass, classRestriction);
+        AddAxiom axiom2 = new AddAxiom(holidayPlannerOntology, classAxiom);
+        
+        List<AddAxiom> changes = new ArrayList<>(); ;
+		changes.add(axiom);
+		changes.add(axiom2);
 		ontoManager.applyChanges(changes);
 
 		saveOntology();		

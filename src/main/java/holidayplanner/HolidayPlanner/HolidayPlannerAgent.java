@@ -66,6 +66,21 @@ public class HolidayPlannerAgent extends Agent{
 			System.out.println(s);
 		};
 		*/
+		
+		try {
+			addTrip("HolidayTrip", "TripFromApp444", "Plovdiv", "PlainTown", "Hotel", "testAdded444", 444.99);
+		} catch (OWLOntologyStorageException e1) {
+			// TODO Auto-generated catch blockS
+			e1.printStackTrace();
+		}
+		
+		try {
+			addPlaceToStay("Hotel","TestHotel22", 343.6);
+		} catch (OWLOntologyStorageException e) {
+		
+			e.printStackTrace();
+		}
+		
 		addBehaviour(new HolidayReqestBehaviour());
 		//addBehaviour(new TownsReqestBehaviour());
 	}
@@ -167,10 +182,14 @@ public class HolidayPlannerAgent extends Agent{
 		}		
 	}
 	
-	public void addTrip(String tripType, String tripName, String town, String townType) throws OWLOntologyStorageException {
+	public void addTrip(String tripType, String tripName, String town, String townType, String placeToStayType, String placeToStayName, double costByNight) throws OWLOntologyStorageException {
 		System.out.println("addTrip - " + tripType + tripName + town + townType);
 		
-		holidayPlannerOntology.addTrip(tripType, tripName, town, townType);
+		holidayPlannerOntology.addTrip(tripType, tripName, town, townType, placeToStayType, placeToStayName, costByNight);
+	}
+	
+	public void addPlaceToStay(String placeToStayType/*Hotel/Motel*/, String placeToStayName, double costByNight) throws OWLOntologyStorageException {
+		holidayPlannerOntology.addPlaceToStay(placeToStayType, placeToStayName, costByNight);
 	}
 	
 	public List<String> getAllTripTypes() throws OWLOntologyStorageException {
@@ -180,6 +199,5 @@ public class HolidayPlannerAgent extends Agent{
 	public List<String> getAllTownTypes() throws OWLOntologyStorageException {
 		return holidayPlannerOntology.getAllTownTypes();
 	}
-	
 	
 }

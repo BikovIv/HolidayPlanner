@@ -105,7 +105,7 @@ public class HolidayPlannerAgentGUI  extends JFrame{
 				String tripTownType = tripTownTypeCB.getSelectedItem().toString(); //TO DO: add new town types
 				
 				try {
-					myAgent.addTrip(tripType, tripName, tripTown, tripTownType);
+					myAgent.addTrip(tripType, tripName, tripTown, tripTownType, "", "", 0);
 				} catch (OWLOntologyStorageException e1) {
 					e1.printStackTrace();
 				}
