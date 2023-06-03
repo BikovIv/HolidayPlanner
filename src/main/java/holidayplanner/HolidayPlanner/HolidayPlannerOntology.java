@@ -22,6 +22,7 @@ import org.semanticweb.owlapi.model.OWLEntity;
 import org.semanticweb.owlapi.model.OWLIndividual;
 import org.semanticweb.owlapi.model.OWLLiteral;
 import org.semanticweb.owlapi.model.OWLNamedIndividual;
+import org.semanticweb.owlapi.model.OWLNamedObject;
 import org.semanticweb.owlapi.model.OWLObjectProperty;
 import org.semanticweb.owlapi.model.OWLObjectPropertyExpression;
 import org.semanticweb.owlapi.model.OWLOntology;
@@ -123,6 +124,64 @@ public class HolidayPlannerOntology {
 		
 		return result;
 	}
+
+public ArrayList<Holiday> getHolidayByUserParameters(String tripType, String placeToStayType, String tripTownType, double placeToStayPrice){
+		
+		ArrayList<Holiday> result = new ArrayList<>();
+		
+		OWLObjectProperty hasTown = dataFactory
+				.getOWLObjectProperty(
+						IRI.create(ontologyIRIStr + "hasTown"));
+		
+		OWLClass townClass = dataFactory.getOWLClass(
+				IRI.create(ontologyIRIStr + tripType));
+		
+		/*//��������� ������ ������� �� �����
+		for(OWLAxiom axiom : 
+			townClass.getReferencingAxioms(holidayPlannerOntology)) {
+			
+			//������� ��� �������� ���� ������� ����� �� ��� ����
+			if(axiom.getAxiomType() == AxiomType.SUBCLASS_OF) {
+
+				//������� ������ �������� �� ������������ �������
+				for(OWLObjectProperty op: 
+					axiom.getObjectPropertiesInSignature()) {
+					
+					//����������� ��� �������� IRI � ���� ����� ������
+					if(op.getIRI().equals(hasTown.getIRI())) {
+						
+						//������� ������ ������� �� ���������
+						for(OWLClass classInAxiom: 
+							axiom.getClassesInSignature()) {
+							
+							if(containsSuperClass(
+									classInAxiom.getSuperClasses(holidayPlannerOntology),
+									dataFactory.getOWLClass(
+											IRI.create(ontologyIRIStr + "HolidayPlanner")))) {
+								
+								contains = false;
+								
+								Holiday p = new Holiday();
+								//p.setName(getClassFriendlyName(classInAxiom));
+								p.setId(classInAxiom.getIRI().toQuotedString());
+								
+								//p.setToppings(getAllToppings(classInAxiom
+									//	, hasTopping));
+								
+								result.add(p);							
+							}
+							
+						}
+					}
+					
+				}
+				
+			}
+			
+		}*/
+		
+		return result;
+	}
 /*	
 public ArrayList<Town> getTownByName(String town){
 		
@@ -197,6 +256,26 @@ public ArrayList<Town> getTownByName(String town){
 		return results;
 	}
 	
+	public ArrayList<TripType> getAllTripTypesArray() {
+		
+			ArrayList<TripType> result = new ArrayList<>();
+			
+			OWLClass tripTypeClass = dataFactory.getOWLClass(IRI.create(ontologyIRIStr + "TripTypes"));
+			
+			for(OWLIndividual tripType : 
+				tripTypeClass.getIndividuals(holidayPlannerOntology)) {
+				
+				TripType p = new TripType();
+				//p.setName(getClassFriendlyName(classInAxiom));
+				p.setId(((OWLNamedObject) tripType).getIRI().toQuotedString());
+				
+				result.add(p);	
+
+			}
+				
+			return result;
+	}
+	
 	public List<String> getAllTownTypes() {
 		
 		List<String> results = new ArrayList<>();
@@ -210,6 +289,56 @@ public ArrayList<Town> getTownByName(String town){
 		
 		return results;
 	}
+	
+	public ArrayList<TripTownType> getAllTownTypesArray() {
+		
+		ArrayList<TripTownType> result = new ArrayList<>();
+
+		OWLClass townTypeClass = dataFactory.getOWLClass(IRI.create(ontologyIRIStr + "TripTown"));
+	
+		for(OWLClassExpression townType : 
+			townTypeClass.getSubClasses(holidayPlannerOntology)) {
+			//result.add(getClassFriendlyName(townType.toString()));
+			
+			TripTownType p = new TripTownType();
+			p.setId(((OWLNamedObject) townType).getIRI().toQuotedString());
+			
+			result.add(p);
+		}
+		
+		return result;
+	}
+	
+	public ArrayList<PlaceToStayType> getAllPlaceToStayTypesArray() {
+		
+		ArrayList<PlaceToStayType> result = new ArrayList<>();
+		
+		OWLClass placeToStayTypeClass = dataFactory.getOWLClass(IRI.create(ontologyIRIStr + "PlaceToStay"));
+		
+		for(OWLClassExpression place : 
+			placeToStayTypeClass.getSubClasses(holidayPlannerOntology)) {
+			//System.out.println("place: " + place);
+			//System.out.println("place: " + place.containsEntityInSignature(placeToStayTypeClass));
+			//System.out.println("place: " + place.getNestedClassExpressions());
+			
+			PlaceToStayType p = new PlaceToStayType();
+			p.setId(((OWLNamedObject) place).getIRI().toQuotedString());
+			
+			result.add(p);
+		}
+		
+	/*	for(OWLClass place : placeToStayType.getClassesInSignature()) {
+			System.out.println(place);
+			PlaceToStayType p = new PlaceToStayType();
+			p.setId(place.getIRI().toQuotedString());*/
+			
+			
+			//result.add(p);	
+
+		//}
+			
+		return result;
+}
 	
 	public List<String> getAllTowns() { //BY TYPE
 		

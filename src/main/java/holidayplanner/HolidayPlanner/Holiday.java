@@ -30,9 +30,9 @@ public class Holiday implements Serializable{
 		this.town = town;
 	}
 
-	@Override
-	public String toString() {
-		return "Holiday [id=" + id + ", town=" + town + "]";
-	}	
+	//@Override
+	//public String toString() {
+	//	return "Holiday [id=" + id + ", town=" + town + "]";
+	//}	
 }
 

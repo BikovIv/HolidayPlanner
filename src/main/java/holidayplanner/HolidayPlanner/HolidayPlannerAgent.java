@@ -1,5 +1,7 @@
 package holidayplanner.HolidayPlanner;
 
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,12 +38,23 @@ public class HolidayPlannerAgent extends Agent{
 		DFAgentDescription dfd = new DFAgentDescription();
 		dfd.setName(getAID());
 		
-		ServiceDescription sd = new ServiceDescription();
-		sd.setType("holidayPlanner");
-		sd.setName("happy holiday");
+		Object services[] = {"holidayPlanner","initializeData"};
 		
-		dfd.addServices(sd);
+		  for(int i=0;i < services.length ;i++){
+			  //dfd = new DFAgentDescription();
+			     //dfd.setName(getAID());
+			  ServiceDescription sd  = new ServiceDescription();
+			        sd.setType((String)services[i]);
+			        sd.setName("happy holiday");
+			        dfd.addServices(sd);
+			        //register( sd );
+			  }
 		
+		//ServiceDescription sd = new ServiceDescription();
+		//sd.setType("holidayPlanner");
+		//sd.setType((String)services[0]);
+		//sd.setName("happy holiday");	
+		//dfd.addServices(sd);
 		//ServiceDescription sdAllTowns = new ServiceDescription();
 		//sdAllTowns.setType("allTowns");
 		//sdAllTowns.setName("all towns");
@@ -67,7 +80,7 @@ public class HolidayPlannerAgent extends Agent{
 		};
 		*/
 		
-		try {
+		/*try {
 			addTrip("HolidayTrip", "TripFromApp444", "Plovdiv", "PlainTown", "Hotel", "testAdded444", 444.99);
 		} catch (OWLOntologyStorageException e1) {
 			// TODO Auto-generated catch blockS
@@ -79,9 +92,10 @@ public class HolidayPlannerAgent extends Agent{
 		} catch (OWLOntologyStorageException e) {
 		
 			e.printStackTrace();
-		}
+		}*/
 		
 		addBehaviour(new HolidayReqestBehaviour());
+		addBehaviour(new InitializeReqestBehaviour());
 		//addBehaviour(new TownsReqestBehaviour());
 	}
 	
@@ -94,17 +108,23 @@ public class HolidayPlannerAgent extends Agent{
 			
 			ACLMessage msg = receive(mt);
 			
-			if(msg != null /*&& msg.getConversationId() == "holidayPlanner"*/) {
+			if(msg != null && msg.getConversationId() == "holiday_stuff") {
 				
 				System.out.println(msg);
-				String town = msg.getContent();
+				//String town = msg.getUserDefinedParameter("AllTownTypesArray");
 				
-				System.out.println("HolidayPlannerAgent: Somebody search for holiday with town:  " + town);
+				String tripType = msg.getUserDefinedParameter("tripType");
+				String placeToStayType = msg.getUserDefinedParameter("placeToStayType");
+				String tripTownType = msg.getUserDefinedParameter("tripTownType");
+				double placeToStayPrice = Double.parseDouble(msg.getUserDefinedParameter("placeToStayPrice"));//Double.parseDouble(placeToStayPriceCB.getText());
+				
+				System.out.println("HolidayPlannerAgent: Somebody search for holiday with tripType:  " + tripType +
+						"placeToStayType :" + placeToStayType + "tripTownType :" + tripTownType + "placeToStayPrice :" + placeToStayPrice);
 				
 				ACLMessage reply = msg.createReply();
 				
 				ArrayList<Holiday> result = 
-						holidayPlannerOntology.getHolidayByTown(town);
+						holidayPlannerOntology.getHolidayByTown("town");
 				
 				if(result.size() > 0) {
 					
@@ -135,7 +155,75 @@ public class HolidayPlannerAgent extends Agent{
 		}		
 	}
 	
-	private class TownsReqestBehaviour extends CyclicBehaviour{
+	private class InitializeReqestBehaviour extends CyclicBehaviour{
+
+		@Override
+		public void action() {
+			MessageTemplate mt = MessageTemplate.
+					MatchPerformative(ACLMessage.CFP);
+			
+			ACLMessage msg = receive(mt);
+			
+			if(msg != null && msg.getConversationId() == "initialize_stuff") {
+				
+				System.out.println(msg);
+				//String town = msg.getContent();
+				
+				System.out.println("HolidayPlannerAgent: Somebody wants initial data");
+				
+				ACLMessage reply = msg.createReply();
+				
+				ArrayList<TripType> result = 
+						holidayPlannerOntology.getAllTripTypesArray();
+				ArrayList<PlaceToStayType> placeToStayTypes = 
+						holidayPlannerOntology.getAllPlaceToStayTypesArray();
+				ArrayList<TripTownType> townTypes = 
+						holidayPlannerOntology.getAllTownTypesArray();
+				
+				
+				///for(PlaceToStayType p : placeToStayTypes) {
+				//	System.out.println("p: " + p);			
+				//}
+				
+				if(result.size() > 0 && placeToStayTypes.size() > 0) {
+					
+					System.out.println("HolidayPlannerAgent: Initial data collected");
+					ObjectMapper mapper = new ObjectMapper();
+					
+					//reply.addUserDefinedParameter("AllTripTypesArray", mapper.writeValueAsString(result));
+					//reply.addUserDefinedParameter("AllPlaceToStayTypesArray", placeToStayTypes.toString());
+					
+					//System.out.println("HolidayPlannerAgent: Initial data collected: " + reply);
+					reply.setPerformative(ACLMessage.PROPOSE);
+					System.out.println("HolidayPlannerAgent: Initial data collected: " + result + placeToStayTypes + townTypes);					
+					
+					try {
+						reply.setContent(mapper.writeValueAsString("result"));
+						
+						reply.addUserDefinedParameter("AllTripTypesArray", mapper.writeValueAsString(result));
+						reply.addUserDefinedParameter("AllPlaceToStayTypesArray", mapper.writeValueAsString(placeToStayTypes));
+						reply.addUserDefinedParameter("AllTownTypesArray", mapper.writeValueAsString(townTypes));
+					
+						reply.setLanguage("JSON");
+						
+					} catch (JsonProcessingException e) {
+						e.printStackTrace();
+					}				
+				}else {
+					reply.setPerformative(ACLMessage.REFUSE);
+					reply.setContent("HolidayPlannerAgent: Initial NOT data collected!");
+					System.out.println("HolidayPlannerAgent: Initial NOT data collected!");
+				}
+				
+				send(reply);				
+			}
+			
+			
+		}		
+	}
+	
+	
+	/*private class TownsReqestBehaviour extends CyclicBehaviour{
 
 		@Override
 		public void action() {
@@ -155,7 +243,7 @@ public class HolidayPlannerAgent extends Agent{
 						
 				//holidayPlannerOntology.getAllTowns();
 				
-				/*if(result.size() > 0) {
+				*if(result.size() > 0) {
 					
 					System.out.println("HolidayPlannerAgent: I have it");
 					ObjectMapper mapper = new ObjectMapper();
@@ -175,12 +263,12 @@ public class HolidayPlannerAgent extends Agent{
 					reply.setPerformative(ACLMessage.REFUSE);
 					reply.setContent("HolidayPlannerAgent: Not found!");
 					System.out.println("HolidayPlannerAgent: No such holiday TownsReqestBehaviour!");
-				}*/
+				}*
 				
 				send(reply);				
 			}		
 		}		
-	}
+	}*/
 	
 	public void addTrip(String tripType, String tripName, String town, String townType, String placeToStayType, String placeToStayName, double costByNight) throws OWLOntologyStorageException {
 		System.out.println("addTrip - " + tripType + tripName + town + townType);
