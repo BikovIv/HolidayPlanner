@@ -2,10 +2,14 @@ package holidayplanner.HolidayPlanner;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.coode.owlapi.rdfxml.parser.DataQualifiedCardinalityTranslator;
 import org.semanticweb.owlapi.apibinding.OWLManager;
@@ -18,6 +22,7 @@ import org.semanticweb.owlapi.model.OWLClass;
 import org.semanticweb.owlapi.model.OWLClassExpression;
 import org.semanticweb.owlapi.model.OWLDataFactory;
 import org.semanticweb.owlapi.model.OWLDataProperty;
+import org.semanticweb.owlapi.model.OWLDataPropertyAssertionAxiom;
 import org.semanticweb.owlapi.model.OWLEntity;
 import org.semanticweb.owlapi.model.OWLIndividual;
 import org.semanticweb.owlapi.model.OWLLiteral;
@@ -25,11 +30,13 @@ import org.semanticweb.owlapi.model.OWLNamedIndividual;
 import org.semanticweb.owlapi.model.OWLNamedObject;
 import org.semanticweb.owlapi.model.OWLObjectProperty;
 import org.semanticweb.owlapi.model.OWLObjectPropertyExpression;
+import org.semanticweb.owlapi.model.OWLObjectSomeValuesFrom;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyChange;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
 import org.semanticweb.owlapi.model.OWLOntologyStorageException;
+import org.semanticweb.owlapi.model.OWLPropertyExpression;
 import org.semanticweb.owlapi.model.OWLSubClassOfAxiom;
 import org.semanticweb.owlapi.reasoner.OWLReasoner;
 import org.semanticweb.owlapi.util.OWLEntityRemover;
@@ -126,62 +133,125 @@ public class HolidayPlannerOntology {
 	}
 
 public ArrayList<Holiday> getHolidayByUserParameters(String tripType, String placeToStayType, String tripTownType, double placeToStayPrice){
+		System.out.println(tripType + ", " + placeToStayType + ", " + tripTownType + ", " + placeToStayPrice);
+	ArrayList<Holiday> result = new ArrayList<>();
+	
+	OWLObjectProperty hasPlaceToStay = dataFactory
+			.getOWLObjectProperty(
+					IRI.create(ontologyIRIStr + "hasPlaceToStay"));
+	
+	OWLObjectProperty hasTown = dataFactory
+			.getOWLObjectProperty(
+					IRI.create(ontologyIRIStr + "hasTown"));
+	
+	OWLClass townClass = dataFactory.getOWLClass(
+			IRI.create(ontologyIRIStr + tripType));
+	
+	OWLClass placeToStayTypeClass = dataFactory.getOWLClass(
+			IRI.create(ontologyIRIStr + placeToStayType));
+	
+	OWLClass tripTownTypeClass = dataFactory.getOWLClass(
+			IRI.create(ontologyIRIStr + tripTownType));
+	
+	//System.out.println("placeToStayTypeClass: " + placeToStayTypeClass);
+	
+	for(OWLClassExpression subCls : 
+		townClass.getSubClasses(holidayPlannerOntology)) {
 		
-		ArrayList<Holiday> result = new ArrayList<>();
-		
-		OWLObjectProperty hasTown = dataFactory
-				.getOWLObjectProperty(
-						IRI.create(ontologyIRIStr + "hasTown"));
-		
-		OWLClass townClass = dataFactory.getOWLClass(
-				IRI.create(ontologyIRIStr + tripType));
-		
-		/*//��������� ������ ������� �� �����
 		for(OWLAxiom axiom : 
-			townClass.getReferencingAxioms(holidayPlannerOntology)) {
+			subCls.asOWLClass().getReferencingAxioms(holidayPlannerOntology)) {
 			
-			//������� ��� �������� ���� ������� ����� �� ��� ����
-			if(axiom.getAxiomType() == AxiomType.SUBCLASS_OF) {
-
-				//������� ������ �������� �� ������������ �������
-				for(OWLObjectProperty op: 
-					axiom.getObjectPropertiesInSignature()) {
-					
-					//����������� ��� �������� IRI � ���� ����� ������
-					if(op.getIRI().equals(hasTown.getIRI())) {
-						
-						//������� ������ ������� �� ���������
-						for(OWLClass classInAxiom: 
-							axiom.getClassesInSignature()) {
-							
-							if(containsSuperClass(
-									classInAxiom.getSuperClasses(holidayPlannerOntology),
-									dataFactory.getOWLClass(
-											IRI.create(ontologyIRIStr + "HolidayPlanner")))) {
-								
-								contains = false;
-								
-								Holiday p = new Holiday();
-								//p.setName(getClassFriendlyName(classInAxiom));
-								p.setId(classInAxiom.getIRI().toQuotedString());
-								
-								//p.setToppings(getAllToppings(classInAxiom
-									//	, hasTopping));
-								
-								result.add(p);							
-							}
-							
-						}
-					}
-					
+			for(OWLObjectProperty op: 
+				axiom.getObjectPropertiesInSignature()) {				
+				
+				if(hasPlaceToStay.getIRI().equals(op.getIRI())){
+					result.addAll(getAllClasses(axiom, placeToStayTypeClass, subCls ));
 				}
 				
+				if(hasTown.getIRI().equals(op.getIRI())) {
+						result.addAll(getAllClasses(axiom, tripTownTypeClass, subCls ));
+				}
+				
+				//if(hasTown.getIRI().equals(op.getIRI())) {
+				//	result.addAll(getAllClasses(axiom, tripTownTypeClass, subCls ));
+				//}
+	
+				}			
 			}
-			
-		}*/
+			}
+	
+	//Remove duplicated data begin
+	ArrayList<Holiday> results = new ArrayList<Holiday>();
+	Set<String> ids = new HashSet<String>();
+ 
+	for(Holiday item : result) {
+	    if(ids.add(item.getId())) {
+	    	results.add(item);
+	    }
+	}
+	//Remove duplicated data end
+	
+     for (Holiday element : results) {
+    		  System.out.println(element.getId());   
+     }
+	
+	return results;
+	}
+
+public Collection<? extends Holiday> getAllClasses(OWLAxiom axiom, OWLClass comparedClass, OWLClassExpression classToFind){
+	
+	ArrayList<Holiday> result = new ArrayList<>();
+	
+	 OWLSubClassOfAxiom subClassAxiomPlaceToStay = (OWLSubClassOfAxiom) axiom;
+		OWLClassExpression superClassPlaceToStay = subClassAxiomPlaceToStay.getSuperClass();
+		OWLObjectSomeValuesFrom objectSomeValuesFromPlaceToStay = (OWLObjectSomeValuesFrom) superClassPlaceToStay;
+		//TRQBWA MI SE4ENIETO OT VSICHKI PARAMETRI
+		//System.out.println("1111:" + getClassFriendlyName(objectSomeValuesFrom.getFiller()));	
+		//System.out.println("2222:" + axiom);	
+
+		for(OWLClass classInAxiom: 
+			objectSomeValuesFromPlaceToStay.getClassesInSignature()) {
+			//System.out.println("classInAxiom: " + classInAxiom);
+			for(OWLClassExpression ex : 
+				classInAxiom.getSuperClasses(holidayPlannerOntology)) {
+				//System.out.println("ex: " + ex);
+				if(ex.isClassExpressionLiteral() && ex.equals(comparedClass)) { //samo ako e klasa na mestoto za otsqdane hotel ili motel
+					//System.out.println("ex: " + ex);
+					//System.out.println("ex: " + ex.isClassExpressionLiteral()); //tuk sa samo jelanite tipove mesta za otsqdane
+					
+					Holiday p = new Holiday();
+					p.setId(classToFind.toString());
+					
+					result.add(p);							
+				}	
+			}
+		}
 		
 		return result;
 	}
+
+
+public OWLDataProperty getDataPropertyValue(OWLClass searchClass, OWLDataProperty searchProp){
+		
+	OWLDataProperty result = null;// = new OWLDataProperty;
+	
+	 //OWLDataFactory dataFactory = ontology.getOWLOntologyManager().getOWLDataFactory();
+     OWLNamedIndividual individual = dataFactory.getOWLNamedIndividual(IRI.create("#" + "individualName"));
+     //OWLDataProperty dataProperty = dataFactory.getOWLDataProperty(IRI.create("#" + propertyName));
+
+     /*OWLDataPropertyAssertionAxiom axiom = dataFactory.getOWLDataPropertyAssertionAxiom(dataProperty, individual);
+     Set<OWLLiteral> propertyValues = ontology.getDataPropertyAssertionAxioms(individual).stream()
+             .filter(ax -> ax.getProperty().equals(dataProperty))
+             .map(OWLDataPropertyAssertionAxiom::getObject)
+             .collect(Collectors.toSet());
+
+     if (!propertyValues.isEmpty()) {
+         return propertyValues.iterator().next().getLiteral();
+     }*/
+	
+	return result;
+	}
+
 /*	
 public ArrayList<Town> getTownByName(String town){
 		

@@ -247,6 +247,7 @@ public class ClientAgent extends Agent{
 								holidayNames[i] = getClassFriendlyName(holidayArray[i]);
 							}
 							
+							gui.holidaysList.removeAll();
 							gui.holidaysList.setListData(holidayNames);
 						
 							for(int i = 0; i < holidayArray.length; i++) {
