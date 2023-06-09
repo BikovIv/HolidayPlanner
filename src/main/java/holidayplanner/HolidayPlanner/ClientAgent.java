@@ -202,21 +202,21 @@ public class ClientAgent extends Agent{
 				for(int i=0; i < sellers.size(); i++) {
 					cfp.addReceiver(sellers.get(i));
 				}
-				System.out.println("111111111111111111111111111111111");
+				//System.out.println("111111111111111111111111111111111");
 				cfp.addUserDefinedParameter("tripType", tripType);
-				System.out.println("1111122222222");
+				//System.out.println("1111122222222");
 				cfp.addUserDefinedParameter("placeToStayType", placeToStayType);
-				System.out.println("333333333333");
+				//System.out.println("333333333333");
 				cfp.addUserDefinedParameter("tripTownType", tripTownType);
-				System.out.println("4444444444444444");
+				//System.out.println("4444444444444444");
 				cfp.addUserDefinedParameter("placeToStayPrice",placeToStayPriceString);
-				System.out.println("55555555555555555");
+				//System.out.println("55555555555555555");
 				
 				cfp.setContent(tripType);
 				cfp.setConversationId("holiday_stuff");
 				cfp.setReplyWith("cfp" 
 						+ System.currentTimeMillis());
-				System.out.println("333333333333");
+				//System.out.println("333333333333");
 				mt = MessageTemplate.and(
 						MessageTemplate.MatchConversationId("holiday_stuff"),
 						MessageTemplate.MatchInReplyTo(cfp.getReplyWith())

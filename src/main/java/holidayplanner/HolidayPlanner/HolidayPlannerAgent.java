@@ -95,7 +95,7 @@ public class HolidayPlannerAgent extends Agent{
 		}*/
 		
 		//for(Holiday s : 
-			//holidayPlannerOntology.getHolidayByUserParameters("HolidayTrip", "Motel", "PlainTown", 0); //) {
+			//holidayPlannerOntology.getHolidayByUserParameters("WeekendTrip", "Hotel", "PlainTown", 0); //) {
 		//	System.out.println(s.getId());
 		//};
 		

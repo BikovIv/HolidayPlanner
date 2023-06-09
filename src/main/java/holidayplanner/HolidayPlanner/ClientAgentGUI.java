@@ -1,9 +1,6 @@
 package holidayplanner.HolidayPlanner;
 
-import java.awt.Color;
-import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -11,7 +8,6 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -81,7 +77,7 @@ public class ClientAgentGUI extends JFrame {
 			BufferedImage myPicture = null;
 			try {
 				myPicture = ImageIO.read(new File("src/main/webapp/uploads/164_holiday.png"));
-				System.out.println(myPicture);
+				//System.out.println(myPicture);
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
@@ -187,9 +183,7 @@ public class ClientAgentGUI extends JFrame {
 	        frame.add(panel);
 	        frame.pack();
 	        frame.setVisible(true);
-	        
-	        
-	        
+ 
 	        searchButton.addActionListener(new ActionListener() {
 				
 				@Override
@@ -220,7 +214,7 @@ public class ClientAgentGUI extends JFrame {
 				
 				@Override
 				public void valueChanged(ListSelectionEvent e) {
-					//t.setText(holidaysList.getSelectedValue());
+					tripNameTF.setText(holidaysList.getSelectedValue());
 				}
 			});
 	        
@@ -237,7 +231,5 @@ public class ClientAgentGUI extends JFrame {
 				}
 			});
 	        
-	        
 		}
-	
 }
