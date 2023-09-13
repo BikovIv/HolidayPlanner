@@ -10,10 +10,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 public class UserPrincipal implements UserDetails{
 
-	private UserEntity user;
+	private User/*Entity*/ user;
 	private Set<GrantedAuthority> authorities;
 
-	public UserPrincipal(UserEntity user, Set<RoleEntity> roles) {
+	public UserPrincipal(User/*Entity*/ user, Set<RoleEntity> roles) {
 		this.user = user;
 		authorities = new HashSet<GrantedAuthority>();
 		insertRoles(roles);
@@ -36,7 +36,7 @@ public class UserPrincipal implements UserDetails{
 
 	@Override
 	public String getPassword() {
-		return user.getPassword();
+		return user.getPass();
 	}
 
 	@Override

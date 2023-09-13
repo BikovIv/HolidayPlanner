@@ -21,7 +21,7 @@ import holidayplanner.HolidayPlanner.activity.ActivityController;
 import holidayplanner.HolidayPlanner.activity.ActivityRepository;
 import holidayplanner.HolidayPlanner.activity.ActivityService;
 
-public class HolidayPlannerAgentGUI  extends JFrame{
+public class HolidayPlannerAgentGUI  extends JFrame{   /*  DOBAVQNE NA ZAPISI KAM ONTOOOOOOOOOOOOOOOOOOOOOOOOO*/
 	
 	HolidayPlannerAgent myAgent;
 	
@@ -51,13 +51,13 @@ public class HolidayPlannerAgentGUI  extends JFrame{
 		JTextField costByNightTF =  new JTextField(10);
 		JButton addTripB = new JButton("Add Trip");
 		
-		try {
+		/*try {
 			for(String tripType : myAgent.getAllTripTypes()) {
 				tripTypeCB.addItem(tripType);
 			}
 		} catch (OWLOntologyStorageException e2) {
 			e2.printStackTrace();
-		}
+		}*/
 		
 		try {
 			for(String townType : myAgent.getAllTownTypes()) {
@@ -130,7 +130,7 @@ public class HolidayPlannerAgentGUI  extends JFrame{
 		
 		setContentPane(contentPane);
 		pack();
-		setVisible(true);		
+		//setVisible(true);		
 				
 		addTripB.addActionListener(new ActionListener() {
 			

@@ -76,13 +76,13 @@ public class ClientAgentGUI extends JFrame {
 			//Image begin
 			BufferedImage myPicture = null;
 			try {
-				myPicture = ImageIO.read(new File("src/main/webapp/uploads/164_holiday.png"));
+				myPicture = ImageIO.read(new File("src/main/webapp/uploads/131_summer-index-img.jpg"));
 				//System.out.println(myPicture);
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
 			JLabel picLabel = new JLabel(new ImageIcon(myPicture));
-			picLabel.setPreferredSize(new Dimension(400, 300));
+			//picLabel.setPreferredSize(new Dimension(1000, 1000));
 			//Image end
 			//resulst fields end
 			
@@ -182,7 +182,7 @@ public class ClientAgentGUI extends JFrame {
 	        // Set the window to be visible as the default to be false
 	        frame.add(panel);
 	        frame.pack();
-	        frame.setVisible(true);
+	       // frame.setVisible(true);
  
 	        searchButton.addActionListener(new ActionListener() {
 				

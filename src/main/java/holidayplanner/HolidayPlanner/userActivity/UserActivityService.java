@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import holidayplanner.HolidayPlanner.HolidayPlannerAgent;
 import holidayplanner.HolidayPlanner.activity.ActivityEntity;
 import holidayplanner.HolidayPlanner.activity.ActivityRepository;
 import holidayplanner.HolidayPlanner.file.FileService;
@@ -22,6 +23,8 @@ public class UserActivityService {
 	private FileService storageService;
 	//private WebSecurityConfig webSecurityConfig;
 	//private RoleService roleService;
+	
+	private HolidayPlannerAgent a = new HolidayPlannerAgent();
 	
 	@Autowired
 	public UserActivityService(UserActivityRepository userActivtyRepository, ActivityRepository activtyRepository,/*, WebSecurityConfig webSecurityConfig, RoleService roleService*/

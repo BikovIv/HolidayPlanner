@@ -2,23 +2,21 @@ package holidayplanner.HolidayPlanner.user;
 
 import java.util.Set;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-/*import holidayplanner.HolidayPlanner.user.RoleEntity;
-import holidayplanner.HolidayPlanner.user.UserEntity;
-import holidayplanner.HolidayPlanner.user.UserPrincipal;
-import holidayplanner.HolidayPlanner.user.UserRepository;*/
-
 @Service
 public class AppUserDetailService implements UserDetailsService{
 
 private UserRepository userRepository;
-	
-	@Autowired
+
+//@Autowired
+//public AppUserDetailService() {
+//}
+
+	//@Autowired
 	public AppUserDetailService(UserRepository userRepository) {
 		this.userRepository = userRepository;
 	}
@@ -26,8 +24,12 @@ private UserRepository userRepository;
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		
-		UserEntity user = userRepository.findByUsername(username);
-		
+		//System.out.println("username: " + username);
+		//System.out.println("userRepository: " + userRepository);
+		//System.out.println("userRepository.findByUsername(): " + userRepository.findById(1));
+		//UserEntity user = userRepository.findByUsername(username);
+		User user = userRepository.findByUsername(username);
+
 		if(user == null) {
 			throw new UsernameNotFoundException(
 					username + " was slacking....");
@@ -37,5 +39,4 @@ private UserRepository userRepository;
 		
 		return new UserPrincipal(user, roles);
 	}
-	
 }

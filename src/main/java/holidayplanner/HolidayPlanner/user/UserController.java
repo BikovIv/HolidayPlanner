@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +21,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import holidayplanner.HolidayPlanner.user.UserEntity;
-/*import holidayplanner.HolidayPlanner.user.UserService;*/
+import holidayplanner.HolidayPlanner.HolidayPlannerAgent;
 
 @RestController
 public class UserController {
 	
 	private UserService userService;
+	//HolidayPlannerAgent myHolidayPlannerAgent;
 	
 	@Autowired
 	public UserController(UserService userService) {
@@ -34,15 +35,14 @@ public class UserController {
 	}	
 	
 	@PostMapping(path = "/register")
-	public UserEntity register( @RequestParam(value = "email") String email, 
+	public User /*Entity*/ register( @RequestParam(value = "email") String email, 
 								@RequestParam(value = "username") String username, 
 								@RequestParam(value = "password") String password, 
 								@RequestParam(value = "repeatPassword") String repeatPassword) {
 		
 		Set<RoleEntity> roles = new HashSet<RoleEntity>();
 		
-		return userService.registerUser(
-				username, password, repeatPassword, email);	
+		return userService.registerUser(username, password, repeatPassword, email);	
 		
 	}
 	
@@ -51,7 +51,9 @@ public class UserController {
 						  @RequestParam(value = "password") String password, 
 						   HttpSession session) {
 		
-		UserEntity user = userService.login(username, password, session);
+		User/*Entity*/ user = userService.login(username, password, session);
+		
+		System.out.println("session.getAttribute(\"loggedUserId\")" + session.getAttribute("loggedUserId"));
 		
 		if(user != null) {
 			return "home.html";
@@ -59,6 +61,21 @@ public class UserController {
 			return "error.html";
 		}
 		
+	}
+	
+	
+	
+	@GetMapping(path = "/getSessionParameters")
+	public int getSessionParameters(HttpServletRequest request, HttpSession session) { 
+		
+		UserEntity user = (UserEntity)session.getAttribute("loggedUser");
+		
+		System.out.println("user" + user);
+		//HttpSession session = request.getSession();
+		//System.out.println("session" + session.);
+		int user_id = (int) session.getAttribute("loggedUserId");
+		
+			return user_id;
 	}
 	
 	@GetMapping(path = "/loginnn")
@@ -94,7 +111,7 @@ public class UserController {
 	
 	@Secured("ROLE_ADMIN")
 	@GetMapping(path = "/all")
-	public List<UserEntity> getAllUsers(){
+	public List<User> getAllUsers(){
 		
 		return userService.getAll();	
 	}

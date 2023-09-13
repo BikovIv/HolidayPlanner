@@ -21,7 +21,7 @@ import holidayplanner.HolidayPlanner.user.RoleEntity;
 import holidayplanner.HolidayPlanner.userActivity.UserActivityEntity;
 
 @Entity
-@Table(name = "user")
+//@Table(name = "user")
 public class UserEntity implements Serializable{
 
 	@Id

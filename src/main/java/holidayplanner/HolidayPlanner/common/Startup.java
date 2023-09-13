@@ -8,32 +8,38 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
+import holidayplanner.HolidayPlanner.HolidayPlannerOntology;
 import holidayplanner.HolidayPlanner.activity.ActivityEntity;
 import holidayplanner.HolidayPlanner.activity.ActivityService;
 import holidayplanner.HolidayPlanner.user.RoleEntity;
 import holidayplanner.HolidayPlanner.user.RoleService;
 import holidayplanner.HolidayPlanner.user.UserService;
 import holidayplanner.HolidayPlanner.userActivity.UserActivityService;
+import holidayplanner.HolidayPlanner.userTrip.UserTripService;
 
 @Component
 public class Startup {
 	
-	private UserService userService;
+	//private UserService userService;
 	private RoleService roleService;
 	private ActivityService activityService;
 	private UserActivityService userActivityService;
+	private UserTripService userTripService;
+	private HolidayPlannerOntology holidayPlannerOntology =  new HolidayPlannerOntology();
 	
 	@Autowired
-	public Startup(UserService userService, RoleService roleService, ActivityService activityService, UserActivityService userActivityService) {
-		this.userService = userService;
+	public Startup(UserService userService, RoleService roleService, ActivityService activityService, UserActivityService userActivityService,
+					UserTripService userTripService) {
+		//this.userService = userService;
 		this.roleService = roleService;
 		this.activityService = activityService;
 		this.userActivityService = userActivityService;
+		this.userTripService = userTripService;
 	}	
 	
 	public void initRoles() {
-		roleService.addRole(new RoleEntity("ROLE_USER"));
-		roleService.addRole(new RoleEntity("ROLE_ADMIN")); 
+		//roleService.addRole(new RoleEntity("ROLE_USER"));
+		//roleService.addRole(new RoleEntity("ROLE_ADMIN")); 
 	}
 	
 	public void registerDev() {
@@ -41,9 +47,9 @@ public class Startup {
 		String username="dev1"; 
 		String password="dev1"; 
 		String repeatPassword="dev1";
-		Set<RoleEntity> roles = new HashSet(roleService.getAll()/*.stream().map((role) -> role.getCode()).collect(Collectors.toList())*/);
+		//Set<RoleEntity> roles = new HashSet(roleService.getAll()/*.stream().map((role) -> role.getCode()).collect(Collectors.toList())*/);
 		
-		userService.registerUser(username, password, repeatPassword, email, roles);
+		//userService.registerUser(username, password, repeatPassword, email, roles);
 	}
 	
 	public void initActivities() {
@@ -72,9 +78,19 @@ public class Startup {
 	@EventListener 
     public void onApplicationEvent(ContextRefreshedEvent event) {
 		/*initRoles();
-		registerDev();
-		initActivities();*/
-		System.out.println("getBy(7, 7)	");
-		System.out.println(userActivityService.getBy("7", 7)	);
+		registerDev();*/
+		initActivities();
+		//System.out.println("getBy(7, 7)	");
+		//System.out.println(userActivityService.getBy("7", 7)	);
+		
+		System.out.println("userService.registerUser() ************************************************************* *****");
+		//System.out.println(holidayPlannerOntology.
+		//		getTripByIRI("http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PamporovoHoliday01").getTown());
+		//System.out.println(userService.registerUser());
+		//System.out.println(userService.testMethoda(""));
+		//System.out.println(userTripService.getAll().toString());
+		//holidayPlannerOntology.getTripByIRI(null)
+		//holidayPlannerOntology.getTripByIRI(String tripIRI));
+		
     }
 }

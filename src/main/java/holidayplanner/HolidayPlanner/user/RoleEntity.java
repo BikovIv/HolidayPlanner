@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "role")
+//@Table(name = "role")
 public class RoleEntity implements Serializable {
 
 	@Id

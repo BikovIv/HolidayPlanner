@@ -2,7 +2,9 @@ package holidayplanner.HolidayPlanner;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
+@ComponentScan({"holidayplanner.HolidayPlanner"})
 @SpringBootApplication
 public class HolidayPlannerApplication {
 

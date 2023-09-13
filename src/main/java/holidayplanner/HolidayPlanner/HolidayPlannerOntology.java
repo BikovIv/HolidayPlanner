@@ -12,6 +12,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.coode.owlapi.rdfxml.parser.DataQualifiedCardinalityTranslator;
+import org.semanticweb.HermiT.Reasoner.ReasonerFactory;
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.model.AddAxiom;
 import org.semanticweb.owlapi.model.AxiomType;
@@ -38,18 +39,24 @@ import org.semanticweb.owlapi.model.OWLOntologyManager;
 import org.semanticweb.owlapi.model.OWLOntologyStorageException;
 import org.semanticweb.owlapi.model.OWLPropertyExpression;
 import org.semanticweb.owlapi.model.OWLSubClassOfAxiom;
+import org.semanticweb.owlapi.reasoner.NodeSet;
 import org.semanticweb.owlapi.reasoner.OWLReasoner;
 import org.semanticweb.owlapi.reasoner.OWLReasonerFactory;
 import org.semanticweb.owlapi.reasoner.structural.StructuralReasonerFactory;
 import org.semanticweb.owlapi.util.OWLEntityRemover;
 import org.semanticweb.owlapi.util.OWLEntityRenamer;
+import org.semanticweb.owlapi.util.OWLObjectVisitorAdapter;
+import org.semanticweb.owlapi.model.*;
+import org.semanticweb.owlapi.reasoner.Node;
+import org.semanticweb.owlapi.reasoner.NodeSet;
+import org.semanticweb.owlapi.reasoner.OWLReasoner;
 
 public class HolidayPlannerOntology {
 
 	private OWLOntologyManager ontoManager;
 	private OWLOntology holidayPlannerOntology;
 	private OWLDataFactory dataFactory;
-	private OWLReasoner reasoner;
+	//private OWLReasoner reasoner;
 	
 	private String ontologyIRIStr;
 	private boolean contains = false; 
@@ -66,8 +73,8 @@ public class HolidayPlannerOntology {
 	}
 	
 	private void loadOntologyFromFile() {
-		File ontoFile = new File("src/main/java/OntologyFiles/20230521HolidayPlannerOntology.owl");
-		
+		//File ontoFile = new File("src/main/java/OntologyFiles/20230521HolidayPlannerOntology.owl");
+		File ontoFile = new File("src/main/java/OntologyFiles/2023-08-21 - HolidayPlannerOntology.owl");
 		try {
 			holidayPlannerOntology = ontoManager
 					.loadOntologyFromOntologyDocument(ontoFile);
@@ -75,6 +82,10 @@ public class HolidayPlannerOntology {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	
+
 	
 	public ArrayList<Holiday> getHolidayByTown(String town){
 		
@@ -130,9 +141,10 @@ public class HolidayPlannerOntology {
 		return result;
 	}
 
-public ArrayList<Holiday> getHolidayByUserParameters(String tripType, String placeToStayType, String tripTownType, double placeToStayPrice){
+	//method ok readed data in web
+public ArrayList<Holiday> getHolidayByUserParameters(String tripType, String tripSubType, String placeToStayType, String tripTownType, double placeToStayPrice){
 	
-	//System.out.println(tripType + ", " + placeToStayType + ", " + tripTownType + ", " + placeToStayPrice);
+	System.out.println(tripType + ", " + placeToStayType + ", " + tripTownType + ", " + placeToStayPrice);
 	
 	boolean containPropertyTown = false;
 	boolean containPropertyPlace = false;
@@ -153,12 +165,14 @@ public ArrayList<Holiday> getHolidayByUserParameters(String tripType, String pla
 			IRI.create(ontologyIRIStr + tripType));
 	
 	OWLClass placeToStayTypeClass = dataFactory.getOWLClass(
-			IRI.create(ontologyIRIStr + placeToStayType));
+			IRI.create(ontologyIRIStr + "Hotel"));
 	
 	OWLClass tripTownTypeClass = dataFactory.getOWLClass(
-			IRI.create(ontologyIRIStr + tripTownType));
+			IRI.create(ontologyIRIStr + "SeaTown"));
 		
-	//for(Holiday h : result) { System.out.println("h0: " + h.getId()); }
+	System.out.println("townClass" + townClass);
+	System.out.println("placeToStayTypeClass" + placeToStayTypeClass);
+	System.out.println("tripTownTypeClass" + tripTownTypeClass);
 	
 	for(OWLClassExpression subCls : 
 		townClass.getSubClasses(holidayPlannerOntology)) {
@@ -174,14 +188,14 @@ public ArrayList<Holiday> getHolidayByUserParameters(String tripType, String pla
 			for(OWLObjectProperty op: 
 				axiom.getObjectPropertiesInSignature()) {				
 
-				//System.out.println("op1: " + op);
-				//System.out.println("op.getIRI()1: " + op.getIRI());
-				//System.out.println("hasPlaceToStay.getIRI()1: " + hasPlaceToStay.getIRI());
+				System.out.println("op1: " + op);
+				System.out.println("op.getIRI()1: " + op.getIRI());
+				System.out.println("hasPlaceToStay.getIRI()1: " + hasPlaceToStay.getIRI());
 				
 				if(hasPlaceToStay.getIRI().equals(op.getIRI())){
 					containPropertyPlace = true;
 					
-					//for(Holiday h : tempResult) { System.out.println("tempResult-1: " + h.getId()); }
+					for(Holiday h : tempResult) { System.out.println("tempResult-1: " + h.getId()); }
 					
 					if(tempResult.size() == 0) {
 						tempResult.addAll(getAllClasses(axiom, placeToStayTypeClass, subCls, tempResult));//tempResult.retainAll(tempResult);
@@ -202,21 +216,21 @@ public ArrayList<Holiday> getHolidayByUserParameters(String tripType, String pla
 						}
 					}
 					
-					//for(Holiday h : tempResult) { System.out.println("tempResult-1.1: " + h.getId()); }
+					for(Holiday h : tempResult) { System.out.println("tempResult-1.1: " + h.getId()); }
 					
-					//System.out.println("axiom1: " + axiom);
-					//System.out.println("placeToStayTypeClass1: " + placeToStayTypeClass);
-					//System.out.println("subCls1: " + subCls);
+					System.out.println("axiom1: " + axiom);
+					System.out.println("placeToStayTypeClass1: " + placeToStayTypeClass);
+					System.out.println("subCls1: " + subCls);
 				}
 				
-				//System.out.println("op2: " + op);
-				//System.out.println("op.getIRI()2: " + op.getIRI());
-				//System.out.println("hasTown.getIRI()2: " + hasTown.getIRI());
+				System.out.println("op2: " + op);
+				System.out.println("op.getIRI()2: " + op.getIRI());
+				System.out.println("hasTown.getIRI()2: " + hasTown.getIRI());
 				
 				if(hasTown.getIRI().equals(op.getIRI())) {
 					containPropertyTown = true;
 					
-					//for(Holiday h : tempResult) {	System.out.println("tempResult-2: " + h.getId());}
+					for(Holiday h : tempResult) {	System.out.println("tempResult-2: " + h.getId());}
 				
 					if(tempResult.size() == 0) {
 						tempResult.addAll(getAllClasses(axiom, tripTownTypeClass, subCls, tempResult));//tempResult.retainAll(tempResult);
@@ -238,20 +252,20 @@ public ArrayList<Holiday> getHolidayByUserParameters(String tripType, String pla
 						
 					}
 					
-					//for(Holiday h : tempResult) {System.out.println("tempResult-2.2: " + h.getId());}
+					for(Holiday h : tempResult) {System.out.println("tempResult-2.2: " + h.getId());}
 						
-					//System.out.println("axiom2: " + axiom);
-					//System.out.println("placeToStayTypeClass2: " + tripTownTypeClass);
-					//System.out.println("subCls2: " + subCls);
+					System.out.println("axiom2: " + axiom);
+					System.out.println("placeToStayTypeClass2: " + tripTownTypeClass);
+					System.out.println("subCls2: " + subCls);
 				}
 				
-				//for(Holiday h : result) {	System.out.println("h5: " + h.getId());}
+				for(Holiday h : result) {	System.out.println("h5: " + h.getId());}
 
 				}			
 			}
 		
-		//System.out.println("containPropertyPlace: " + containPropertyPlace);
-		//System.out.println("containPropertyTown: " + containPropertyTown);
+		System.out.println("containPropertyPlace: " + containPropertyPlace);
+		System.out.println("containPropertyTown: " + containPropertyTown);
 		if(containPropertyPlace && containPropertyTown) {
 			result.addAll(unifyArray(tempResult));
 		}
@@ -370,10 +384,257 @@ public ArrayList<Town> getTownByName(String town){
 		
 		return result;
 	}*/
+/*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+public List<Holiday> getAllTripTypesFromOntology(String tripTypeInput, String tripSubTypeInput) {
 	
-	public List<String> getAllTripTypes() {
+	Holiday trip;// = new Holiday();
+	
+	List<Holiday> results = new ArrayList<>();
+	ReasonerFactory reasonerFactory = new ReasonerFactory();
+	OWLReasoner reasoner = reasonerFactory.createReasoner(holidayPlannerOntology);
+	
+	//OWLClass tripTypeClass = dataFactory.getOWLClass(IRI.create(ontologyIRIStr + tripTypeInput));
+	OWLClass tripSubTypeClass = dataFactory.getOWLClass(IRI.create(ontologyIRIStr + tripSubTypeInput));
+	 
+	reasoner.precomputeInferences();
+
+	NodeSet<OWLNamedIndividual> individuals = reasoner.getInstances(tripSubTypeClass, false);
+	
+	Node<OWLObjectPropertyExpression> topObjectProperties = reasoner.getTopObjectPropertyNode();
+	NodeSet<OWLNamedIndividual> objectPropertyValues;
+	Set<OWLAnnotation> annotations;
+	
+	OWLObjectProperty objectPropertyTown = ontoManager.getOWLDataFactory().getOWLObjectProperty(IRI.create(ontologyIRIStr + "hasTown"));
+	OWLObjectProperty objectPropertyPlaceToStay = ontoManager.getOWLDataFactory().getOWLObjectProperty(IRI.create(ontologyIRIStr + "hasPlaceToStay"));
+	OWLObjectProperty objectPropertyTripType = ontoManager.getOWLDataFactory().getOWLObjectProperty(IRI.create(ontologyIRIStr + "hasTripType"));
+	OWLObjectProperty objectPropertyDestination = ontoManager.getOWLDataFactory().getOWLObjectProperty(IRI.create(ontologyIRIStr + "hasDestination"));
+	OWLObjectProperty objectPropertySeason = ontoManager.getOWLDataFactory().getOWLObjectProperty(IRI.create(ontologyIRIStr + "hasSeason"));
+	OWLObjectProperty objectPropertyTransportation = ontoManager.getOWLDataFactory().getOWLObjectProperty(IRI.create(ontologyIRIStr + "hasTransportation"));
+	 
+	for (OWLNamedIndividual individual : individuals.getFlattened()) {
+		
+		annotations = individual.getAnnotations(holidayPlannerOntology);
+		
+	    System.out.println("Current Individual: " + getClassFriendlyName(individual.getIRI().toString()));
+	    
+	    trip = new Holiday();
+	    
+	    trip.setIri(individual.getIRI().toString());
+	    trip.setId(individual.getIRI().toString());
+	
+	    for (OWLObjectPropertyExpression objectPropertyExpression : topObjectProperties.getEntities()) {
+	    	
+	    	for (OWLObjectProperty OWLobjectProperty : holidayPlannerOntology.getObjectPropertiesInSignature()) {
+	    	    // Get object property values for the individual
+	    	    objectPropertyValues = reasoner.getObjectPropertyValues(individual, OWLobjectProperty);
+
+	    	    
+	    	    // Check if there are any values related to the individual through this property
+	    	    if (!objectPropertyValues.isEmpty() && OWLobjectProperty.equals(objectPropertyTown)) {
+	    	        //System.out.println("Object Property IRI: " + OWLobjectProperty.getIRI().toString());
+	    	       
+	    	        // Iterate through the individuals related to the individual through the object property
+	    	        for (Node<OWLNamedIndividual> value : objectPropertyValues) {
+	    	            for (OWLNamedIndividual relatedIndividual : value.getEntities()) {
+	    	                //System.out.println("Related Individual: " + relatedIndividual.getIRI());
+	    	                trip.setTown(getClassFriendlyName(relatedIndividual.getIRI().toString()));
+	    	            }
+	    	        }
+	    	    }
+	    	    
+	    	    if (!objectPropertyValues.isEmpty() && OWLobjectProperty.equals(objectPropertyPlaceToStay)) {
+	    	        System.out.println("Object Property IRI: " + OWLobjectProperty.getIRI().toString());
+
+	    	        for (Node<OWLNamedIndividual> value : objectPropertyValues) {
+	    	            for (OWLNamedIndividual relatedIndividual : value.getEntities()) {
+	    	                //System.out.println("Related Individual: " + relatedIndividual.getIRI());
+	    	                trip.setPlaceToStay(getClassFriendlyName(relatedIndividual.getIRI().toString()));
+	    	            }
+	    	        }
+	    	    }
+	    	    
+	    	    if (!objectPropertyValues.isEmpty() && OWLobjectProperty.equals(objectPropertyTripType)) {
+	    	        //System.out.println("Object Property IRI: " + OWLobjectProperty.getIRI().toString());
+
+	    	        for (Node<OWLNamedIndividual> value : objectPropertyValues) {
+	    	            for (OWLNamedIndividual relatedIndividual : value.getEntities()) {
+	    	                //System.out.println("Related Individual: " + relatedIndividual.getIRI());
+	    	                trip.setType(getClassFriendlyName(relatedIndividual.getIRI().toString()));
+	    	            }
+	    	        }
+	    	    }
+	    	    
+	    	    if (!objectPropertyValues.isEmpty() && OWLobjectProperty.equals(objectPropertyDestination)) {
+	    	        System.out.println("Object Property IRI: " + OWLobjectProperty.getIRI().toString());
+
+	    	        for (Node<OWLNamedIndividual> value : objectPropertyValues) {
+	    	            for (OWLNamedIndividual relatedIndividual : value.getEntities()) {
+	    	                //System.out.println("Related Individual: " + relatedIndividual.getIRI());
+	    	                trip.setDestination(getClassFriendlyName(relatedIndividual.getIRI().toString()));
+	    	            }
+	    	        }
+	    	    }	 
+	    	}
+		}
+	    
+	    for (OWLAnnotation annotation : annotations) {
+	    	if(annotation.getValue().toString().contains("@en")) {
+	    		
+	    		trip.setDescription(annotation.getValue().toString().replaceAll("\"", ""));
+	    		 System.out.println("Annotation Property: " + annotation.getProperty());
+
+	 	        System.out.println("Annotation Value: " + annotation.getValue());
+	    	}
+	    	
+	       
+	        
+	        
+	    }
+	    
+	    for (OWLDataPropertyAssertionAxiom dataPropertyAssertion : holidayPlannerOntology.getDataPropertyAssertionAxioms(individual)) {
+	        OWLDataProperty property = (OWLDataProperty) dataPropertyAssertion.getProperty();
+	        OWLLiteral value = dataPropertyAssertion.getObject();
+	        
+	        System.out.println("Data Property: " + getClassFriendlyName(property.toString()));
+	        System.out.println("Value: " + value.getLiteral());
+	        
+	        if(getClassFriendlyName(property.toString()).equals("name") ) {
+	        	trip.setName(getClassFriendlyName(value.getLiteral().toString()));
+	        }
+	        
+	        if(getClassFriendlyName(property.toString()).equals("inSeason") ) {
+	        	trip.setSeason(value.getLiteral().toString());
+	        }
+	        
+	        if(getClassFriendlyName(property.toString()).equals("travelBy") ) {
+	        	trip.setTransportation(value.getLiteral().toString());
+	        }
+	    }
+	    
+	    results.add(trip);
+	}
+	
+	// Dispose of the reasoner resources
+	reasoner.dispose();
+	
+	return results;
+}
+
+		public Holiday getTripByIRI(String tripIRI) {
+			
+			Holiday trip = new Holiday();
+			NodeSet<OWLNamedIndividual> objectPropertyValues;
+			ReasonerFactory reasonerFactory = new ReasonerFactory();
+			OWLReasoner reasoner = reasonerFactory.createReasoner(holidayPlannerOntology);
+			
+			OWLObjectProperty objectPropertyTown = ontoManager.getOWLDataFactory().getOWLObjectProperty(IRI.create(ontologyIRIStr + "hasTown"));
+			OWLObjectProperty objectPropertyPlaceToStay = ontoManager.getOWLDataFactory().getOWLObjectProperty(IRI.create(ontologyIRIStr + "hasPlaceToStay"));
+			OWLObjectProperty objectPropertyTripType = ontoManager.getOWLDataFactory().getOWLObjectProperty(IRI.create(ontologyIRIStr + "hasTripType"));
+			OWLObjectProperty objectPropertyDestination = ontoManager.getOWLDataFactory().getOWLObjectProperty(IRI.create(ontologyIRIStr + "hasDestination"));
+			OWLObjectProperty objectPropertySeason = ontoManager.getOWLDataFactory().getOWLObjectProperty(IRI.create(ontologyIRIStr + "hasSeason"));
+			OWLObjectProperty objectPropertyTransportation = ontoManager.getOWLDataFactory().getOWLObjectProperty(IRI.create(ontologyIRIStr + "hasTransportation"));
+			 
+			
+			
+	
+	        //OWLOntologyManager manager = OWLManager.createOWLOntologyManager();
+
+	        // Create an IRI object from the input string
+			IRI individualIRI = IRI.create(tripIRI);
+
+			// Use the dataFactory to get the OWLNamedIndividual
+			OWLNamedIndividual individual = dataFactory.getOWLNamedIndividual(individualIRI);
+			
+			for (OWLObjectProperty OWLobjectProperty : holidayPlannerOntology.getObjectPropertiesInSignature()) {
+			
+			objectPropertyValues = reasoner.getObjectPropertyValues(individual, OWLobjectProperty);
+			
+			//for (OWLObjectProperty OWLobjectProperty : holidayPlannerOntology.getObjectPropertiesInSignature()) {
+	    	    // Get object property values for the individual
+	    	    //objectPropertyValues = reasoner.getObjectPropertyValues(individual, OWLobjectProperty);
+
+	    	    
+	    	    // Check if there are any values related to the individual through this property
+	    	    if (!objectPropertyValues.isEmpty() && OWLobjectProperty.equals(objectPropertyTown)) {
+	    	        //System.out.println("Object Property IRI: " + OWLobjectProperty.getIRI().toString());
+	    	       
+	    	        // Iterate through the individuals related to the individual through the object property
+	    	        for (Node<OWLNamedIndividual> value : objectPropertyValues) {
+	    	            for (OWLNamedIndividual relatedIndividual : value.getEntities()) {
+	    	                //System.out.println("Related Individual: " + relatedIndividual.getIRI());
+	    	                trip.setTown(getClassFriendlyName(relatedIndividual.getIRI().toString()));
+	    	            }
+	    	        }
+	    	    }
+	    	    
+	    	    if (!objectPropertyValues.isEmpty() && OWLobjectProperty.equals(objectPropertyPlaceToStay)) {
+	    	        System.out.println("Object Property IRI: " + OWLobjectProperty.getIRI().toString());
+
+	    	        for (Node<OWLNamedIndividual> value : objectPropertyValues) {
+	    	            for (OWLNamedIndividual relatedIndividual : value.getEntities()) {
+	    	                //System.out.println("Related Individual: " + relatedIndividual.getIRI());
+	    	                trip.setPlaceToStay(getClassFriendlyName(relatedIndividual.getIRI().toString()));
+	    	            }
+	    	        }
+	    	    }
+	    	    
+	    	    if (!objectPropertyValues.isEmpty() && OWLobjectProperty.equals(objectPropertyTripType)) {
+	    	        //System.out.println("Object Property IRI: " + OWLobjectProperty.getIRI().toString());
+
+	    	        for (Node<OWLNamedIndividual> value : objectPropertyValues) {
+	    	            for (OWLNamedIndividual relatedIndividual : value.getEntities()) {
+	    	                //System.out.println("Related Individual: " + relatedIndividual.getIRI());
+	    	                trip.setType(getClassFriendlyName(relatedIndividual.getIRI().toString()));
+	    	            }
+	    	        }
+	    	    }
+	    	    
+	    	    if (!objectPropertyValues.isEmpty() && OWLobjectProperty.equals(objectPropertyDestination)) {
+	    	        //System.out.println("Object Property IRI: " + OWLobjectProperty.getIRI().toString());
+
+	    	        for (Node<OWLNamedIndividual> value : objectPropertyValues) {
+	    	            for (OWLNamedIndividual relatedIndividual : value.getEntities()) {
+	    	                //System.out.println("Related Individual: " + relatedIndividual.getIRI());
+	    	                trip.setDestination(getClassFriendlyName(relatedIndividual.getIRI().toString()));
+	    	            }
+	    	        }
+	    	    }
+	    	    
+	    	    
+	   }
+			
+
+			return trip;
+	    }
+	
+	public List<String> getAllTripTypes(String tripType) {
+		
+		if(tripType == null){
+			tripType = "Trip";
+		}
 		
 		List<String> results = new ArrayList<>();
+
+		OWLClass tripTypeClass = dataFactory.getOWLClass(IRI.create(ontologyIRIStr + tripType));
+		System.out.println("tripTypeClass: " + tripTypeClass.getSubClasses(holidayPlannerOntology));
+		System.out.println("trip_type: " + tripType);
+		//OWLClass tripTypeClass = dataFactory.getOWLClass(IRI.create(ontologyIRIStr + "TripTypes"));
+
+		for(OWLClassExpression tripTypeOWL : 
+			tripTypeClass.getSubClasses(holidayPlannerOntology)) {
+
+			results.add(getClassFriendlyName(tripTypeOWL.toString()));
+		}
+		
+		/*for(OWLIndividual tripType : 
+			tripTypeClass.getIndividuals(holidayPlannerOntology)) {
+
+			results.add(getClassFriendlyName(tripType.toString()));
+		}*/
+		
+		return results;
+		
+		/*List<String> results = new ArrayList<>();
 
 		OWLClass tripTypeClass = dataFactory.getOWLClass(IRI.create(ontologyIRIStr + "TripTypes"));
 	
@@ -383,7 +644,7 @@ public ArrayList<Town> getTownByName(String town){
 			results.add(getClassFriendlyName(tripType.toString()));
 		}
 		
-		return results;
+		return results;*/
 	}
 	
 	public ArrayList<TripType> getAllTripTypesArray() {

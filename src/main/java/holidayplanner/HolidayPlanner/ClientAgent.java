@@ -19,7 +19,7 @@ import jade.lang.acl.MessageTemplate;
 
 public class ClientAgent extends Agent{
 
-	private ClientAgentGUI gui;
+	//private ClientAgentGUI gui;
 	//private String searchedTown = null;
 	private String tripType = null;
 	private String placeToStayType = null;
@@ -39,9 +39,9 @@ public class ClientAgent extends Agent{
 	@Override
 	protected void setup() {
 		
-		gui = new ClientAgentGUI(this);
+		//gui = new ClientAgentGUI(this);
 		
-		System.out.println("Started ClientAgent(" + this.toString() + ") and ClientAgentGUI(" + gui.getTitle() + ")");
+		System.out.println("Started ClientAgent(" + this.toString() + ") and ClientAgentGUI( + gui.getTitle() + )");
 		
 		addBehaviour(new TickerBehaviour(this, 2000) {
 			
@@ -247,12 +247,12 @@ public class ClientAgent extends Agent{
 								holidayNames[i] = getClassFriendlyName(holidayArray[i]);
 							}
 							
-							gui.holidaysList.removeAll();
-							gui.holidaysList.setListData(holidayNames);
+							//gui.holidaysList.removeAll();
+							//gui.holidaysList.setListData(holidayNames);
 						
-							for(int i = 0; i < holidayArray.length; i++) {
-								System.out.println(holidayArray[i]);
-							}
+							//for(int i = 0; i < holidayArray.length; i++) {
+							//	System.out.println(holidayArray[i]);
+							//}
 							
 						} catch (IOException e) {
 							e.printStackTrace();
@@ -262,7 +262,7 @@ public class ClientAgent extends Agent{
 					repliesCount++;
 					
 					if(repliesCount >= sellers.size()) {
-						System.out.println("ClientAgent, HolidayBehaviour: End");
+						//System.out.println("ClientAgent, HolidayBehaviour: End");
 						step++;
 						
 					}
@@ -335,7 +335,7 @@ public class ClientAgent extends Agent{
 				
 				if(reply != null) {
 					
-					System.out.println("reply: " + reply.getUserDefinedParameter("AllTownTypesArray"));
+					//System.out.println("reply: " + reply.getUserDefinedParameter("AllTownTypesArray"));
 					
 					if(reply.getPerformative() == ACLMessage.PROPOSE) {
 						ObjectMapper mapper = new ObjectMapper();
@@ -352,7 +352,7 @@ public class ClientAgent extends Agent{
 							}
 							//System.out.println("tripTypesNames: " + tripTypesNames);
 							for(String tripType : tripTypesNames) {
-								gui.tripTypeCB.addItem(tripType);
+								//gui.tripTypeCB.addItem(tripType);
 								//System.out.println("tripType: " + tripType);;
 							}
 							//trip Types End
@@ -372,7 +372,7 @@ public class ClientAgent extends Agent{
 							}
 							//System.out.println("placeToStayTypeNames: " + placeToStayTypeNames);
 							for(String placeToStayType : placeToStayTypeNames) {
-								gui.placeToStayTypeCB.addItem(placeToStayType);
+								//gui.placeToStayTypeCB.addItem(placeToStayType);
 								//System.out.println("123123placeToStayType: " + placeToStayType);;
 							}
 							//placeToStayTypes end
@@ -393,7 +393,7 @@ public class ClientAgent extends Agent{
 							}
 							//System.out.println("placeToStayTypeNames: " + placeToStayTypeNames);
 							for(String tripTownType : tripTownTypeNames) {
-								gui.tripTownTypeCB.addItem(tripTownType);
+								//gui.tripTownTypeCB.addItem(tripTownType);
 								//System.out.println("123123placeToStayType: " + placeToStayType);;
 							}
 							

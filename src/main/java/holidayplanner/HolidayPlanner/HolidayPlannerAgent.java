@@ -21,7 +21,11 @@ import jade.lang.acl.MessageTemplate;
 
 public class HolidayPlannerAgent extends Agent{
 	
-	private HolidayPlannerOntology holidayPlannerOntology =  new HolidayPlannerOntology();;
+	public HolidayPlannerAgent() {
+		
+	}
+	
+	private HolidayPlannerOntology holidayPlannerOntology =  new HolidayPlannerOntology();
 	
 	HolidayPlannerAgentGUI gui;
 	
@@ -99,6 +103,8 @@ public class HolidayPlannerAgent extends Agent{
 		//	System.out.println(s.getId());
 		//};
 		
+		//System.out.println("System.out.println(holidayPlannerOntology.getAllTripTypesFromOntology());");
+		//System.out.println(holidayPlannerOntology.getAllTripTypesFromOntology());
 		
 		
 		addBehaviour(new HolidayReqestBehaviour());
@@ -117,7 +123,7 @@ public class HolidayPlannerAgent extends Agent{
 			
 			if(msg != null && msg.getConversationId() == "holiday_stuff") {
 				
-				System.out.println(msg);
+				//System.out.println(msg);
 				//String town = msg.getUserDefinedParameter("AllTownTypesArray");
 				
 				String tripType = msg.getUserDefinedParameter("tripType");
@@ -130,8 +136,8 @@ public class HolidayPlannerAgent extends Agent{
 				
 				ACLMessage reply = msg.createReply();
 				
-				ArrayList<Holiday> result = 
-						holidayPlannerOntology.getHolidayByUserParameters(tripType, placeToStayType, tripTownType, placeToStayPrice);
+				ArrayList<Holiday> result = null;
+						//holidayPlannerOntology.getHolidayByUserParameters(tripType, placeToStayType, tripTownType, placeToStayPrice);
 				
 				if(result.size() > 0) {
 					
@@ -173,7 +179,7 @@ public class HolidayPlannerAgent extends Agent{
 			
 			if(msg != null && msg.getConversationId() == "initialize_stuff") {
 				
-				System.out.println(msg);
+				//System.out.println(msg);
 				//String town = msg.getContent();
 				
 				System.out.println("HolidayPlannerAgent: Somebody wants initial data");
@@ -278,7 +284,7 @@ public class HolidayPlannerAgent extends Agent{
 	}*/
 	
 	public void addTrip(String tripType, String tripName, String town, String townType, String placeToStayType, String placeToStayName, double costByNight) throws OWLOntologyStorageException {
-		System.out.println("addTrip - " + tripType + tripName + town + townType);
+		//System.out.println("addTrip - " + tripType + tripName + town + townType);
 		
 		holidayPlannerOntology.addTrip(tripType, tripName, town, townType, placeToStayType, placeToStayName, costByNight);
 	}
@@ -287,16 +293,22 @@ public class HolidayPlannerAgent extends Agent{
 		holidayPlannerOntology.addPlaceToStay(placeToStayType, placeToStayName, costByNight);
 	}
 	
-	public List<String> getAllTripTypes() throws OWLOntologyStorageException {
-		return holidayPlannerOntology.getAllTripTypes();
+	public List<String> getAllTripTypes(String tripType) throws OWLOntologyStorageException {
+		return holidayPlannerOntology.getAllTripTypes(tripType);
 	}
 	
 	public List<String> getAllTownTypes() throws OWLOntologyStorageException {
 		return holidayPlannerOntology.getAllTownTypes();
 	}
 	
-	public List<Holiday> getHolidayByUserParameters(String tripType, String placeToStayType, String tripTownType, double placeToStayPrice) throws OWLOntologyStorageException {
-		return getHolidayByUserParameters(tripType, placeToStayType, tripTownType, placeToStayPrice);
+	public List<Holiday> getHolidayByUserParameters(String tripType, String tripSubType, String placeToStayType, String tripTownType, double placeToStayPrice) throws OWLOntologyStorageException {
+		//System.out.println("tripType: " + tripType);
+		return (List<Holiday>) holidayPlannerOntology.getAllTripTypesFromOntology(tripType, tripSubType);//getHolidayByUserParameters(tripType, placeToStayType, tripTownType, placeToStayPrice);
+	}
+	
+	public Holiday getHolidayByIRI(String tripIRI) throws OWLOntologyStorageException {
+		//System.out.println("tripType: " + tripType);
+		return holidayPlannerOntology.getTripByIRI(tripIRI);
 	}
 	
 }

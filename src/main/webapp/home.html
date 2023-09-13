@@ -1,137 +1,211 @@
-<!DOCTYPE html>
-<html>
-   <!-- xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"> NOT WORKING FOR NOW TO FIND SOLUTION-->
-   <head>
-      <meta charset="utf-8">
-      <title>Weather App</title>
-      <meta name="apple-mobile-web-app-capable" content="yes">
-      <meta charset="UTF-8">
-      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-      <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-      <link href="assets/css/font-awesome.min.css" rel="stylesheet">
-      <link href="assets/css/main.css" rel="stylesheet">
-      <link href="assets/css/cards-styles.css" rel="stylesheet">
-      <link href="assets/css/cards-style.css" rel="stylesheet">
-      <link href="assets/css/mini-dashboard.css" rel="stylesheet">
-      <link href="assets/css/horizontal-navbar.css" rel="stylesheet">
-      <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Roboto:wght@300&display=swap" rel="stylesheet">
-      <script src="js/vendor/jquery/jquery-1.12.1.min.js"></script>
-      <script src="js/vendor/bootstrap/bootstrap.min.js"></script>
-      <script src="js/main.js"></script>
-   </head>
-   <body>
-      <!-- <div class="home-page"> -->
-      <header>
-         <!-- <div class="container"> --> 
-         <div class="navbar">
-            <div class="logo">
-               <h2>BRAND</h2>
-            </div>
-            <ul class="links">
-               <li class="active">
-                  <a href="home.html">
-                  <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-                  <span class="nav-label">Начало</span>
-                  </a>
-               </li>
-               <li>
-                  <a href="friends.html">
-                  <i class="fa fa-users" aria-hidden="true"></i>
-                  <span class="nav-label">Приятели</span>
-                  </a>
-               </li>
-               <li>
-                  <a href="inbox.html">
-                  <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-                  <span class="nav-label">Известия</span>
-                  </a>
-               </li>
-               <li>
-                  <a href="profile.html">
-                  <i class="fa fa-cogs" aria-hidden="true"></i>
-                  <span class="nav-label">Профил</span>
-                  </a>
-               </li>
-               <li>
-                  <a href="index.html" id="logout">
-                  <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
-                  <span class="nav-label">Изход</span>
-                  </a>
-               </li>
-            </ul>
-            <div class="right">
-               <button>Dashboard</button>
-            </div>
-            <div class="toggle">
-               <div class="line1"></div>
-               <div class="line2"></div>
-               <div class="line3"></div>
-            </div>
-         </div>
-      </header>
-      
-      <div class="container">
-         <!-- add activity begin -->
-            <div class="mini-dashboard-container">
-               <h2 class="main-title">Mini Dashboard</h2>
-               <div class="row stat-cards">
-                  <div class="col-md-6 col-xl-3">
-                     <article class="stat-cards-item">
-                        <div class="stat-cards-icon primary">
-                           <i data-feather="bar-chart-2" aria-hidden="true"></i>
-                        </div>
-                        <div class="stat-cards-info">
-                           <p class="stat-cards-info__num">1478 286</p>
-                           <p class="stat-cards-info__title">Total visits</p>
-                           <p class="stat-cards-info__progress">
-                              <span class="stat-cards-info__profit success">
-                              <i data-feather="trending-up" aria-hidden="true"></i>4.07%
-                              </span>
-                              Last month
-                           </p>
-                        </div>
-                     </article>
-                  </div>
-               </div>
-               <button id="add-activity" type="button" class="login-button" data-toggle="modal" onClick="renderUserActivityInsertForm()">Add new activity</button>
-               <div id="activity-form-modal" class="modal fade" tabindex="-1" role="dialog">
+	<!DOCTYPE html>
+	<!--<html lang="zxx" class="no-js">-->
+	<html>
+	<head>
+		<!-- Mobile Specific Meta -->
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<!-- Favicon-->
+		<!--<link rel="shortcut icon" href="img/fav.png">-->
+		<!-- Author Meta -->
+		<!--<meta name="author" content="colorlib">-->
+		<!-- Meta Description -->
+		<!--<meta name="description" content="">-->
+		<!-- Meta Keyword -->
+		<!--<meta name="keywords" content="">-->
+
+		<!-- meta character set -->
+		<meta charset="UTF-8">
+		<!-- Site Title -->
+		<title>Holiday Planner</title>
+
+		<!--<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet"> -->
+			<!--
+			CSS
+			============================================= -->
+
+			<link rel="stylesheet" href="assets/css/bootstrap.css">
+			<link rel="stylesheet" href="assets/css/main.css">
+			
+
+			<!--<link rel="stylesheet" href="css/linearicons.css">-->
+			<!--<link rel="stylesheet" href="css/font-awesome.min.css">-->
+			<!--<link rel="stylesheet" href="css/magnific-popup.css">-->
+			<!--<link rel="stylesheet" href="css/jquery-ui.css">-->			
+			<!--<link rel="stylesheet" href="css/nice-select.css">-->							
+			<!--<link rel="stylesheet" href="css/animate.min.css">-->
+			<!--<link rel="stylesheet" href="css/owl.carousel.css">-->				
+			
+		</head>
+		<body  onpageshow="fillHolidayTypeDropdown('Trip')">	
+			<header id="header">
+				<div class="header-top">
+					<div class="container">
+			  		<div class="row align-items-center">
+			  			<!--<div class="col-lg-6 col-sm-6 col-6 header-top-left">
+			  				<ul>
+			  					<li><a href="#">Visit Us</a></li>
+			  					<li><a href="#">Buy Tickets</a></li>
+			  				</ul>			
+			  			</div>-->	 	
+			  			<div class="col-lg-6 col-sm-6 col-6 header-top-right">
+							<div class="header-social">
+								<a href="#"><i src="assets/img/icons/facebook_icon.png"></i></a>
+								<a href="#"><i class="fa fa-twitter"></i></a>
+								<a href="#"><i class="fa fa-dribbble"></i></a>
+								<a href="#"><i class="fa fa-behance"></i></a>
+							</div>
+			  			</div>
+			  		</div>			  					
+					</div>
+				</div>
+				<div class="container main-menu">
+					<div class="row align-items-center justify-content-between d-flex">
+				      <div id="logo">
+				        <a href="index.html"><img src="assets/img/logo.png" alt="" title="" /></a>
+				      </div>
+				      <nav id="nav-menu-container">
+				        <ul class="nav-menu">
+				          <!--<li><button id="add-activity" type="button" class="primary-btn text-uppercase" data-toggle="modal" onClick="renderUserActivityInsertForm()">Add new activity</button></li>-->
+				          <li><a href="index.html">Home</a></li>
+				          <li><a href="about.html">About</a></li>
+				          <!--<li><a href="packages.html">Packages</a></li>-->
+				          <li><a href="hotels.html">Hotels</a></li>
+				          <!--<li><a href="insurance.html">Insurence</a></li>
+				          <li class="menu-has-children"><a href="">Blog</a>
+				            <ul>
+				              <li><a href="blog-home.html">Blog Home</a></li>
+				              <li><a href="blog-single.html">Blog Single</a></li>
+				            </ul>
+				          </li>	
+				          <li class="menu-has-children"><a href="">Pages</a>
+				            <ul>
+				            	  <li><a href="elements.html">Elements</a></li>
+						          <li class="menu-has-children"><a href="">Level 2 </a>
+						            <ul>
+						              <li><a href="#">Item One</a></li>
+						              <li><a href="#">Item Two</a></li>
+						            </ul>
+						          </li>					                		
+				            </ul>
+				          </li>-->				          					          		          
+				          <li><a href="contact.html">Contact</a></li>
+				        </ul>
+				      </nav><!-- #nav-menu-container -->					      		  
+					</div>
+				</div>
+			</header><!-- #header -->
+			
+			<!-- start banner Area -->
+			<section class="banner-area relative">
+				<div class="overlay overlay-bg"></div>				
+				<div class="container">
+					<div class="row fullscreen align-items-center justify-content-between">
+						<div class="col-lg-6 col-md-6 banner-left">
+							<h6 class="text-white">Away from monotonous life</h6>
+							<h1 class="text-white">Magical Travel</h1>
+							<p class="text-white">
+								If you are looking at blank cassettes on the web, you may be very confused at the difference in price. You may see some for as low as $.17 each.
+							</p>
+							<!--<a href="#" class="primary-btn text-uppercase">Get Started</a>-->
+							<button id="add-activity" type="button" class="primary-btn text-uppercase" data-toggle="modal" onClick="renderUserActivityInsertForm()">Book holiday</button>
+						</div>
+
+						<div class="col-lg-4 col-md-6 banner-right">
+							<ul class="nav nav-tabs" id="myTab" role="tablist">
+							  <!--<li class="nav-item">
+							    <a class="nav-link" id="hotel-tab" data-toggle="tab" href="#hotel" role="tab" aria-controls="hotel" aria-selected="false">Hotels</a>
+							  </li>-->
+							  <li class="nav-item">
+							    <a class="nav-link active" id="holiday-tab" data-toggle="tab" href="#holiday" role="tab" aria-controls="holiday" aria-selected="false">Holidays</a>
+							  </li>
+							</ul>
+							<div class="tab-content" id="myTabContent"> 
+							 <!-- <div class="tab-pane fade" id="hotel" role="tabpanel" aria-labelledby="hotel-tab">
+								<form class="form-wrap">
+									<input type="text" class="form-control" name="name" placeholder="From " onfocus="this.placeholder = ''" onblur="this.placeholder = 'From '">
+									<a href="#" class="primary-btn text-uppercase">Search Hotels</a>		
+								</form>							  	
+							  </div>-->
+							  <div class="tab-pane fade show active" id="holiday-search-form" role="tabpanel" aria-labelledby="holiday-tab">
+								
+		<form class="form-wrap" id="holiday-search-form" method="POST" > <!-- action="userActivity/getHolidayByUserParameters" -->
+				
+	            <select id="trip-criteria-select" name="tripType" class="form-control" onchange="fillTripTypeDropdown(value)">
+	               <option id="activitySelectSearchCloneMe" value="1" style="display:none" >Select trip type...</option>
+	            </select> 
+	            
+	            <select id="trip-type-select" name="tripSubType" class="form-control hidden" style="display:none"> 
+	            </select> 
+	            
+					<!--<input type="number" min="1" max="20" class="form-control" name="child" placeholder="Child " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Child '">-->																
+					<input type="submit" value="Search Holidays" class="primary-btn text-uppercase">
+
+		</form>							  	
+							  </div>
+							</div>
+						</div>
+					</div>
+				</div>					
+			</section>
+			<!-- End banner Area -->
+
+
+<!--add new activity modal begin-->
+					<div id="activity-form-modal" class="modal fade" tabindex="-1" role="dialog">
                   <div class="modal-dialog modal-sm">
                      <div class="modal-content">
-                        <div class="modal-header">
-                           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                           <h4 class="modal-title">Activity Data</h4>
+                        <div class="">
+                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                           		<span aria-hidden="true">&times;</span>
+                           	</button>
+                           <h4>Holiday Data</h4>
                         </div>
-                        <div class="modal-body">
-                           <form id="activity-form"  method="POST" enctype="multipart/form-data">
+                        
+                           <form id="activity-form"  method="POST" enctype="multipart/form-data" class="form-wrap">
                               <!-- action="/userActivity/add" -->
                               <div class="form-group">
-                                 <label for="activitiy-select">Choose Activity type:</label>
+                                 <!--<label for="title">Title</label>-->
+                                 <input type="text" class="form-control" id="tripTitle" name="tripTitle" placeholder="title" value="">
+                                 <p class="help-block">The field "title" is empty</p>
+                              </div>
+                              <!--  <div class="form-group">
                                  <select id="activitiy-select" name="activity_id" class="form-control">
                                     <option id="activitySelectCloneMe" value="0" selected>Select vacantion type...</option>
                                  </select>
                                  <p class="help-block">The field "Activity type" is empty</p>
-                              </div>
+                              </div>-->
+                              
                               <div class="form-group">
-                                 <label for="description">Description</label>
-                                 <input type="text" class="form-control" id="description" name="description" placeholder="description">
+                                 <!--<label for="description">Description</label>-->
+                                 <input type="text" class="form-control" id="tripDecription" name="tripDecription" placeholder="description">
                                  <p class="help-block">The field "description" is empty</p>
                               </div>
                               <div class="form-group">
-                                 <label for="title">Title</label>
-                                 <input type="text" class="form-control" id="title" name="title" placeholder="title" value="">
-                                 <p class="help-block">The field "title" is empty</p>
+                                 <!--<label for="description">Description</label>-->
+                                 <input type="text" class="form-control" id="tripSeason" name="tripSeason" placeholder="Season">
+                                 <p class="help-block">The field "description" is empty</p>
+                              </div>
+                               <div class="form-group">
+                                 <!--<label for="description">Description</label>-->
+                                 <input type="text" class="form-control" id="tripTransportation" name="tripTransportation" placeholder="Transportation">
+                                 <p class="help-block">The field "description" is empty</p>
                               </div>
                               <div class="form-group">
-                                 <label for="file">File to upload:<span class="" id="imgStatus"></span></label>
+                                 <!--<label for="file">Add picture:</label>-->
                                  <input type="file" name="file" id="activityImage"/>
                               </div>
-                              <div class="form-group" style="display:none;">
+                              <!-- <div class="form-group" style="display:none;">
                                  <input type="number" name="user_activity_id" id="user_activity_id" value="0"/>
+                              </div> -->
+                              <div class="form-group" style="display:none;">
+                                 <input type="number" name="user_id" id="user_id" value="0"/>
                               </div>
+                              
+                              
+                              <input type="submit" value="Book Holiday" class="primary-btn text-uppercase">
                            </form>
-                           <div>
-                              <!--  <form id="image-form" method="POST" enctype="multipart/form-data" id="image-form">
+                           <!--<div>
+                                <form id="image-form" method="POST" enctype="multipart/form-data" id="image-form">
                                  <table>
                                  	<tr><td>File to upload:</td><td><input type="file" name="file" id="activityImage"/></td></tr>
                                  	<tr><td></td><td><input type="submit" value="Upload"/></td></tr>
@@ -139,548 +213,1166 @@
                                  </form> -->
                            </div>
                            <!--  <div class="modal-footer">-->
-                           <button id="addUserActivity" type="submit" form="activity-form" class="btn btn-success">Add Activity</button>
+                           <!--<button id="addUserActivity" type="submit" form="activity-form" class="btn btn-success">Add Activity</button>-->
+                           
                            
                            <!--<labeL for="user_activity_search">Search user activities:</labeL>
                            <input type="text" id="user_activity_search"/>-->
-                        </div>
+                        
                      </div>
                   </div>
                   <!-- /.modal-content -->
                </div>
-               <!-- /.modal-dialog -->
-               <!--   </div>  login-modal -->
-            </div>
-            <!-- add activity begin -->
-            
-  <form id="userActivity-search-form"  method="GET">
-	  <div style="margin-top:20px; margin-bottom:20px">         
-	 	<label for="activitiy-select-search">Search by Activity type:</label>
-	            <select id="activitiy-select-search" name="activity_id" class="form-control" ><!-- onchange="getAllUserActivitiesByActivityId(value)" -->
-	               <option id="activitySelectSearchCloneMe" value="1" style="display:none" >Select vacantion type...</option>
-	            </select>
+<!--add new activity modal end-->
+
+
+			<!-- Start popular-destination Area -->
+			<section id="holidays-list" class="popular-destination-area section-gap">
+				<div class="container">
+		            <div class="row d-flex justify-content-center">
+		                <div class="menu-content pb-70 col-lg-8">
+		                    <div class="title text-center">
+		                        <h1 class="mb-10">Popular Destinations</h1>
+		                        <p>We all live in an age that belongs to the young at heart. Life that is becoming extremely fast, day.</p>
+		                    </div>
+		                </div>
+		            </div>	
+		             				
+					<div class="row"  id="template">
+						<div class="col-lg-4" id="tripBox" style="display: none">
+							<div class="single-destination relative" id="single-destination" >
+								<div class="thumb relative" id="thumb">
+								<div id="season">Season: </div>
+								<div id="transportation">Travel by: </div>
+									<div class="overlay overlay-bg" id ="overlay"></div>
+									<img class="img-fluid" src="assets/img/d1.jpg" alt="" id="tripBoxImage">
+								</div>
+								<div class="desc">	
+									<a onclick="renderSelectedHoliday(id)" class="price-btn" id="tripBoxButton">Book now</a>			
+									<h4 id="tripBoxTitle">Mountain River</h4>
+									<p id="tripBoxDecription">Paraguay</p>			
+								</div>
+							</div>
+						</div>
+													
+					</div>
+					
+					<div class="row" id="tripContainer"> </div>
+					<div id="result"></div>	
+				</div>	
+			</section>
+			<!-- End popular-destination Area -->
+			
+
+			<!-- Start price Area -->
+			<section class="price-area section-gap">
+				<div class="container">
+		            <div class="row d-flex justify-content-center">
+		                <div class="menu-content pb-70 col-lg-8">
+		                    <div class="title text-center">
+		                        <h1 class="mb-10">We Provide Affordable Prices</h1>
+		                        <p>Well educated, intellectual people, especially scientists at all times demonstrate considerably.</p>
+		                    </div>
+		                </div>
+		            </div>						
+					<div class="row">
+						<div class="col-lg-4">
+							<div class="single-price">
+								<h4>Cheap Packages</h4>
+								<ul class="price-list">
+									<li class="d-flex justify-content-between align-items-center">
+										<span>New York</span>
+										<a href="#" class="price-btn">$1500</a>
+									</li>
+									<li class="d-flex justify-content-between align-items-center">
+										<span>Maldives</span>
+										<a href="#" class="price-btn">$1500</a>
+									</li>
+									<li class="d-flex justify-content-between align-items-center">
+										<span>Sri Lanka</span>
+										<a href="#" class="price-btn">$1500</a>
+									</li>
+									<li class="d-flex justify-content-between align-items-center">
+										<span>Nepal</span>
+										<a href="#" class="price-btn">$1500</a>
+									</li>
+									<li class="d-flex justify-content-between align-items-center">
+										<span>Thiland</span>
+										<a href="#" class="price-btn">$1500</a>
+									</li>	
+									<li class="d-flex justify-content-between align-items-center">
+										<span>Singapore</span>
+										<a href="#" class="price-btn">$1500</a>
+									</li>														
+								</ul>
+							</div>
+						</div>
+						<div class="col-lg-4">
+							<div class="single-price">
+								<h4>Luxury Packages</h4>
+								<ul class="price-list">
+									<li class="d-flex justify-content-between align-items-center">
+										<span>New York</span>
+										<a href="#" class="price-btn">$1500</a>
+									</li>
+									<li class="d-flex justify-content-between align-items-center">
+										<span>Maldives</span>
+										<a href="#" class="price-btn">$1500</a>
+									</li>
+									<li class="d-flex justify-content-between align-items-center">
+										<span>Sri Lanka</span>
+										<a href="#" class="price-btn">$1500</a>
+									</li>
+									<li class="d-flex justify-content-between align-items-center">
+										<span>Nepal</span>
+										<a href="#" class="price-btn">$1500</a>
+									</li>
+									<li class="d-flex justify-content-between align-items-center">
+										<span>Thiland</span>
+										<a href="#" class="price-btn">$1500</a>
+									</li>	
+									<li class="d-flex justify-content-between align-items-center">
+										<span>Singapore</span>
+										<a href="#" class="price-btn">$1500</a>
+									</li>														
+								</ul>
+							</div>
+						</div>
+						<div class="col-lg-4">
+							<div class="single-price">
+								<h4>Camping Packages</h4>
+								<ul class="price-list">
+									<li class="d-flex justify-content-between align-items-center">
+										<span>New York</span>
+										<a href="#" class="price-btn">$1500</a>
+									</li>
+									<li class="d-flex justify-content-between align-items-center">
+										<span>Maldives</span>
+										<a href="#" class="price-btn">$1500</a>
+									</li>
+									<li class="d-flex justify-content-between align-items-center">
+										<span>Sri Lanka</span>
+										<a href="#" class="price-btn">$1500</a>
+									</li>
+									<li class="d-flex justify-content-between align-items-center">
+										<span>Nepal</span>
+										<a href="#" class="price-btn">$1500</a>
+									</li>
+									<li class="d-flex justify-content-between align-items-center">
+										<span>Thiland</span>
+										<a href="#" class="price-btn">$1500</a>
+									</li>	
+									<li class="d-flex justify-content-between align-items-center">
+										<span>Singapore</span>
+										<a href="#" class="price-btn">$1500</a>
+									</li>														
+								</ul>
+							</div>
+						</div>												
+					</div>
+				</div>	
+			</section>
+			<!-- End price Area -->
+			
+
+			<!-- Start other-issue Area -->
+			<section class="other-issue-area section-gap">
+				<div class="container">
+		            <div class="row d-flex justify-content-center">
+		                <div class="menu-content pb-70 col-lg-9">
+		                    <div class="title text-center">
+		                        <h1 class="mb-10">Other issues we can help you with</h1>
+		                        <p>We all live in an age that belongs to the young at heart. Life that is.</p>
+		                    </div>
+		                </div>
+		            </div>					
+					<div class="row">
+						<div class="col-lg-3 col-md-6">
+							<div class="single-other-issue">
+								<div class="thumb">
+									<img class="img-fluid" src="assets/img/o1.jpg" alt="">					
+								</div>
+								<a href="#">
+									<h4>Rent a Car</h4>
+								</a>
+								<p>
+									The preservation of human life is the ultimate value, a pillar of ethics and the foundation.
+								</p>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-6">
+							<div class="single-other-issue">
+								<div class="thumb">
+									<img class="img-fluid" src="assets/img/o2.jpg" alt="">					
+								</div>
+								<a href="#">
+									<h4>Cruise Booking</h4>
+								</a>
+								<p>
+									I was always somebody who felt quite sorry for myself, what I had not got compared.
+								</p>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-6">
+							<div class="single-other-issue">
+								<div class="thumb">
+									<img class="img-fluid" src="assets/img/o3.jpg" alt="">					
+								</div>
+								<a href="#">
+									<h4>To Do List</h4>
+								</a>
+								<p>
+									The following article covers a topic that has recently moved to center stage–at least it seems.
+								</p>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-6">
+							<div class="single-other-issue">
+								<div class="thumb">
+									<img class="img-fluid" src="assets/img/o4.jpg" alt="">					
+								</div>
+								<a href="#">
+									<h4>Food Features</h4>
+								</a>
+								<p>
+									There are many kinds of narratives and organizing principles. Science is driven by evidence.
+								</p>
+							</div>
+						</div>																		
+					</div>
+				</div>	
+			</section>
+			<!-- End other-issue Area -->
+			
+
+			<!-- Start testimonial Area -->
+		    <!--<section class="testimonial-area section-gap">
+		        <div class="container">
+		            <div class="row d-flex justify-content-center">
+		                <div class="menu-content pb-70 col-lg-8">
+		                    <div class="title text-center">
+		                        <h1 class="mb-10">Testimonial from our Clients</h1>
+		                        <p>The French Revolution constituted for the conscience of the dominant aristocratic class a fall from </p>
+		                    </div>
+		                </div>
+		            </div>
+		            <div class="row">
+		                <div class="active-testimonial">
+		                    <div class="single-testimonial item d-flex flex-row">
+		                        <div class="thumb">
+		                            <img class="img-fluid" src="assets/img/elements/user1.png" alt="">
+		                        </div>
+		                        <div class="desc">
+		                            <p>
+		                                Do you want to be even more successful? Learn to love learning and growth. The more effort you put into improving your skills, the bigger the payoff you.		     
+		                            </p>
+		                            <h4>Harriet Maxwell</h4>
+	                            	<div class="star">
+										<span class="fa fa-star checked"></span>
+										<span class="fa fa-star checked"></span>
+										<span class="fa fa-star checked"></span>
+										<span class="fa fa-star checked"></span>
+										<span class="fa fa-star"></span>				
+									</div>	
+		                        </div>
+		                    </div>
+		                    <div class="single-testimonial item d-flex flex-row">
+		                        <div class="thumb">
+		                            <img class="img-fluid" src="assets/img/elements/user2.png" alt="">
+		                        </div>
+		                        <div class="desc">
+		                            <p>
+		                                A purpose is the eternal condition for success. Every former smoker can tell you just how hard it is to stop smoking cigarettes. However.
+		                            </p>
+		                            <h4>Carolyn Craig</h4>
+	                           		<div class="star">
+										<span class="fa fa-star checked"></span>
+										<span class="fa fa-star checked"></span>
+										<span class="fa fa-star checked"></span>
+										<span class="fa fa-star"></span>
+										<span class="fa fa-star"></span>			
+									</div>	
+		                        </div>
+		                    </div>
+		                    <div class="single-testimonial item d-flex flex-row">
+		                        <div class="thumb">
+		                            <img class="img-fluid" src="assets/img/elements/user1.png" alt="">
+		                        </div>
+		                        <div class="desc">
+		                            <p>
+		                                Do you want to be even more successful? Learn to love learning and growth. The more effort you put into improving your skills, the bigger the payoff you.		     
+		                            </p>
+		                            <h4>Harriet Maxwell</h4>
+	                            	<div class="star">
+										<span class="fa fa-star checked"></span>
+										<span class="fa fa-star checked"></span>
+										<span class="fa fa-star checked"></span>
+										<span class="fa fa-star checked"></span>
+										<span class="fa fa-star"></span>				
+									</div>	
+		                        </div>
+		                    </div>
+		                    <div class="single-testimonial item d-flex flex-row">
+		                        <div class="thumb">
+		                            <img class="img-fluid" src="assets/img/elements/user2.png" alt="">
+		                        </div>
+		                        <div class="desc">
+		                            <p>
+		                                A purpose is the eternal condition for success. Every former smoker can tell you just how hard it is to stop smoking cigarettes. However.
+		                            </p>
+		                            <h4>Carolyn Craig</h4>
+	                           		<div class="star">
+										<span class="fa fa-star checked"></span>
+										<span class="fa fa-star checked"></span>
+										<span class="fa fa-star checked"></span>
+										<span class="fa fa-star"></span>
+										<span class="fa fa-star"></span>			
+									</div>	
+		                        </div>
+		                    </div>
+		                    <div class="single-testimonial item d-flex flex-row">
+		                        <div class="thumb">
+		                            <img class="img-fluid" src="assets/img/elements/user1.png" alt="">
+		                        </div>
+		                        <div class="desc">
+		                            <p>
+		                                Do you want to be even more successful? Learn to love learning and growth. The more effort you put into improving your skills, the bigger the payoff you.		     
+		                            </p>
+		                            <h4>Harriet Maxwell</h4>
+	                            	<div class="star">
+										<span class="fa fa-star checked"></span>
+										<span class="fa fa-star checked"></span>
+										<span class="fa fa-star checked"></span>
+										<span class="fa fa-star checked"></span>
+										<span class="fa fa-star"></span>				
+									</div>	
+		                        </div>
+		                    </div>
+		                    <div class="single-testimonial item d-flex flex-row">
+		                        <div class="thumb">
+		                            <img class="img-fluid" src="assets/img/elements/user2.png" alt="">
+		                        </div>
+		                        <div class="desc">
+		                            <p>
+		                                A purpose is the eternal condition for success. Every former smoker can tell you just how hard it is to stop smoking cigarettes. However.
+		                            </p>
+		                            <h4>Carolyn Craig</h4>
+	                           		<div class="star">
+										<span class="fa fa-star checked"></span>
+										<span class="fa fa-star checked"></span>
+										<span class="fa fa-star checked"></span>
+										<span class="fa fa-star"></span>
+										<span class="fa fa-star"></span>			
+									</div>	
+		                        </div>
+		                    </div>		                    		                    
+		                </div>
+		            </div>
+		        </div>
+		    </section>-->
+		    <!-- End testimonial Area -->
+
+			<!-- Start home-about Area -->
+			<!--<section class="home-about-area">
+				<div class="container-fluid">
+					<div class="row align-items-center justify-content-end">
+						<div class="col-lg-6 col-md-12 home-about-left">
+							<h1>
+								Did not find your Package? <br>
+								Feel free to ask us. <br>
+								We‘ll make it for you
+							</h1>
+							<p>
+								inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women, our behavior on the job is beyond reproach. inappropriate behavior is often laughed.
+							</p>
+							<a href="#" class="primary-btn text-uppercase">request custom price</a>
+						</div>
+						<div class="col-lg-6 col-md-12 home-about-right no-padding">
+							<img class="img-fluid" src="assets/img/about-img.jpg" alt="">
+						</div>
+					</div>
+				</div>	
+			</section>-->
+			<!-- End home-about Area -->
+			
+	
+			<!-- Start blog Area -->
+			<!--<section class="recent-blog-area section-gap">
+				<div class="container">
+					<div class="row d-flex justify-content-center">
+						<div class="menu-content pb-60 col-lg-9">
+							<div class="title text-center">
+								<h1 class="mb-10">Latest from Our Blog</h1>
+								<p>With the exception of Nietzsche, no other madman has contributed so much to human sanity as has.</p>
+							</div>
+						</div>
+					</div>							
+					<div class="row">
+						<div class="active-recent-blog-carusel">
+							<div class="single-recent-blog-post item">
+								<div class="thumb">
+									<img class="img-fluid" src="assets/img/b1.jpg" alt="">
+								</div>
+								<div class="details">
+									<div class="tags">
+										<ul>
+											<li>
+												<a href="#">Travel</a>
+											</li>
+											<li>
+												<a href="#">Life Style</a>
+											</li>											
+										</ul>
+									</div>
+									<a href="#"><h4 class="title">Low Cost Advertising</h4></a>
+									<p>
+										Acres of Diamonds… you’ve read the famous story, or at least had it related to you. A farmer.
+									</p>
+									<h6 class="date">31st January,2018</h6>
+								</div>	
+							</div>
+							<div class="single-recent-blog-post item">
+								<div class="thumb">
+									<img class="img-fluid" src="assets/img/b2.jpg" alt="">
+								</div>
+								<div class="details">
+									<div class="tags">
+										<ul>
+											<li>
+												<a href="#">Travel</a>
+											</li>
+											<li>
+												<a href="#">Life Style</a>
+											</li>											
+										</ul>
+									</div>
+									<a href="#"><h4 class="title">Creative Outdoor Ads</h4></a>
+									<p>
+										Acres of Diamonds… you’ve read the famous story, or at least had it related to you. A farmer.
+									</p>
+									<h6 class="date">31st January,2018</h6>
+								</div>	
+							</div>
+							<div class="single-recent-blog-post item">
+								<div class="thumb">
+									<img class="img-fluid" src="assets/img/b3.jpg" alt="">
+								</div>
+								<div class="details">
+									<div class="tags">
+										<ul>
+											<li>
+												<a href="#">Travel</a>
+											</li>
+											<li>
+												<a href="#">Life Style</a>
+											</li>											
+										</ul>
+									</div>
+									<a href="#"><h4 class="title">It's Classified How To Utilize Free</h4></a>
+									<p>
+										Acres of Diamonds… you’ve read the famous story, or at least had it related to you. A farmer.
+									</p>
+									<h6 class="date">31st January,2018</h6>
+								</div>	
+							</div>	
+							<div class="single-recent-blog-post item">
+								<div class="thumb">
+									<img class="img-fluid" src="assets/img/b1.jpg" alt="">
+								</div>
+								<div class="details">
+									<div class="tags">
+										<ul>
+											<li>
+												<a href="#">Travel</a>
+											</li>
+											<li>
+												<a href="#">Life Style</a>
+											</li>											
+										</ul>
+									</div>
+									<a href="#"><h4 class="title">Low Cost Advertising</h4></a>
+									<p>
+										Acres of Diamonds… you’ve read the famous story, or at least had it related to you. A farmer.
+									</p>
+									<h6 class="date">31st January,2018</h6>
+								</div>	
+							</div>
+							<div class="single-recent-blog-post item">
+								<div class="thumb">
+									<img class="img-fluid" src="assets/img/b2.jpg" alt="">
+								</div>
+								<div class="details">
+									<div class="tags">
+										<ul>
+											<li>
+												<a href="#">Travel</a>
+											</li>
+											<li>
+												<a href="#">Life Style</a>
+											</li>											
+										</ul>
+									</div>
+									<a href="#"><h4 class="title">Creative Outdoor Ads</h4></a>
+									<p>
+										Acres of Diamonds… you’ve read the famous story, or at least had it related to you. A farmer.
+									</p>
+									<h6 class="date">31st January,2018</h6>
+								</div>	
+							</div>
+							<div class="single-recent-blog-post item">
+								<div class="thumb">
+									<img class="img-fluid" src="assets/img/b3.jpg" alt="">
+								</div>
+								<div class="details">
+									<div class="tags">
+										<ul>
+											<li>
+												<a href="#">Travel</a>
+											</li>
+											<li>
+												<a href="#">Life Style</a>
+											</li>											
+										</ul>
+									</div>
+									<a href="#"><h4 class="title">It's Classified How To Utilize Free</h4></a>
+									<p>
+										Acres of Diamonds… you’ve read the famous story, or at least had it related to you. A farmer.
+									</p>
+									<h6 class="date">31st January,2018</h6>
+								</div>	
+							</div>														
+
+						</div>
+					</div>
+				</div>	
+			</section>-->
+			<!-- End recent-blog Area -->			
+
+			<!-- start footer Area -->		
+			<footer class="footer-area section-gap">
+				<div class="container">
+
+					<div class="row">
+						<div class="col-lg-3  col-md-6 col-sm-6">
+							<div class="single-footer-widget">
+								<h6>About Agency</h6>
+								<p>
+									The world has become so fast paced that people don’t want to stand by reading a page of information, they would much rather look at a presentation and understand the message. It has come to a point 
+								</p>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-6 col-sm-6">
+							<div class="single-footer-widget">
+								<h6>Navigation Links</h6>
+								<div class="row">
+									<div class="col">
+										<ul>
+											<li><a href="#">Home</a></li>
+											<li><a href="#">Feature</a></li>
+											<li><a href="#">Services</a></li>
+											<li><a href="#">Portfolio</a></li>
+										</ul>
+									</div>
+									<div class="col">
+										<ul>
+											<li><a href="#">Team</a></li>
+											<li><a href="#">Pricing</a></li>
+											<li><a href="#">Blog</a></li>
+											<li><a href="#">Contact</a></li>
+										</ul>
+									</div>										
+								</div>							
+							</div>
+						</div>							
+						<div class="col-lg-3  col-md-6 col-sm-6">
+							<div class="single-footer-widget">
+								<h6>Newsletter</h6>
+								<p>
+									For business professionals caught between high OEM price and mediocre print and graphic output.									
+								</p>								
+								<div id="mc_embed_signup">
+									<form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="subscription relative">
+										<div class="input-group d-flex flex-row">
+											<input name="EMAIL" placeholder="Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address '" required="" type="email">
+											<button class="btn bb-btn"><span class="lnr lnr-location"></span></button>		
+										</div>									
+										<div class="mt-10 info"></div>
+									</form>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3  col-md-6 col-sm-6">
+							<div class="single-footer-widget mail-chimp">
+								<h6 class="mb-20">InstaFeed</h6>
+								<ul class="instafeed d-flex flex-wrap">
+									<li><img src="assets/img/i1.jpg" alt=""></li>
+									<li><img src="assets/img/i2.jpg" alt=""></li>
+									<li><img src="assets/img/i3.jpg" alt=""></li>
+									<li><img src="assets/img/i4.jpg" alt=""></li>
+									<li><img src="assets/img/i5.jpg" alt=""></li>
+									<li><img src="assets/img/i6.jpg" alt=""></li>
+									<li><img src="assets/img/i7.jpg" alt=""></li>
+									<li><img src="assets/img/i8.jpg" alt=""></li>
+								</ul>
+							</div>
+						</div>						
+					</div>
+
+					<div class="row footer-bottom d-flex justify-content-between align-items-center">
+						<p class="col-lg-8 col-sm-12 footer-text m-0"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+						<div class="col-lg-4 col-sm-12 footer-social">
+							<a href="#"><i class="fa fa-facebook"></i></a>
+							<a href="#"><i class="fa fa-twitter"></i></a>
+							<a href="#"><i class="fa fa-dribbble"></i></a>
+							<a href="#"><i class="fa fa-behance"></i></a>
+						</div>
+					</div>
+				</div>
+			</footer>
+			<!-- End footer Area -->	
+
+			<script src="js/custom-js.js"></script>	
+			<script src="js/vendor/jquery-2.2.4.min.js"></script>
+			<script src="js/popper.min.js"></script>
+			<script src="js/vendor/bootstrap.min.js"></script>			
+			<!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>	-->	
+ 			<script src="js/jquery-ui.js"></script>					
+  			<script src="js/easing.min.js"></script>			
+			<script src="js/hoverIntent.js"></script>
+			<script src="js/superfish.min.js"></script>	
+			<script src="js/jquery.ajaxchimp.min.js"></script>
+			<script src="js/jquery.magnific-popup.min.js"></script>						
+			<script src="js/jquery.nice-select.min.js"></script>					
+			<script src="js/owl.carousel.min.js"></script>							
+			<script src="js/mail-script.js"></script>	
+			<script src="js/main.js"></script>	
+			
+			<script>
+			
+			function fillTripTypeDropdown(tripType) {
+				var x = document.getElementById("trip-type-select");
+				while (x.firstChild) {
+	                x.removeChild(x.firstChild);
+	            }
+	            // Create a new XMLHttpRequest object or use fetch API
+	            const xhr = new XMLHttpRequest();
+
+	            // Configure the request
+	            xhr.open("POST", "/userActivity/getAllActivityTypesFromOntology", true);
+	            xhr.setRequestHeader("Content-Type", "application/json");
+
+	            // Set up a callback function to handle the response
+	            xhr.onreadystatechange = function () {
+	                if (xhr.readyState === 4 && xhr.status === 200) {
+	                    const response = JSON.parse(xhr.responseText);
+	                    //console.log(response);
+	                    response.forEach(function(response){
+		         			var option = document.createElement("option");
+		         			option.text = response;
+		         			option.value = response;
+		         			x.add(option);	
+		      			});
+	                    x.style.display = "";
+	                }
+	            };
+
+	            // Convert the selected value to JSON and send the request
+	            const data = JSON.stringify({ tripType });
+	            //console.log(data);
+	            xhr.send(data);
+	        }
+			</script>
+
+			<script type="text/javascript">
+
+				function fillHolidayTypeDropdown(tripType) {
+					  var x = document.getElementById("trip-criteria-select");
+					  var option = document.createElement("option");
+					  
+					  const xhr = new XMLHttpRequest();
+	
+			            // Configure the request
+			            xhr.open("POST", "/userActivity/getAllActivityTypesFromOntology", true);
+			            xhr.setRequestHeader("Content-Type", "application/json");
+			            
+			            xhr.onreadystatechange = function () {
+			                if (xhr.readyState === 4 && xhr.status === 200) {
+			                    const response = JSON.parse(xhr.responseText);
+			                   // console.log(response);
+			                    response.forEach(function(response){
+				         			var option = document.createElement("option");
+				         			option.text = response;
+				         			option.value = response;
+				         			x.add(option);	
+				      			}); 
+			                }
+			            };
+					  
+			            const data = JSON.stringify({ tripType });
+			            //console.log(data);
+			            xhr.send(data);
+			              
+					console.log("Filled dropdown with holiday types" + data)
+				
+				}
+				
+			</script>
+			
+	<script>
+	
+	        // Function to handle form submission
+	        function handleSubmit(event) {
+	            event.preventDefault(); // Prevent the default form submission behavior
+
+	            var resultSection = document.getElementById("tripContainer");
+				while (resultSection.firstChild) {
+					resultSection.removeChild(resultSection.firstChild);
+	            }
 	            
-	    <label for="activitiy-search-string">Search by Activity title:</label>           
-	     <div class="search-container">
-	      <input type="text" id="activitiy-search-string" name="title"><!-- onkeyup="getAllUserActivitiesByTitle(value)"/ -->    
-	 	 </div>
-	 	  <button id="searchUserActivity" type="submit" form="userActivity-search-form" class="btn btn-success">Search</button>
-      </div>
-  </form>         
-  
-                                 
-           <div class="card" id="userActivityCloneMe" style="display:none;" onclick="renderUserActivityForm(id)">
-			  <img src="" alt="Activity" style="width:100%">
-			  <div class="card-body">
-			    <h2><b>John Doe</b></h2> 
-			    <p>Architect & Engineer</p> 
-			    <p id="userActivityId" style="display:none"></p> 
-			    <button id="deleteUserActivity" class="btn btn-success">Delete</button>
-			  </div>
-			</div>            
-			           
-         <div class="card-container" id="userActivitiy-list"></div>
-         
-         <footer class="footer" style="position: inherit;">
-         <div class="container footer--flex">
-           <div class="footer-start">
-             <p>2023 © Elegant Dashboard - <a href="elegant-dashboard.com" target="_blank"
-                 rel="noopener noreferrer">elegant-dashboard.com</a></p>
-           </div>
-           <ul class="footer-end">
-             <li><a href="##">About</a></li>
-             <li><a href="##">Support</a></li>
-             <li><a href="##">Puchase</a></li>
-           </ul>
-         </div>
-         </footer>
-      </div>
-               
-     <script>   
-     
-     function renderUserActivityInsertForm(){
-    	 
-    	 //const form = document.forms['activity-form'];
-    	 
-    	 //console.log(form);
-  		$('#activity-form-modal').modal('show');
-  	}
-     
-  	function renderUserActivityForm(userActivityId){
- 		console.log(userActivityId);
- 		
- 		const form = document.forms['activity-form'];
- 		
- 		$.ajax({
- 			url: "/userActivity/getById",
- 			method: "get",
- 			data: {
- 				id: userActivityId
- 			},
- 			success: function(data){
- 					//console.log(data);	
- 					//console.log(data.imagePath);	
- 					
- 					//console.log(document.forms['activity-form'].elements['file'].value);	
- 					
- 					document.forms['activity-form'].elements['title'].value = data.title;
- 					document.forms['activity-form'].elements['description'].value = data.description;
- 					//document.forms['activity-form'].elements['filename'].value = "";
- 					document.forms['activity-form'].elements['activity_id'].value = data.activity.id;	
- 					document.forms['activity-form'].elements['user_activity_id'].value = userActivityId;	
- 			}
- 		});
- 		
- 		
- 		 //$('#description').val($(this).data('#description'));
- 		
- 		$('#activity-form-modal').modal('show');
- 	}
-  	
-  	function getAllUserActivitiesBy(title, activity_id){  	
-  		console.log(title);
- 		//if(activity_id > 0){
- 			//var doc = document.getElementById("userActivitiy-list");
- 	        //doc.innerHTML = '';	
-			
-      		$.ajax({
-      			url: "/userActivity/getBy",
-      			method: "GET",
-      			data: {title: title, 
-      					activity_id: activity_id},
-      			success: function(data){
-      					//addUserActivityToUI(activity.title, activity.description, activity.imagePath, activity.id, activity.activity);
-         		data.forEach(function(activity){
-         			console.log(activity);
-         			var theActivity = $('#userActivityCloneMe').clone();
-         		theActivity.find('img').attr('src', activity.imagePath);
-         		theActivity.find('h2').text(activity.title);
-         		theActivity.find('p').text(activity.description);
-         		theActivity.attr('id', activity.id);
-         		
-         		theActivity.find('button').click(function(){
-         			deleteUserActivity(id, theActivity);
-         		});
+	            // Get form data
+	            const formData = new FormData(event.target);
 
-         		$('#userActivitiy-list').prepend(theActivity);
-         		theActivity.show();   		
-      			}); 
-      			}
-      		});
-  		//}
- 	}
-  	
-     
-  	function getAllUserActivitiesByActivityId(activity_id){  	
-   
- 		if(activity_id > 0){
- 			var doc = document.getElementById("userActivitiy-list");
- 	        doc.innerHTML = '';	
- 			//console.log(doc.childNodes);	
+	            // Convert form data to an object
+	            const data = {};
+	            formData.forEach((value, key) => {
+	            	data[key] = value;
+	            });
+	            
+	            // Make an API request with the form data
+	            fetch("/userActivity/getHolidayByUserParameters", {
+	                method: "POST", // Adjust the HTTP method as needed
+	                body: JSON.stringify(data), // Convert data to JSON if required
+	                headers: {
+	                    "Content-Type": "application/json", // Adjust content type if needed
+	                },
+	            })
+	            .then(response => response.json()) // Parse the JSON response
+	            .then(apiData => {
+	            	 
+	                // Display the API response in the result div
+	                const resultDiv = document.getElementById("result");
+	                resultDiv.innerHTML = `<p>API Response:</p><pre>${JSON.stringify(apiData, null, 2)}</pre>`;
+	                
+	                var result = JSON.stringify(apiData, null, 2);
+	                
+	                //console.log(result);
+	                
+	             //    const template = document.getElementById("template");
+           // const clone = template.cloneNode(true);
+            //clone.style.display = "block"; // Show the cloned element
+
+            // Append the cloned element to the container
+           // const container = document.getElementById("container");
+           // container.appendChild(clone);
+	                	                
+	               //apiData.forEach(function(apiData){
+	         			//console.log(apiData)
+	         			
+	         			 apiData.forEach(data => {
+				            createAndAppendElement(data);
+				        });
+					         			
+	         			// Set values for the cloned element
+			           /* clone.querySelector("#tripBoxImage").src = apiData.placeToStay;
+			            clone.querySelector("#tripBoxButton").href = apiData.destination;
+			            clone.querySelector("#tripBoxTitle").textContent = apiData.town;
+			            clone.querySelector("#tripBoxDescription").textContent = apiData.type;
+			            
+			            const container = document.getElementById("container");
+			            container.appendChild(clone);*/
+				         			
+	         			//var theTrip = $('#tripBox').clone();
+	         			//console.log(theTrip)
+		         		//theActivity.find('img').attr('src', activity.imagePath);
+		         		//theTrip.find('#tripBoxTitle').text(apiData.town);
+		         		//console.log(theTrip)
+		         		//theActivity.find('p').text(activity.description);
+		         		//theActivity.attr('id', activity.id);
+		         		
+		         		//theActivity.find('button').click(function(){
+		         		//	deleteUserActivity(id, theActivity);
+		         		//});
+
+		         		//$('#userActivitiy-list').prepend(theActivity);
+		         		//theActivity.show();    		
+		      			//});
+	                
+		         		
+		         	
+		         		//console.log(apiData.town)
+		            
+		         		//resultSection.prepend(theTrip);
+		         		//theTrip.show();    		
+	         		//});
+	                                           
+	            })
+	            .catch(error => {
+	                console.error("Error:", error);
+	            });
+	        }
+
+	        // Attach the form submission handler to the form
+	        const form = document.getElementById("holiday-search-form");
+	        form.addEventListener("submit", handleSubmit);
+	        
+	        
+	        function createAndAppendElement(data) {
+	        	
+	        	// Get the template element by its id
+	        	const template = document.getElementById("tripBox");
+	        	//template.style.display="";
+	        	// Clone the template and its content
+	        	const clone = template.cloneNode(true);
+	        	clone.id="dataname";
+	        	clone.style.display="";
+	        	// Modify the cloned content as needed
+	        	clone.querySelector("#tripBoxImage").src = "assets/img/d1.jpg";
+	        	clone.querySelector("#tripBoxButton").textContent = "New Button Text";
+	        	clone.querySelector("#tripBoxButton").id = data.iri;
+	        	clone.querySelector("#tripBoxTitle").textContent = data.town;
+	        	clone.querySelector("#tripBoxTitle").textContent = data.name;
+	        	clone.querySelector("#tripBoxDecription").textContent = data.description.split('\\').join('').replace("@en", "");;
+	        	clone.querySelector("#season").textContent = "Season: " + data.season;
+	        	clone.querySelector("#transportation").textContent = "Travel by: " + data.transportation;
+	        	//clone.querySelector("#tripBoxDecription").textContent = data.type;
+
+	        	// Append the modified clone to the container (e.g., the document body or another target element)
+	        	const container = document.getElementById("tripContainer");
+	            container.appendChild(clone);
+	        }
+	        
+	    </script>
+	
 			
-      		$.ajax({
-      			url: "/userActivity/getByActivityId",
+	<script>
+	
+	/*$(document).ready(function(){
+	
+	const tripType = document.getElementById("trip-criteria-select").value;
+    const tripSubType = document.getElementById("trip-type-select").value;
+ 	
+ const searchForm = document.forms['holiday-search-form'];
+ const searchFormData = new FormData();
+ 
+ const handleSearchSubmit = (event) => {
+    event.preventDefault();	  
+    //const form = document.forms['userActivity-search-form'];
+	
+	searchFormData.append("tripType", searchForm.tripType.value);
+	searchFormData.append("tripSubType", searchForm.tripSubType.value);	
+	
+	for (const p of searchFormData){
+		//console.log(p);
+	}
+	
+	console.log("searchFormData: ");
+    console.log(searchFormData);
+    	      	
+    fetch("http://localhost:8080/userActivity/getHolidayByUserParameters", {
+        method: "get",
+        body: searchFormData
+    }).then(response => response.text())
+    .then((response) => {
+        console.log(response);
+        console.log("here");
+    })
+    .catch((error) => ("Something went wrong!", error));
+ };
+ 
+ searchForm.addEventListener("submit", handleSearchSubmit);    	
+	});
+	*/
+	
+	</script>
+			
+	
+
+    <script>
+        // Function to handle form submission
+        /*function handleSubmit(event) {
+            event.preventDefault(); // Prevent the default form submission behavior
+            
+            // Get form data
+            const formData = new FormData(event.target);
+            
+            //console.log(formData);
+            
+            var x = document.getElementById("holiday-search-form");
+			  var option = document.createElement("option");
+			const tripType = document.getElementById("trip-criteria-select").value;
+	         const tripSubType = document.getElementById("trip-type-select").value;
+	         //console.log("tripType, tripSubType: " + tripType, tripSubType);
+			  const xhr = new XMLHttpRequest();
+
+	            // Configure the request
+	            xhr.open("POST", "/userActivity/getHolidayByUserParameters", true);
+	            xhr.setRequestHeader("Content-Type", "application/json");
+	            
+	            xhr.onreadystatechange = function () {
+	                if (xhr.readyState === 4 && xhr.status === 200) {
+	                    const response = JSON.parse(xhr.responseText);
+	                    console.log("response: " + response);
+	                    response.forEach(function(response){
+		         			var option = document.createElement("option");
+		         			option.text = response;
+		         			option.value = response;
+		         			//x.add(option);	
+		      			}); 
+	                }
+	            };*/
+			  
+	          /*  const data = JSON.stringify({ tripType, tripSubType });
+	            console.log("req_data: " + data);
+	            xhr.send(data);*/
+
+            // Make an AJAX POST request to the server
+           /* $.ajax({
+                url: "http://localhost:8080/userActivity/getHolidayByUserParameters", // Replace with your server endpoint
+                method: "POST",
+                data: formData,
+               // processData: false,
+               // contentType: false,
+                success: function(response) {
+                    // Display the response in the result div
+                    const resultDiv = document.getElementById("result");
+                    resultDiv.innerHTML = response;
+                },
+                error: function(error) {
+                    console.error("Error:", error);
+                }
+            });*/
+       // }
+
+        // Attach the form submission handler to the form
+      //  const holidaySearchForm = document.getElementById("holiday-search-form");
+       // holidaySearchForm.addEventListener("submit", handleSubmit);
+    </script>
+    
+    <script type="text/javascript">
+
+				/*function getHolidayByUserParameters(tripType, tripSubType) {
+					  var x = document.getElementById("trip-criteria-select");
+					  var option = document.createElement("option");
+					  
+					  const xhr = new XMLHttpRequest();
+	
+			            // Configure the request
+			            xhr.open("POST", "/userActivity/getAllActivityTypesFromOntology", true);
+			            xhr.setRequestHeader("Content-Type", "application/json");
+			            
+			            xhr.onreadystatechange = function () {
+			                if (xhr.readyState === 4 && xhr.status === 200) {
+			                    const response = JSON.parse(xhr.responseText);
+			                    console.log(response);
+			                    response.forEach(function(response){
+				         			var option = document.createElement("option");
+				         			option.text = response;
+				         			option.value = response;
+				         			x.add(option);	
+				      			}); 
+			                }
+			            };
+					  
+			            const data = JSON.stringify({ tripType });
+			            console.log(data);
+			            xhr.send(data);
+			              
+					console.log("Filled dropdown with holiday types" + data)*/
+				
+				// }
+				
+			</script>
+
+			
+			
+			<script type="text/javascript">
+			
+			        // Function to handle form submission
+			        /*function handleSubmit(event) {
+			            event.preventDefault(); // Prevent the default form submission behavior
+			            
+			            // Get form data
+			            const formData = new FormData(event.target);
+			            const data = {};
+			            
+			            formData.forEach((value, key) => {
+			                data[key] = value;
+			            });
+
+			            // Simulate sending the data to the server (replace this with your actual server request)
+			            setTimeout(() => {
+			                // Display the result in a div
+			                const resultDiv = document.getElementById("result");
+			                resultDiv.innerHTML = `<p>Form data submitted:</p><pre>${JSON.stringify(data, null, 2)}</pre>`;
+			            }, 1000); // Simulating a delay for demonstration purposes
+			        }*/
+
+			        // Attach the form submission handler to the form
+			        //const form = document.getElementById("holiday-search-form");
+			        //form.addEventListener("submit", handleSubmit);	
+			</script>
+
+			<script type="text/javascript">
+			
+			//const search_text = document.getElementById("activitiy-search-string") ;	
+         	//const tripType = document.getElementById("trip-criteria-select");
+         	//const tripSubType = document.getElementById("trip-type-select");
+         	//
+         	//const searchForm = document.forms['holiday-search-form']; /*holiday-search-form*/
+         	// const searchFormData = new FormData();
+			
+			/* const aSearchSubmit = (event) => {
+	            event.preventDefault();	  
+	            //const form = document.forms['userActivity-search-form'];
+				
+				//searchFormData.append("title", searchForm.title.value);
+	        	searchFormData.append("tripType", searchForm.tripType.value);
+	        	searchFormData.append("tripSubType", searchForm.tripSubType.value);
+				
+	        	for (const p of searchFormData){
+	        		console.log(p);
+	        	}
+				
+	            console.log(searchFormData);
+	            	      	
+	            fetch("http://localhost:8080/userActivity/getHolidayByUserParameters", {
+	                method: "get",
+	                body: searchFormData
+	            }).then(response => response.text())
+	            .then((response) => {
+	                console.log(response);
+	                console.log("here");
+	            })
+	            .catch((error) => ("Something went wrong!", error));
+	         };
+			*/
+			//$("#holiday-search-form").submit(function(e) {
+			 //   e.preventDefault();
+			    
+			  //  const searchForm = document.forms['holiday-search-form']; /*holiday-search-form*/
+		      //  const searchFormData = new FormData();
+			    
+			    //$(this).attr('action',$(this).attr('action')+$('#agent').val());
+				//searchFormData.append("activity_id", searchForm.activity_id.value);
+				//searchFormData.append("activity_id2", searchForm.activity_id2.value);
+				//console.log("searchForm.activity_id.value");
+				//console.log(searchForm.activity_id.value);
+			    //searchFormData.append("activity_id", e.target.elements.activity_id.value);
+				//e.target.elements.forEach(function(date){
+				//	console.log(e.target.elements.activity_id.value);
+					//console.log(formData.values[0]);
+				//}); 
+				
+				//	for (const p of searchFormData){
+		        //		console.log(p);
+		        //	}
+					
+			    
+			   //console.log($(this).attr('trip-type-select',$(this).attr('holiday-type-select')).val)
+			   //.getparameter("agent_id");
+			   //holiday-type-select
+			  // getHolidayByUserParameters(searchFormData)
+				
+			    //$('html, body').animate({
+			   //     scrollTop: $("#holidays-list").offset().top
+			    //}, 2000);
+				//});
+			
+			/*function getHolidayByUserParameters(searchFormData) {	
+				console.log("searched: " + searchFormData)
+				
+					$.ajax({
+      			url: "http://localhost:8080/userActivity/getHolidayByUserParameters",
       			method: "GET",
-      			data: {activity_id: activity_id},
+      			body: searchFormData,
+      			//data: {tripType: tripType},
       			success: function(data){
       					//addUserActivityToUI(activity.title, activity.description, activity.imagePath, activity.id, activity.activity);
 	
-         		data.forEach(function(activity){
-         		var theActivity = $('#userActivityCloneMe').clone();
-         		theActivity.find('img').attr('src', activity.imagePath);
-         		theActivity.find('h2').text(activity.title);
-         		theActivity.find('p').text(activity.description);
-         		theActivity.attr('id', activity.id);
+         		data.forEach(function(data){
+         			console.log(data)
+         		//var theActivity = $('#userActivityCloneMe').clone();
+         		//theActivity.find('img').attr('src', activity.imagePath);
+         		//theActivity.find('h2').text(activity.title);
+         		//theActivity.find('p').text(activity.description);
+         		//theActivity.attr('id', activity.id);
          		
-         		theActivity.find('button').click(function(){
-         			deleteUserActivity(id, theActivity);
+         		//theActivity.find('button').click(function(){
+         		//	deleteUserActivity(id, theActivity);
          		});
 
-         		$('#userActivitiy-list').prepend(theActivity);
-         		theActivity.show();    		
-      			});
+         		//$('#userActivitiy-list').prepend(theActivity);
+         		//theActivity.show();    		
+      			//});
       			}
       		});
-  		}
- 	}
-  	
-  	function getAllUserActivitiesByTitle(title){  	
-  	   
- 		if(title != ""){
- 			var doc = document.getElementById("userActivitiy-list");
- 	        doc.innerHTML = '';	
- 			//console.log(doc.childNodes);	
+				
+				
+			}*/
+			</script>
+
+	<script type="text/javascript">
+				
+		function renderSelectedHoliday(tripIRI){
 			
-      		$.ajax({
-      			url: "/userActivity/getByTitle",
-      			method: "GET",
-      			data: {title: title},
-      			success: function(data){
-      					//addUserActivityToUI(activity.title, activity.description, activity.imagePath, activity.id, activity.activity);
+			var x = document.getElementById("activity-form-modal");
+			//while (x.firstChild) {
+            //    x.removeChild(x.firstChild);
+            //}
+            // Create a new XMLHttpRequest object or use fetch API
+            const xhr = new XMLHttpRequest();
+
+            // Configure the request
+            xhr.open("POST", "/userActivity/getHolidayByIRI", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+
+            // Set up a callback function to handle the response
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    const response = JSON.parse(xhr.responseText);
+                    //console.log(response);
+                    //response.forEach(function(response){
+	         			//var option = document.createElement("option");
+	         			//option.text = response;
+	         			//option.value = response;
+	         			//x.add(option);	
+	         			console.log(response);
+	         			x.tripTitle = "testttttttttttt"
+	      			//});
+                    //x.style.display = "";
+                }
+            };
+
+            // Convert the selected value to JSON and send the request
+            const data = JSON.stringify({ tripIRI });
+            //console.log(data);
+            xhr.send(data);
+ 		
+ 			$('#activity-form-modal').modal('show');
+ 		}
+
+	</script>
 	
-         		data.forEach(function(activity){
-         		var theActivity = $('#userActivityCloneMe').clone();
-         		theActivity.find('img').attr('src', activity.imagePath);
-         		theActivity.find('h2').text(activity.title);
-         		theActivity.find('p').text(activity.description);
-         		theActivity.attr('id', activity.id);
-         		
-         		theActivity.find('button').click(function(){
-         			deleteUserActivity(id, theActivity);
-         		});
-
-         		$('#userActivitiy-list').prepend(theActivity);
-         		theActivity.show();    		
-      			});
-      			}
-      		});
-  		}
- 	}
-  	
-  	
-         $(document).ready(function(){
-        	// getAllUserActivitiesBy(7, 7); 
-        	
-        //search begin
-        	
-        	const search_text = document.getElementById("activitiy-search-string") ;	
-         	const search_activity_id = document.getElementById("activitiy-select-search");
-         	
-         const searchForm = document.forms['userActivity-search-form'];
-         const searchFormData = new FormData();
-         
-         const handleSearchSubmit = (event) => {
-            event.preventDefault();	  
-            //const form = document.forms['userActivity-search-form'];
-			
-			searchFormData.append("title", searchForm.title.value);
-        	searchFormData.append("activity_id", searchForm.activity_id.value);	
-			
-        	for (const p of searchFormData){
-        		console.log(p);
-        	}
-			
-            console.log(searchFormData);
-            	      	
-            fetch("http://localhost:8080/userActivity/getBy", {
-                method: "get",
-                body: searchFormData
-            }).then(response => response.text())
-            .then((response) => {
-                console.log(response);
-                console.log("here");
-            })
-            .catch((error) => ("Something went wrong!", error));
-         };
-         
-         searchForm.addEventListener("submit", handleSearchSubmit);    	
-         
-         //search end
-        	
-         	function addActivityToSelect(title, description, id){
-
-         		var theActivity = $('#activitySelectCloneMe').clone();
-         		
-         		theActivity.attr('value', id); 
-         		theActivity.attr('label', title);
-         		//theActivity.find('option').attr('value', title);   
-         		//theActivity.setAttribute("<value>", title);
-         		//theActivity.find('p').text(description);
-         		//theActivity.attr('id', '');
-         		
-         		//theActivity.find('img').attr('src', image);   
-         		
-         		//theActivity.find('button').click(function(){
-         		//	deleteComment(id, theActivity);
-         		//});
-         		
-         		$('#activitiy-select').prepend(theActivity);
-         		
-         		theActivity.show();    		
-         	}
-         	
-         	function addActivityToSearchSelect(title, description, id){
-
-         		var theActivity = $('#activitySelectSearchCloneMe').clone();
-         		
-         		theActivity.attr('value', id); 
-         		theActivity.attr('label', title);
-         		//theActivity.find('option').attr('value', title);   
-         		//theActivity.setAttribute("<value>", title);
-         		//theActivity.find('p').text(description);
-         		//theActivity.attr('id', '');
-         		
-         		//theActivity.find('img').attr('src', image);   
-         		
-         		//theActivity.find('button').click(function(){
-         		//	deleteComment(id, theActivity);
-         		//});
-         		
-         		$('#activitiy-select-search').prepend(theActivity);
-         		
-         		theActivity.show();    		
-         	}
-         	
-         	
-         	
-         	function getAllActivities(action){  	
-         
-         		if(action === "addToSelect"){
-          		$.ajax({
-          			url: "/activity/all",
-          			method: "GET",
-          			success: function(data){
-          				data.forEach(function(activity){
-          						addActivityToSelect(activity.title, activity.description, activity.id);
-          						addActivityToSearchSelect(activity.title, activity.description, activity.id)
-          				}); 
-          				
-          				/*const list = document.getElementById("activitiy-select").childNodes;	
-          	 			for (i=1; i <= list.length; i++){
-          	 				console.log(list[i].value);
-          	 				if (list[i].value==0){
-          	 					document.getElementById(0).remove();
-          	 				}
-          	 			}*/
-          				
-          			}	
-          		});
-         		}
-         	}
-         	
-         function getAllUserAcivities(action){
-       
-         $.getJSON("/activity/all", function(data){				
-         $.ajax({
-          			url: "/userActivity/all",
-          			method: "GET",
-          			success: function(data){
-          				if(action === "addUserActivityToUI"){
-	          				data.forEach(function(activity){
-	          					addUserActivityToUI(activity.title, activity.description, activity.imagePath, activity.id, activity.activity);
-	          					//console.log(activity.imagePath);	
-	          			
-          					});  	
-          				}else if(action === "getJSON"){
-	          				//console.log(data);
-          				const activityJson = data;
-          				}
-          			}    			
-          		});
-         
-         					}); 		
-         	}
-
-         	function addActivity(data){
-         		title = $('#select-city').val();
-         		description = $('#comment').val();
-         		imagePath = $('#imagePath').val();
-         		
-         		$.ajax({
-         			url: "/comment/add",
-         			method: "POST",
-         			data: {
-         				city: city,
-         				temp: temp,
-         		description: comment,
-         		icon: icon
-         			},
-         			success: function(data){
-         				if(data.includes("Error:")){
-         					alert(data);
-         				}else{
-         					addCommentToUI(comment, city, temp, icon, data);
-         				}
-         			}
-         		});
-         	}
-         	
-
-         
-         	
-         	function addUserActivityToUI(title, description, imagePath, id, activity){
-         		var theActivity = $('#userActivityCloneMe').clone();
-         		
-         		theActivity.find('img').attr('src', imagePath);
-         		theActivity.find('h2').text(title);
-         		//theActivity.find('h2').attr('value', title);
-         		theActivity.find('p').text(description);
-         		theActivity.attr('id', id);
-         		//theActivity.find('#userActivitiy-list-details').text(activity.title + ": " + activity.description);
-         		//theActivity.find('#userActivitiy-list-details-description').text(activity.description);
-         		//userActivitiy-list-details
-         		//image = 'assets/img/icons/';
-         		//if(icons[icon] == undefined){
-         		//	image += "clear_sky.png";
-         		//}else{
-         		//	image += icons[icon];
-         		//}
-         		
-         		//theActivity.find('img').attr('src', image);   
-         		
-         		theActivity.find('button').click(function(){
-         			
-         			deleteUserActivity(id, theActivity);
-         			$('#activity-form-modal').modal('hide');
-         		});
-         		
-         		//theActivity.find('#userActivitiy-list-details').(function(){
-         		//	$('#userActivitiy-list-details-description').hide();
-         		//});
-         		
-         		$('#userActivitiy-list').prepend(theActivity);
-         		
-         		theActivity.show();    		
-         	}
-         	
-         	
-         	
-         	
-         	function deleteUserActivity(id, element){
-         		$.ajax({
-         			url: "/userActivity/delete",
-         			method: "DELETE",
-         			data: {
-         				id: id
-         			},
-         			complete: function(data){
-         				switch(data.status){
-         				case 200:
-         					element.remove(); 					
-         					break;
-         					
-         				case 401:
-         					windows.location.href = "index.html";
-         					break;
-         					
-         				case 404:
-         					alert("The comment was not found!");
-         					element.remove();
-         					break;
-         				}
-         			}
-         		});
-         	}
-         	
-         	
-         	$('#logout').on('click', function(e){
-             	e.preventDefault();
-             	
-             	$.ajax({
-             		url: "logout",
-             		method: "POST",
-             		complete: function(data){
-             			if(data.status == 418){
-             				alert("Why are you a teapot?!");
-             			}
-             			
-             			window.location.href = "index.html";
-             		}
-             	});
-             	
-             });
-         	
-         	//add activity + upload coosen image begin - WORK :@:@
-         	
-         	const title = document.getElementById("title") ;
-         	const description = document.getElementById("description");
-         	const activity_id = document.getElementById("activitiy-select");
-         	const user_activity_id = document.getElementById("user_activity_id");
-         	
-         	const inputFile = document.getElementById("activityImage");
-         	const imagePath = "../uploads/";
-         const form = document.forms['activity-form'];
-         const formData = new FormData();
-         
-         const handleSubmit = (event) => {
-            event.preventDefault();	
-            console.log(title.value);
-            console.log(description.value);
-            console.log(activity_id.value);
-            const form = document.forms['activity-form'];
-            
-           	  formData.append("title", title.value);
-        	  formData.append("description", description.value);
-        	  formData.append("activity_id", activity_id.value);
-        	  formData.append("imagePath", imagePath);
-        	  formData.append("user_activity_id", user_activity_id.value);
-            
-            for (const file of inputFile.files) {	 
-          	  formData.append("file", file);
-            } 
-               
-            fetch("http://localhost:8080/userActivity/add", {
-                method: "post",
-                body: formData
-            }).then(window.location.reload())
-            .catch((error) => ("Something went wrong!", error));
-         };
-         
-         form.addEventListener("submit", handleSubmit);    	
-       //add activity + upload coosen image end - WORK :@:@
-       
-       
-         	/*//upload coosen image - WORK :@:@
-         const inputFile = document.getElementById("activityImage");
-           	//console.log(inputFile);
-         const form = this;
-         const formData = new FormData();
-         
-         const handleSubmit = (event) => {
-            event.preventDefault();	
-         
-            for (const file of inputFile.files) {
-                formData.append("file", file);
-            }
-            
-            for (const file of formData) {
-          	  //console.log(file[1].name);
-            }
-            
-            
-            fetch("http://localhost:8080/upload", {
-                method: "post",
-                body: formData
-            }).catch((error) => ("Something went wrong!", error));
-         };
-         
-         form.addEventListener("submit", handleSubmit);
-         	*/
-         
-         	 /*//WORK old case
-         	 $('#activity-form').submit(function(e){
-         	    	e.preventDefault();
-         	    	
-         	    	const inputFile = document.getElementById("activityImage");
-         	    	console.log( inputFile.files[0].name);
-         	    	//for (const file of inputFile.files) {
-         	    	//	console.log(file);
-         		      
-         	    	
-         	    	$.ajax({
-         	    		url: "/userActivity/add",
-         	    		method: "POST",
-         	    		data: {
-         		title : $('#title').val(),
-         	    			description : $('#description').val(),
-         	    			imagePath : "../uploads/" + inputFile.files[0].name, //$('#imagePath').val(), //ok "../uploads/test.png", 
-         	    			activity_id : $('#activitiy-select').val()
-         	    		},
-         	    		success: function(data){
-         	    			window.location.reload();
-         	    		},
-         	    		fail : function(){
-         	    			alert("Request failed.....");
-         	    		}    		
-         	    	});
-         	    	
-         	    });*/   	
-         	
-         	getAllActivities("addToSelect");
-         	getAllUserAcivities("addUserActivityToUI");
-         	getAllActivities("getAll");
-         });
-         
-      </script>
-   </body>
-</html>
+	<script>
+	
+		function getSessionParameters(){
+			$.ajax({
+				  url: '/getSessionParameters', // Replace with the server endpoint that retrieves the session parameter
+				  type: 'GET',
+				  success: function(data) {
+				    var userId = data.user_id;
+				    console.log('Session Parameter Value: ' + userId);
+				  },
+				  error: function(xhr, status, error) {
+				    console.error('Error retrieving session parameter: ' + error);
+				  }
+				});
+		}
+	
+	</script>
+	
+	
+		</body>
+	</html>

@@ -1,0 +1,2088 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#"
+     xml:base="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#hasCountry -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#hasCountry">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Restaurant"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Country"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#hasDestination -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#hasDestination">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Trip"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#TripDestination"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#hasDestinationLandType -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#hasDestinationLandType">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#BulgarianTripTown"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#DestinationLandTypes"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#hasLandmark -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#hasLandmark">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Landmark"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#hasLandscape -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#hasLandscape">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PlaceToStay"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PlaceToStayLandscapeTypes"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#hasPlaceToStay -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#hasPlaceToStay">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Trip"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PlaceToStay"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#hasPlaceToStayType -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#hasPlaceToStayType">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PlaceToStay"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PlaceToStayTypes"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#hasTown -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#hasTown">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Trip"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#BulgarianTripTown"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#hasTripType -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#hasTripType">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Trip"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#TripTypes"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#includesReastaurant -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#includesReastaurant">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PlaceToStay"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Restaurant"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#isEventType -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#isEventType">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Event"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#EventTypes"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#isLandmarkType -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#isLandmarkType">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#LandmarkTypes"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#travelForEvent -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#travelForEvent">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Trip"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Event"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#dayLong -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#dayLong">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Trip"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#endDate -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#endDate">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Trip"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#hasCostByNight -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#hasCostByNight">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PlaceToStay"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#hasStars -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#hasStars">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PlaceToStay"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#inSeason -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#inSeason">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Trip"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#name -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#name">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#startDate -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#startDate">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Trip"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#travelBy -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#travelBy">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Trip"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#ArchaeologyLandmark -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#ArchaeologyLandmark">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#isLandmarkType"/>
+                <owl:hasValue rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#ArchaeologyLandmark"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Landmark"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#NatureLandmark"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#BulgarianResturants -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#BulgarianResturants">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#hasCountry"/>
+                <owl:hasValue rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Bulgaria"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Restaurant"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#InternationalRestaurants"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#BulgarianTripTown -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#BulgarianTripTown">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#HolidayPlanner"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#BussinesTrip -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#BussinesTrip">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#hasTripType"/>
+                <owl:hasValue rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#BussinesTrip"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#TripByPurpose"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#HolidayTrip"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#CheapPlaceToStay -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#CheapPlaceToStay">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#hasCostByNight"/>
+                <owl:someValuesFrom>
+                    <rdfs:Datatype>
+                        <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+                        <owl:withRestrictions rdf:parseType="Collection">
+                            <rdf:Description>
+                                <xsd:maxInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">40</xsd:maxInclusive>
+                            </rdf:Description>
+                        </owl:withRestrictions>
+                    </rdfs:Datatype>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PlaceToStayByCost"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Country -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Country">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:oneOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Bulgaria"/>
+                    <rdf:Description rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Greece"/>
+                    <rdf:Description rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Italy"/>
+                </owl:oneOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#HolidayPlanner"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#CulturalEvent -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#CulturalEvent">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#isEventType"/>
+                <owl:hasValue rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#CulturalEvent"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Event"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#DestinationLandTypes -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#DestinationLandTypes">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:oneOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#FlatLand"/>
+                    <rdf:Description rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#MountainLand"/>
+                    <rdf:Description rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#SeasideTown"/>
+                </owl:oneOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#HolidayPlanner"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Establishment -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Establishment">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PlaceToStay"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Event -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Event">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#HolidayPlanner"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#EventTrip -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#EventTrip">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#travelForEvent"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Event"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Trip"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#EventTypes -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#EventTypes">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:oneOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#CulturalEvent"/>
+                    <rdf:Description rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#SportEvent"/>
+                    <rdf:Description rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#VehicleEvent"/>
+                </owl:oneOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Event"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#ExpensivePlaceToStay -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#ExpensivePlaceToStay">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#hasCostByNight"/>
+                <owl:someValuesFrom>
+                    <rdfs:Datatype>
+                        <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+                        <owl:withRestrictions rdf:parseType="Collection">
+                            <rdf:Description>
+                                <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">100</xsd:minInclusive>
+                            </rdf:Description>
+                        </owl:withRestrictions>
+                    </rdfs:Datatype>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PlaceToStayByCost"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#FallTrip -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#FallTrip">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#inSeason"/>
+                <owl:hasValue>Fall</owl:hasValue>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#TripBySeason"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#FlatPlaceToStay -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#FlatPlaceToStay">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#hasLandscape"/>
+                <owl:hasValue rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#FlatLandscapePlaceToStay"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PlaceToStayByLandscape"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#HighStarPlaceToStay -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#HighStarPlaceToStay">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#hasStars"/>
+                <owl:someValuesFrom>
+                    <rdfs:Datatype>
+                        <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+                        <owl:withRestrictions rdf:parseType="Collection">
+                            <rdf:Description>
+                                <xsd:minExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</xsd:minExclusive>
+                            </rdf:Description>
+                        </owl:withRestrictions>
+                    </rdfs:Datatype>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PlaceToStayByStars"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#HolidayPlanner -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#HolidayPlanner"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#HolidayTrip -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#HolidayTrip">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#hasTripType"/>
+                <owl:hasValue rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#HolidayTrip"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#TripByPurpose"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Hotel -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Hotel">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#hasPlaceToStayType"/>
+                <owl:hasValue rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Hotel"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Establishment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#HotelTrips -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#HotelTrips">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#hasPlaceToStay"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Hotel"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#TripByEstablishment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#InternationalRestaurants -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#InternationalRestaurants">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#hasCountry"/>
+                        <owl:hasValue rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Greece"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#hasCountry"/>
+                        <owl:hasValue rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Italy"/>
+                    </owl:Restriction>
+                </owl:unionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Restaurant"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Landmark -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Landmark">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#HolidayPlanner"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#LandmarkTypes -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#LandmarkTypes">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:oneOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#ArchaeologyLandmark"/>
+                    <rdf:Description rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#NatureLandmark"/>
+                </owl:oneOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Landmark"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#LongPeriodTrip -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#LongPeriodTrip">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#dayLong"/>
+                <owl:someValuesFrom>
+                    <rdfs:Datatype>
+                        <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+                        <owl:withRestrictions rdf:parseType="Collection">
+                            <rdf:Description>
+                                <xsd:minExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#int">7</xsd:minExclusive>
+                            </rdf:Description>
+                        </owl:withRestrictions>
+                    </rdfs:Datatype>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#TripByPeriod"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#LowStarPlaceToStay -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#LowStarPlaceToStay">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#hasStars"/>
+                <owl:someValuesFrom>
+                    <rdfs:Datatype>
+                        <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+                        <owl:withRestrictions rdf:parseType="Collection">
+                            <rdf:Description>
+                                <xsd:maxInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</xsd:maxInclusive>
+                            </rdf:Description>
+                        </owl:withRestrictions>
+                    </rdfs:Datatype>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PlaceToStayByStars"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#LuxuryEstablishment -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#LuxuryEstablishment">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#hasPlaceToStayType"/>
+                <owl:hasValue rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#LuxuryEstablishment"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Establishment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#LuxuryTrips -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#LuxuryTrips">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#hasPlaceToStay"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#LuxuryEstablishment"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#TripByEstablishment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#MidStarPlaceToStay -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#MidStarPlaceToStay">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#hasStars"/>
+                <owl:someValuesFrom>
+                    <rdfs:Datatype>
+                        <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+                        <owl:withRestrictions rdf:parseType="Collection">
+                            <rdf:Description>
+                                <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</xsd:minInclusive>
+                            </rdf:Description>
+                            <rdf:Description>
+                                <xsd:maxInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</xsd:maxInclusive>
+                            </rdf:Description>
+                        </owl:withRestrictions>
+                    </rdfs:Datatype>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PlaceToStayByStars"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#MidValuedPlaceToStay -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#MidValuedPlaceToStay">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#hasCostByNight"/>
+                <owl:someValuesFrom>
+                    <rdfs:Datatype>
+                        <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+                        <owl:withRestrictions rdf:parseType="Collection">
+                            <rdf:Description>
+                                <xsd:minExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">40</xsd:minExclusive>
+                            </rdf:Description>
+                            <rdf:Description>
+                                <xsd:maxExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">100</xsd:maxExclusive>
+                            </rdf:Description>
+                        </owl:withRestrictions>
+                    </rdfs:Datatype>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PlaceToStayByCost"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Motel -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Motel">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#hasPlaceToStayType"/>
+                <owl:hasValue rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Motel"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Establishment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#MotelTrips -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#MotelTrips">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#hasPlaceToStay"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Motel"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#TripByEstablishment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#MountainPlaceToStay -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#MountainPlaceToStay">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#hasLandscape"/>
+                <owl:hasValue rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#MountainLandscapePlaceToStay"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PlaceToStayByLandscape"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#MountainTown -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#MountainTown">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#hasDestinationLandType"/>
+                <owl:hasValue rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#MountainLand"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#BulgarianTripTown"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#MountainTrip -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#MountainTrip">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#hasDestination"/>
+                <owl:hasValue rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#MountainDestination"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#TripByDestinationLand"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#SeaTrip"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#NatureLandmark -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#NatureLandmark">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#isLandmarkType"/>
+                <owl:hasValue rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#NatureLandmark"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Landmark"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PlaceToStay -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PlaceToStay">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#HolidayPlanner"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PlaceToStayByCost -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PlaceToStayByCost">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PlaceToStay"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PlaceToStayByLandscape -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PlaceToStayByLandscape">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PlaceToStay"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PlaceToStayByRestaurant -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PlaceToStayByRestaurant">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PlaceToStay"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PlaceToStayByStars -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PlaceToStayByStars">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PlaceToStay"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PlaceToStayLandscapeTypes -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PlaceToStayLandscapeTypes">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:oneOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#FlatLandscapePlaceToStay"/>
+                    <rdf:Description rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#MountainLandscapePlaceToStay"/>
+                    <rdf:Description rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#SeaLandscapePlaceToStay"/>
+                </owl:oneOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PlaceToStay"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PlaceToStayTypes"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PlaceToStayTypes -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PlaceToStayTypes">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Hotel"/>
+                    <rdf:Description rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#LuxuryEstablishment"/>
+                    <rdf:Description rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Motel"/>
+                </owl:unionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PlaceToStay"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PlainTown -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PlainTown">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#hasDestinationLandType"/>
+                <owl:hasValue rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#FlatLand"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#BulgarianTripTown"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Restaurant -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Restaurant">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#HolidayPlanner"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#SeaPlaceToStay -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#SeaPlaceToStay">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#hasLandscape"/>
+                <owl:hasValue rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#SeaLandscapePlaceToStay"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PlaceToStayByLandscape"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#SeaTown -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#SeaTown">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#hasDestinationLandType"/>
+                <owl:hasValue rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#SeasideTown"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#BulgarianTripTown"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#SeaTrip -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#SeaTrip">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#hasDestination"/>
+                <owl:hasValue rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#SeaDestination"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#TripByDestinationLand"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#SingleDayTrip -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#SingleDayTrip">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#dayLong"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</owl:hasValue>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#TripByPeriod"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#SportEvent -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#SportEvent">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#isEventType"/>
+                <owl:hasValue rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#SportEvent"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Event"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#SpringTrip -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#SpringTrip">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#inSeason"/>
+                <owl:hasValue>Spring</owl:hasValue>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#TripBySeason"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#SummerTrip -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#SummerTrip">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#inSeason"/>
+                <owl:hasValue>Summer</owl:hasValue>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#TripBySeason"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#TownsWithLandmarks -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#TownsWithLandmarks">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#hasLandmark"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Landmark"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#BulgarianTripTown"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Trip -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Trip">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#HolidayPlanner"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#TripByBus -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#TripByBus">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#travelBy"/>
+                <owl:hasValue>Bus</owl:hasValue>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#TripByTraveling"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#TripByCar -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#TripByCar">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#travelBy"/>
+                <owl:hasValue>Car</owl:hasValue>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#TripByTraveling"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#TripByDestinationLand -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#TripByDestinationLand">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Trip"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#TripByEstablishment -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#TripByEstablishment">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Trip"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#TripByPeriod -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#TripByPeriod">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Trip"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#TripByPurpose -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#TripByPurpose">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Trip"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#TripBySeason -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#TripBySeason">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Trip"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#TripByTrain -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#TripByTrain">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#travelBy"/>
+                <owl:hasValue>Train</owl:hasValue>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#TripByTraveling"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#TripByTraveling -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#TripByTraveling">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Trip"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#TripDestination -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#TripDestination">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:oneOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#MountainDestination"/>
+                    <rdf:Description rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#SeaDestination"/>
+                </owl:oneOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Trip"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#TripTypes"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#TripTypes -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#TripTypes">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:oneOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#BussinesTrip"/>
+                    <rdf:Description rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#HolidayTrip"/>
+                    <rdf:Description rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#WeekendTrip"/>
+                </owl:oneOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Trip"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#TripWithLandmark -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#TripWithLandmark">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#hasTown"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#TownsWithLandmarks"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Trip"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#VehicleEvent -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#VehicleEvent">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#isEventType"/>
+                <owl:hasValue rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#VehicleEvent"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Event"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#WeekTrip -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#WeekTrip">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#dayLong"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">7</owl:hasValue>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#TripByPeriod"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#WeekendTrip -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#WeekendTrip">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#hasTripType"/>
+                        <owl:hasValue rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#WeekendTrip"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#dayLong"/>
+                        <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</owl:hasValue>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#TripByPeriod"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#WinterTrip -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#WinterTrip">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#inSeason"/>
+                <owl:hasValue>Winter</owl:hasValue>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#TripBySeason"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#WithBulgarianRestaurant -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#WithBulgarianRestaurant">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#includesReastaurant"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#BulgarianResturants"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PlaceToStayByRestaurant"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#WithInternationalRestaurant"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#WithInternationalRestaurant -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#WithInternationalRestaurant">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#includesReastaurant"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#InternationalRestaurants"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PlaceToStayByRestaurant"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Aitos -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Aitos">
+        <hasDestinationLandType rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#FlatLand"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#ArchaeologyLandmark -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#ArchaeologyLandmark">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#LandmarkTypes"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Bansko -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Bansko">
+        <hasDestinationLandType rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#MountainLand"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#BanskoHolidayTrip01 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#BanskoHolidayTrip01">
+        <hasDestination rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#MountainDestination"/>
+        <hasPlaceToStay rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#GrandHotelBansko"/>
+        <hasTown rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Bansko"/>
+        <hasTripType rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#HolidayTrip"/>
+        <dayLong rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</dayLong>
+        <endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-06-02T00:00:00Z</endDate>
+        <inSeason>Winter</inSeason>
+        <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Holiday in Bansko</name>
+        <startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-06-01T00:00:00Z</startDate>
+        <travelBy>Train</travelBy>
+        <rdfs:comment xml:lang="en">Holiday in Mountain destination Bansko in &quot;Grand Hotel Bansko&quot;</rdfs:comment>
+        <rdfs:comment xml:lang="bg">Почивка в планиска дестинация Банско с престой в &quot;Гранд хотел Банско&quot;</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#BegliktashBurgasLandmark -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#BegliktashBurgasLandmark">
+        <isLandmarkType rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#NatureLandmark"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#BoxingSportEvent -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#BoxingSportEvent">
+        <isEventType rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#SportEvent"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Bulgaria -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Bulgaria">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Country"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Burgas -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Burgas">
+        <hasDestinationLandType rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#FlatLand"/>
+        <hasLandmark rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#BegliktashBurgasLandmark"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#BussinesTrip -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#BussinesTrip">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#TripTypes"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#ClassicBulgarianRestaurant -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#ClassicBulgarianRestaurant">
+        <hasCountry rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Bulgaria"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#CulturalEvent -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#CulturalEvent">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#EventTypes"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#DevilsThroatCavePamporovoLandmark -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#DevilsThroatCavePamporovoLandmark">
+        <isLandmarkType rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#NatureLandmark"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Dobrich -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Dobrich">
+        <hasDestinationLandType rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#FlatLand"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Dospat -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Dospat">
+        <hasDestinationLandType rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#MountainLand"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#DrawingsExpositionEvent -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#DrawingsExpositionEvent">
+        <isEventType rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#CulturalEvent"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#DriftShowVehicleEvent -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#DriftShowVehicleEvent">
+        <isEventType rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#VehicleEvent"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#FlatLand -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#FlatLand">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#DestinationLandTypes"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#FlatLandscapePlaceToStay -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#FlatLandscapePlaceToStay">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PlaceToStayLandscapeTypes"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Gabrovo -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Gabrovo">
+        <hasDestinationLandType rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#MountainLand"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#GrandHotelBansko -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#GrandHotelBansko">
+        <hasLandscape rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#MountainLandscapePlaceToStay"/>
+        <hasPlaceToStayType rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Hotel"/>
+        <includesReastaurant rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#ClassicBulgarianRestaurant"/>
+        <hasCostByNight rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">110</hasCostByNight>
+        <hasStars rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</hasStars>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#GrandHotelSofia -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#GrandHotelSofia">
+        <hasLandscape rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#FlatLandscapePlaceToStay"/>
+        <hasPlaceToStayType rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Hotel"/>
+        <includesReastaurant rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#ItalianPastaRestaurant"/>
+        <hasCostByNight rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">96</hasCostByNight>
+        <hasStars rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</hasStars>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Greece -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Greece">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Country"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#GreeceReastaurant -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#GreeceReastaurant">
+        <hasCountry rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Greece"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#HolidayTrip -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#HolidayTrip">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#TripTypes"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Hotel -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Hotel">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PlaceToStayTypes"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#HotelBurgasDowntown -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#HotelBurgasDowntown">
+        <hasLandscape rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#FlatLandscapePlaceToStay"/>
+        <hasPlaceToStayType rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Hotel"/>
+        <includesReastaurant rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#GreeceReastaurant"/>
+        <hasCostByNight rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">67</hasCostByNight>
+        <hasStars rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</hasStars>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#HotelVarnaBeach -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#HotelVarnaBeach">
+        <hasLandscape rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#SeaLandscapePlaceToStay"/>
+        <hasPlaceToStayType rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Hotel"/>
+        <hasCostByNight rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">100</hasCostByNight>
+        <hasStars rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</hasStars>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#ItalianPastaRestaurant -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#ItalianPastaRestaurant">
+        <hasCountry rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Italy"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Italy -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Italy">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Country"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#JewelryExpositionEvent -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#JewelryExpositionEvent">
+        <isEventType rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#CulturalEvent"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Kazanlak -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Kazanlak">
+        <hasDestinationLandType rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#MountainLand"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Lozenets -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Lozenets">
+        <hasDestinationLandType rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#FlatLand"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#LuxuryEstablishment -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#LuxuryEstablishment">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PlaceToStayTypes"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#MMASportEvent -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#MMASportEvent">
+        <isEventType rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#SportEvent"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Motel -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Motel">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PlaceToStayTypes"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#MotelVarna -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#MotelVarna">
+        <hasLandscape rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#FlatLandscapePlaceToStay"/>
+        <hasPlaceToStayType rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Motel"/>
+        <hasCostByNight rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">45</hasCostByNight>
+        <hasStars rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</hasStars>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#MountainDestination -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#MountainDestination">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#TripDestination"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#MountainLand -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#MountainLand">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#DestinationLandTypes"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#MountainLandscapePlaceToStay -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#MountainLandscapePlaceToStay">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PlaceToStayLandscapeTypes"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#NatureLandmark -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#NatureLandmark">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#LandmarkTypes"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#NebetTepePlovdivLandmark -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#NebetTepePlovdivLandmark">
+        <isLandmarkType rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#ArchaeologyLandmark"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Pamporovo -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Pamporovo">
+        <hasDestinationLandType rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#MountainLand"/>
+        <hasLandmark rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#DevilsThroatCavePamporovoLandmark"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PamporovoHoliday01 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PamporovoHoliday01">
+        <hasDestination rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#MountainDestination"/>
+        <hasPlaceToStay rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PamporovoHotel"/>
+        <hasTown rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Pamporovo"/>
+        <hasTripType rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#HolidayTrip"/>
+        <dayLong rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">10</dayLong>
+        <endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-06-11T00:00:00Z</endDate>
+        <inSeason>Spring</inSeason>
+        <startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-06-01T00:00:00Z</startDate>
+        <travelBy>Car</travelBy>
+        <rdfs:comment xml:lang="en">Holiday in Pamporovo</rdfs:comment>
+        <rdfs:comment xml:lang="bg">Почивка в планиска дестинация Пампорово с престой в &quot;Пампорово Хотел&quot;</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PamporovoHotel -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PamporovoHotel">
+        <hasLandscape rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#MountainLandscapePlaceToStay"/>
+        <hasPlaceToStayType rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Hotel"/>
+        <hasCostByNight rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">86</hasCostByNight>
+        <hasStars rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</hasStars>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Pleven -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Pleven">
+        <hasDestinationLandType rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#FlatLand"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PlevenMotel -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PlevenMotel">
+        <hasLandscape rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#FlatLandscapePlaceToStay"/>
+        <hasPlaceToStayType rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Motel"/>
+        <hasCostByNight rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">34</hasCostByNight>
+        <hasStars rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</hasStars>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Plovdiv -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Plovdiv">
+        <hasDestinationLandType rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#FlatLand"/>
+        <hasLandmark rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#NebetTepePlovdivLandmark"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PlovdivMotel -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PlovdivMotel">
+        <hasLandscape rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#FlatLandscapePlaceToStay"/>
+        <hasPlaceToStayType rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Motel"/>
+        <hasCostByNight rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">40</hasCostByNight>
+        <hasStars rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</hasStars>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PlovdivWeekend01 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PlovdivWeekend01">
+        <hasPlaceToStay rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PlovdivMotel"/>
+        <hasTown rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Plovdiv"/>
+        <hasTripType rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#WeekendTrip"/>
+        <travelForEvent rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#MMASportEvent"/>
+        <dayLong rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</dayLong>
+        <endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-06-01T00:00:00Z</endDate>
+        <inSeason>Summer</inSeason>
+        <startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-05-31T00:00:00Z</startDate>
+        <travelBy>Bus</travelBy>
+        <rdfs:comment xml:lang="en">Weekend trip to Plovdiv</rdfs:comment>
+        <rdfs:comment xml:lang="bg">Уиикенд пътуване в Пловдив</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Qmbol -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Qmbol">
+        <hasDestinationLandType rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#FlatLand"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Ruse -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Ruse">
+        <hasDestinationLandType rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#FlatLand"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#SeaDestination -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#SeaDestination">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#TripDestination"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#SeaLandscapePlaceToStay -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#SeaLandscapePlaceToStay">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PlaceToStayLandscapeTypes"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#SeasideTown -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#SeasideTown">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#DestinationLandTypes"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Silistra -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Silistra">
+        <hasDestinationLandType rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#FlatLand"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Sliven -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Sliven">
+        <hasDestinationLandType rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#FlatLand"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Smolqn -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Smolqn">
+        <hasDestinationLandType rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#MountainLand"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#SofiaLuxuryHotel -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#SofiaLuxuryHotel">
+        <hasLandscape rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#FlatLandscapePlaceToStay"/>
+        <hasPlaceToStayType rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#LuxuryEstablishment"/>
+        <hasCostByNight rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">200</hasCostByNight>
+        <hasStars rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">5</hasStars>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#SofiaLuxuryTrip -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#SofiaLuxuryTrip">
+        <hasPlaceToStay rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#SofiaLuxuryHotel"/>
+        <hasTown rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Sofiq"/>
+        <hasTripType rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#HolidayTrip"/>
+        <dayLong rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">8</dayLong>
+        <endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-05-11T00:00:00Z</endDate>
+        <inSeason>Summer</inSeason>
+        <startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-06-03T00:00:00Z</startDate>
+        <travelBy>Car</travelBy>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#SofiaMotel -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#SofiaMotel">
+        <hasLandscape rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#FlatLandscapePlaceToStay"/>
+        <hasPlaceToStayType rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Motel"/>
+        <hasCostByNight rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">49</hasCostByNight>
+        <hasStars rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</hasStars>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Sofiq -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Sofiq">
+        <hasDestinationLandType rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#MountainLand"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#SportEvent -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#SportEvent">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#EventTypes"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#StaraZagoraBussinesTrip01 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#StaraZagoraBussinesTrip01">
+        <hasPlaceToStay rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#StaraZagoraMotel"/>
+        <hasTown rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Stara_Zagora"/>
+        <hasTripType rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#BussinesTrip"/>
+        <dayLong rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</dayLong>
+        <endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-06-02T00:00:00Z</endDate>
+        <inSeason>Fall</inSeason>
+        <startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-06-01T00:00:00Z</startDate>
+        <travelBy>Car</travelBy>
+        <rdfs:comment xml:lang="en">Bussines Trip to Stara Zagora</rdfs:comment>
+        <rdfs:comment xml:lang="bg">Еднодневно Бизнес пътуване в Стара Загора</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#StaraZagoraMotel -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#StaraZagoraMotel">
+        <hasLandscape rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#FlatLandscapePlaceToStay"/>
+        <hasPlaceToStayType rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Motel"/>
+        <hasCostByNight rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">24</hasCostByNight>
+        <hasStars rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</hasStars>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Stara_Zagora -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Stara_Zagora">
+        <hasDestinationLandType rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#FlatLand"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Troqn -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Troqn">
+        <hasDestinationLandType rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#MountainLand"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#VIdin -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#VIdin">
+        <hasDestinationLandType rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#FlatLand"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Varna -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Varna">
+        <hasDestinationLandType rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#FlatLand"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#VarnaBussinesTrip01 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#VarnaBussinesTrip01">
+        <hasDestination rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#SeaDestination"/>
+        <hasPlaceToStay rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#HotelVarnaBeach"/>
+        <hasTown rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Varna"/>
+        <hasTripType rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#BussinesTrip"/>
+        <dayLong rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</dayLong>
+        <endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-06-20T00:00:00Z</endDate>
+        <inSeason>Summer</inSeason>
+        <startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-06-18T00:00:00Z</startDate>
+        <travelBy>Train</travelBy>
+        <rdfs:comment xml:lang="en">Bussines trip to Varna</rdfs:comment>
+        <rdfs:comment xml:lang="bg">Еднодневно Бизнес пътуване до Варна</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#VarnaWeekend01 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#VarnaWeekend01">
+        <hasDestination rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#SeaDestination"/>
+        <hasPlaceToStay rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#HotelVarnaBeach"/>
+        <hasTown rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Varna"/>
+        <hasTripType rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#WeekendTrip"/>
+        <travelForEvent rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#JewelryExpositionEvent"/>
+        <dayLong rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2</dayLong>
+        <endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-06-17T00:00:00Z</endDate>
+        <inSeason>Spring</inSeason>
+        <startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-06-16T00:00:00Z</startDate>
+        <travelBy>Bus</travelBy>
+        <rdfs:comment xml:lang="en">Weekend trip to Varna</rdfs:comment>
+        <rdfs:comment xml:lang="bg">Уиикенд пътуване до Варна</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#VehicleEvent -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#VehicleEvent">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#EventTypes"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Veliko_Tarnovo -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Veliko_Tarnovo">
+        <hasDestinationLandType rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#MountainLand"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Velingrad -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Velingrad">
+        <hasDestinationLandType rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#MountainLand"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#VeryGood -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#VeryGood"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Vraca -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Vraca">
+        <hasDestinationLandType rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#FlatLand"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#WeekendTrip -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#WeekendTrip">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#TripTypes"/>
+    </owl:NamedIndividual>
+    <rdf:Description>
+        <hasCostByNight rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1234</hasCostByNight>
+    </rdf:Description>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#BulgarianTripTown"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Event"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Landmark"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PlaceToStay"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Restaurant"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Trip"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#CheapPlaceToStay"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#ExpensivePlaceToStay"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#MidValuedPlaceToStay"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#CulturalEvent"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#SportEvent"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#VehicleEvent"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#FallTrip"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#SpringTrip"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#SummerTrip"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#WinterTrip"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#FlatPlaceToStay"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#MountainPlaceToStay"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#SeaPlaceToStay"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#HighStarPlaceToStay"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#LowStarPlaceToStay"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#MidStarPlaceToStay"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Hotel"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#LuxuryEstablishment"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Motel"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#HotelTrips"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#LuxuryTrips"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#MotelTrips"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#LongPeriodTrip"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#SingleDayTrip"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#WeekTrip"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#WeekendTrip"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#MountainTown"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#PlainTown"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#SeaTown"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#TripByBus"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#TripByCar"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#TripByTrain"/>
+        </owl:members>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+

@@ -1,5 +1,6 @@
 package holidayplanner.HolidayPlanner.user;
 
+import java.io.Console;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -29,16 +30,22 @@ public class UserService {
 
 	private UserRepository userRepository;
 	private WebSecurityConfig webSecurityConfig;
-	private RoleService roleService;
+	//private RoleService roleService;
 	
 	@Autowired
+	public UserService(UserRepository userRepository, WebSecurityConfig webSecurityConfig) {
+		this.userRepository = userRepository;
+		this.webSecurityConfig = webSecurityConfig;
+	}
+	
+	/*//@Autowired
 	public UserService(UserRepository userRepository, WebSecurityConfig webSecurityConfig, RoleService roleService) {
 		this.userRepository = userRepository;
 		this.webSecurityConfig = webSecurityConfig;
-		this.roleService = roleService;
-	}
+		//this.roleService = roleService;
+	}*/
 	
-	public UserEntity registerUser(String username, String password, String repeatPassword, String email) {
+	public /*UserEntity*/ User registerUser(String username, String password, String repeatPassword, String email) {
 		
 		if(username.isBlank()  || 
 			email.isBlank() 	||
@@ -47,9 +54,11 @@ public class UserService {
 			return null;
 		}
 		
-		UserEntity user = new UserEntity(username, PasswordServices.hashMe(password), email);
-		
-		return userRepository.saveAndFlush(user);	
+		//UserEntity user = new UserEntity(username, PasswordServices.hashMe(password), email);
+		User user = new User(username, PasswordServices.hashMe(password), email);
+
+		return userRepository.save(user);
+
 	}
 	
 	/*public  UserEntity registerUser(String username, String password, String repeatPassword, String email, boolean isDeveloper) {
@@ -66,7 +75,7 @@ public class UserService {
 		return userRepository.saveAndFlush(user);	
 	}*/
 	
-	public  UserEntity registerUser(String username, String password, String repeatPassword, String email, Set<RoleEntity> roles) {
+	/*public  UserEntity registerUser(String username, String password, String repeatPassword, String email, Set<RoleEntity> roles) {
 			
 		if(username.isBlank()  || 
 			email.isBlank() 	||
@@ -74,28 +83,26 @@ public class UserService {
 			!password.equals(repeatPassword)) {
 			return null;
 		}
-		
-		/*if(roles.isEmpty()) {	
-			RoleEntity r1 = roleService.f
 			
-			roles.add(r1);
-		}*/
-			
-		UserEntity user = new UserEntity(username, PasswordServices.hashMe(password), email, roles);
+		//UserEntity user = new UserEntity(username, PasswordServices.hashMe(password), email, roles);
 		
-		return userRepository.saveAndFlush(user);	
-	}
+		return null; //userRepository.saveAndFlush(user);	
+	}*/
 	
-	public UserEntity login(String username, String password, HttpSession session) {
+	public User /*Entity*/ login(String username, String password, HttpSession session) {
 		
-		UserEntity user = userRepository.findUserByUsernameAndPassword(username, PasswordServices.hashMe(password));
+		User /*Entity*/ user = userRepository.findByUsername/*AndPass*/(username/*, PasswordServices.hashMe(password)*/);
+		
+		System.out.println("user: " + user);
 		
 		if(user != null ) {
 			
 			session.setAttribute("loggedUser", user);
-			
+			session.setAttribute("loggedUserId", user.getId());
+
 			UserDetails userDetails = webSecurityConfig.userDetailService().loadUserByUsername(username);
 			
+			//System.out.println("userDetails: " + userDetails);
 			if(userDetails != null) {
 				Authentication auth = new UsernamePasswordAuthenticationToken(userDetails.getUsername(),userDetails.getPassword(),
 																				userDetails.getAuthorities());
@@ -111,7 +118,7 @@ public class UserService {
 		return user;
 	}
 	
-	public List<UserEntity> getAll(){
+	public List<User> getAll(){
 		return userRepository.findAll();
 	}	
 	
