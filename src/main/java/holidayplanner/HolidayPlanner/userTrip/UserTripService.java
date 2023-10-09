@@ -13,13 +13,17 @@ import holidayplanner.HolidayPlanner.HolidayPlannerAgent;
 import holidayplanner.HolidayPlanner.activity.ActivityEntity;
 import holidayplanner.HolidayPlanner.activity.ActivityRepository;
 import holidayplanner.HolidayPlanner.file.FileService;
-import holidayplanner.HolidayPlanner.user.UserEntity;
+import holidayplanner.HolidayPlanner.user.User;
+import holidayplanner.HolidayPlanner.user.UserRepository;
+import holidayplanner.HolidayPlanner.userActivity.UserActivityEntity;
+//import holidayplanner.HolidayPlanner.user.UserEntity;
 
 @Service
 public class UserTripService {
 
 	private UserTripRepository userTripRepository;
-	//private ActivityRepository activtyRepository;
+	private UserRepository userRepository;
+	private ActivityRepository activtyRepository;
 	//private FileService storageService;
 	//private WebSecurityConfig webSecurityConfig;
 	//private RoleService roleService;
@@ -27,52 +31,69 @@ public class UserTripService {
 	private HolidayPlannerAgent a = new HolidayPlannerAgent();
 	
 	@Autowired
-	public UserTripService(UserTripRepository userTripRepository/*, WebSecurityConfig webSecurityConfig, RoleService roleService*/
+	public UserTripService(UserTripRepository userTripRepository, UserRepository userRepository,
+								ActivityRepository activtyRepository/*, WebSecurityConfig webSecurityConfig, RoleService roleService*/
 								 ) {
 		this.userTripRepository = userTripRepository;
-		//this.activtyRepository = activtyRepository;
+		this.userRepository = userRepository;
+		this.activtyRepository = activtyRepository;
 		//this.storageService = storageService;
 		//this.webSecurityConfig = webSecurityConfig;
 		/*this.roleService = roleService;*/
 	}
 	
-	/*public UserTripEntity addUserActivity(String title, String description,  int activity_id, MultipartFile file, 
-												int user_activity_id, UserEntity user) {
-		System.out.println(user);
-		String imageName;
-		String imagePath = "";
+	//id	name	place_to_stay_id	town	trip_desctiption	trip_destination	trip_season	trip_transportation	trip_type	user_id	activity_id	tripiri
+	public UserTripEntity addUserTrip(String name, int place_to_stay_id, String town, String trip_desctiption, 
+											String trip_destination, String trip_season, String trip_transportation, String trip_type, 
+											int user_id, int activity_id, String tripiri, String image/*, MultipartFile file*/) {
+		//System.out.println(user);
+		//String imageName;
+		//String imagePath = "";
 		
-		if(title.isBlank()){
+		if(name.isBlank() /*|| town.isBlank() || trip_type.isBlank() || tripiri.isBlank() || user_id == 0 || activity_id == 0*/){
 			return null;
 		}
+		
+		User user = new User();
+		user = userRepository.findById(user_id);
 		
 		ActivityEntity activity = new ActivityEntity();
 		activity = activtyRepository.getById(activity_id);
 		
-		UserActivityEntity userActivityInserted = new UserActivityEntity();	
+		UserTripEntity userTripInserted = new UserTripEntity();	
 		
-		if(user_activity_id > 0) {
-			userActivityInserted = this.getById(user_activity_id);
+		//if(user_activity_id > 0) {
+			//userActivityInserted = this.getById(user_activity_id);
 			
-			userActivityInserted.setTitle(title);
-			userActivityInserted.setDescription(description);
-			userActivityInserted.setActivity(activity);
+		userTripInserted.setName(name);
+		userTripInserted.setPlace_to_stay_id(place_to_stay_id);
+		userTripInserted.setTown(town);
+		userTripInserted.setTrip_desctiption(trip_desctiption);
+		userTripInserted.setTrip_destination(trip_destination);
+		userTripInserted.setTrip_season(trip_season);
+		userTripInserted.setTrip_transportation(trip_transportation);
+		userTripInserted.setTrip_type(trip_type);
+		userTripInserted.setUser(user);
+		userTripInserted.setActivity(activity);
+		userTripInserted.setTripIRI(tripiri);
+		userTripInserted.setImage(image);
+		//userTripInserted.setUser(null);
+		
+			//imageName = Integer.toString(userActivityInserted.getId()) + "_" + file.getOriginalFilename();
+			//storageService.save(file, imageName);
 			
-			imageName = Integer.toString(userActivityInserted.getId()) + "_" + file.getOriginalFilename();
-			storageService.save(file, imageName);
-			
-			imagePath = "../uploads" + "/" + imageName;
+			//imagePath = "../uploads" + "/" + imageName;
 
-			if(imagePath.isBlank()) {
-				imagePath += "../assets/img/logo.png";
-			}
+			//if(imagePath.isBlank()) {
+			//	imagePath += "../assets/img/logo.png";
+			//}
 			
-			userActivityInserted.setImagePath(imagePath);
-			
-			return userActivtyRepository.saveAndFlush(userActivityInserted);
-		}
+			//userActivityInserted.setImagePath(imagePath);
+			System.out.println(userTripInserted);
+			return userTripRepository.saveAndFlush(userTripInserted);
+		//}
 		
-		UserActivityEntity userActivity = new UserActivityEntity(title, description, imagePath, activity, user);
+		/*UserActivityEntity userActivity = new UserActivityEntity(name, description, imagePath, activity, user);
 	
 		userActivityInserted = userActivtyRepository.saveAndFlush(userActivity);
 		
@@ -87,10 +108,78 @@ public class UserTripService {
 		
 		userActivity.setImagePath(imagePath);
 		
-		return userActivtyRepository.saveAndFlush(userActivity);	
+		return userActivtyRepository.saveAndFlush(userActivity);	*/
 	}
 	
+	public UserTripEntity editUserTrip(int user_trip_id, String name, int place_to_stay_id, String town, String trip_desctiption, 
+			String trip_destination, String trip_season, String trip_transportation, String trip_type, 
+			int user_id, int activity_id, String tripiri, String imageName /*MultipartFile file*/) {
+		//System.out.println(user);
+		//String imageName;
+		//String imagePath = "";
+		
+		if(name.isBlank() /*|| town.isBlank() || trip_type.isBlank() || tripiri.isBlank() || user_id == 0 || activity_id == 0*/){
+		return null;
+		}
+		
+		User user = new User();
+		user = userRepository.findById(user_id);
+		
+		ActivityEntity activity = new ActivityEntity();
+		activity = activtyRepository.getById(activity_id);
+		
+		UserTripEntity userTripInserted = new UserTripEntity();	
+		
+		//if(user_activity_id > 0) {
+		//userActivityInserted = this.getById(user_activity_id);
+		userTripInserted.setId(user_trip_id);
+		userTripInserted.setName(name);
+		userTripInserted.setPlace_to_stay_id(place_to_stay_id);
+		userTripInserted.setTown(town);
+		userTripInserted.setTrip_desctiption(trip_desctiption);
+		userTripInserted.setTrip_destination(trip_destination);
+		userTripInserted.setTrip_season(trip_season);
+		userTripInserted.setTrip_transportation(trip_transportation);
+		userTripInserted.setTrip_type(trip_type);
+		userTripInserted.setUser(user);
+		userTripInserted.setActivity(activity);
+		userTripInserted.setTripIRI(tripiri);
+		userTripInserted.setImage(imageName);
+		//userTripInserted.setUser(null);
+		
+		//imageName = Integer.toString(userActivityInserted.getId()) + "_" + file.getOriginalFilename();
+		//storageService.save(file, imageName);
+		
+		//imagePath = "../uploads" + "/" + imageName;
+		
+		//if(imagePath.isBlank()) {
+		//	imagePath += "../assets/img/logo.png";
+		//}
+		
+		//userActivityInserted.setImagePath(imagePath);
+		System.out.println(userTripInserted);
+		return userTripRepository.saveAndFlush(userTripInserted);
+		//}
+		
+		/*UserActivityEntity userActivity = new UserActivityEntity(name, description, imagePath, activity, user);
+		
+		userActivityInserted = userActivtyRepository.saveAndFlush(userActivity);
+		
+		imageName = Integer.toString(userActivityInserted.getId()) + "_" + file.getOriginalFilename();
+		storageService.save(file, imageName);
+		
+		imagePath = "../uploads" + "/" + imageName;
+		
+		if(imagePath.isBlank()) {
+		imagePath += "../assets/img/logo.png";
+		}
+		
+		userActivity.setImagePath(imagePath);
+		
+		return userActivtyRepository.saveAndFlush(userActivity);	*/
+		}
 	
+	/*
 	public ResponseEntity<Boolean> deleteUserActivity(int id) {
 		
 		Optional<UserActivityEntity> optinalUserActivity = userActivtyRepository.findById(id);
@@ -151,5 +240,13 @@ public class UserTripService {
 	
 	public List<UserTripEntity> getAll(){	
 		return userTripRepository.findAll();
+	}	
+	
+	public UserTripEntity findById(int id){	
+		return userTripRepository.findById(id);
+	}	
+	
+	public List<UserTripEntity> findByUserId(int user_id){	
+		return userTripRepository.findByUserId(user_id);
 	}	
 }

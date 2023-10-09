@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import jade.core.AID;
@@ -19,31 +20,32 @@ import jade.lang.acl.MessageTemplate;
 
 public class ClientAgent extends Agent{
 
-	//private ClientAgentGUI gui;
+	private ClientAgentGUI gui;
 	//private String searchedTown = null;
-	private String tripType = null;
-	private String placeToStayType = null;
-	private String tripTownType = null;
-	private double placeToStayPrice = 0;
-	private String placeToStayPriceString = null;
-	private ArrayList<AID> sellers;
-	Holiday[] holidayArray = new Holiday[]{};
-	String[] holidayNames = new String[]{};
-	TripType[] tripTypes = new TripType[]{};
-	String[] tripTypesNames = new String[]{};
-	PlaceToStayType[] placeToStayTypes = new PlaceToStayType[]{};
-	String[] placeToStayTypeNames = new String[]{};
-	TripTownType[] tripTownTypes = new TripTownType[]{};
-	String[] tripTownTypeNames = new String[]{};
+	public String tripType = "HolidayTrip";
+	public String placeToStayType = "Hotel";
+	public String tripTownType = "PlainTown";
+	public double placeToStayPrice = 0;
+	public String placeToStayPriceString = "10";
+	public ArrayList<AID> sellers;
+	public Holiday[] holidayArray = new Holiday[]{};
+	public String[] holidayNames = new String[]{};
+	public TripType[] tripTypes = new TripType[]{};
+	public String[] tripTypesNames = new String[]{};
+	public PlaceToStayType[] placeToStayTypes = new PlaceToStayType[]{};
+	public String[] placeToStayTypeNames = new String[]{};
+	public TripTownType[] tripTownTypes = new TripTownType[]{};
+	public String[] tripTownTypeNames = new String[]{};
+	public List<String> allTripTypes;
 
 	@Override
 	protected void setup() {
 		
-		//gui = new ClientAgentGUI(this);
+		gui = new ClientAgentGUI(this);
 		
-		System.out.println("Started ClientAgent(" + this.toString() + ") and ClientAgentGUI( + gui.getTitle() + )");
+		System.out.println("Started ClientAgent(" + this.getName().toString());// + ") and ClientAgentGUI( + gui.getTitle() + )");
 		
-		addBehaviour(new TickerBehaviour(this, 2000) {
+		addBehaviour(new TickerBehaviour(this, 200) {
 			
 			DFAgentDescription dfd;// = new DFAgentDescription();
 			ServiceDescription sd;// = new ServiceDescription();
@@ -58,7 +60,7 @@ public class ClientAgent extends Agent{
 					
 					dfd = new DFAgentDescription();		
 					sd = new ServiceDescription();			
-					sd.setType("initializeData");
+					sd.setType("initializeData"); 
 					dfd.addServices(sd);
 					
 					try {
@@ -398,6 +400,24 @@ public class ClientAgent extends Agent{
 							}
 							
 							//tripTownTypeCB end
+							
+							//allTripTypes begin
+							
+							for(int i=0; i < tripTownTypeNames.length; i++) {
+								tripTownTypeNames[i] = getClassFriendlyName(tripTownTypes[i].toString());
+							}
+							
+							System.out.println("reply.getUserDefinedParameter(AllTripTypes)");
+							System.out.println(reply.getUserDefinedParameter("AllTripTypes"));
+							
+							allTripTypes = mapper.readValue(
+									reply.getUserDefinedParameter("AllTripTypes"), new TypeReference<List<String>>() {});
+							System.out.println("allTripTypes");
+							System.out.println(allTripTypes);
+							
+							//reply.getUserDefinedParameter("AllTripTypes");
+							
+							//allTripTypes end
 							
 						} catch (IOException e) {
 							e.printStackTrace();

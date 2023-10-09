@@ -56,7 +56,6 @@ public class HolidayPlannerOntology {
 	private OWLOntologyManager ontoManager;
 	private OWLOntology holidayPlannerOntology;
 	private OWLDataFactory dataFactory;
-	//private OWLReasoner reasoner;
 	
 	private String ontologyIRIStr;
 	private boolean contains = false; 
@@ -67,17 +66,13 @@ public class HolidayPlannerOntology {
 		
 		loadOntologyFromFile();
 		
-		ontologyIRIStr = holidayPlannerOntology.getOntologyID()
-				.getOntologyIRI().toString() + "#";
-		
+		ontologyIRIStr = holidayPlannerOntology.getOntologyID().getOntologyIRI().toString() + "#";
 	}
 	
 	private void loadOntologyFromFile() {
-		//File ontoFile = new File("src/main/java/OntologyFiles/20230521HolidayPlannerOntology.owl");
 		File ontoFile = new File("src/main/java/OntologyFiles/2023-08-21 - HolidayPlannerOntology.owl");
 		try {
-			holidayPlannerOntology = ontoManager
-					.loadOntologyFromOntologyDocument(ontoFile);
+			holidayPlannerOntology = ontoManager.loadOntologyFromOntologyDocument(ontoFile);
 		} catch (OWLOntologyCreationException e) {
 			e.printStackTrace();
 		}
@@ -385,15 +380,14 @@ public ArrayList<Town> getTownByName(String town){
 		return result;
 	}*/
 /*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
 public List<Holiday> getAllTripTypesFromOntology(String tripTypeInput, String tripSubTypeInput) {
 	
-	Holiday trip;// = new Holiday();
-	
 	List<Holiday> results = new ArrayList<>();
+	Holiday trip;
 	ReasonerFactory reasonerFactory = new ReasonerFactory();
 	OWLReasoner reasoner = reasonerFactory.createReasoner(holidayPlannerOntology);
 	
-	//OWLClass tripTypeClass = dataFactory.getOWLClass(IRI.create(ontologyIRIStr + tripTypeInput));
 	OWLClass tripSubTypeClass = dataFactory.getOWLClass(IRI.create(ontologyIRIStr + tripSubTypeInput));
 	 
 	reasoner.precomputeInferences();
@@ -509,6 +503,10 @@ public List<Holiday> getAllTripTypesFromOntology(String tripTypeInput, String tr
 	        if(getClassFriendlyName(property.toString()).equals("travelBy") ) {
 	        	trip.setTransportation(value.getLiteral().toString());
 	        }
+	        
+	        if(getClassFriendlyName(property.toString()).equals("image") ) {
+	        	trip.setImage(value.getLiteral().toString());
+	        }
 	    }
 	    
 	    results.add(trip);
@@ -520,52 +518,43 @@ public List<Holiday> getAllTripTypesFromOntology(String tripTypeInput, String tr
 	return results;
 }
 
-		public Holiday getTripByIRI(String tripIRI) {
-			
-			Holiday trip = new Holiday();
-			NodeSet<OWLNamedIndividual> objectPropertyValues;
-			ReasonerFactory reasonerFactory = new ReasonerFactory();
-			OWLReasoner reasoner = reasonerFactory.createReasoner(holidayPlannerOntology);
-			
-			OWLObjectProperty objectPropertyTown = ontoManager.getOWLDataFactory().getOWLObjectProperty(IRI.create(ontologyIRIStr + "hasTown"));
-			OWLObjectProperty objectPropertyPlaceToStay = ontoManager.getOWLDataFactory().getOWLObjectProperty(IRI.create(ontologyIRIStr + "hasPlaceToStay"));
-			OWLObjectProperty objectPropertyTripType = ontoManager.getOWLDataFactory().getOWLObjectProperty(IRI.create(ontologyIRIStr + "hasTripType"));
-			OWLObjectProperty objectPropertyDestination = ontoManager.getOWLDataFactory().getOWLObjectProperty(IRI.create(ontologyIRIStr + "hasDestination"));
-			OWLObjectProperty objectPropertySeason = ontoManager.getOWLDataFactory().getOWLObjectProperty(IRI.create(ontologyIRIStr + "hasSeason"));
-			OWLObjectProperty objectPropertyTransportation = ontoManager.getOWLDataFactory().getOWLObjectProperty(IRI.create(ontologyIRIStr + "hasTransportation"));
-			 
-			
-			
-	
-	        //OWLOntologyManager manager = OWLManager.createOWLOntologyManager();
+	public Holiday getTripByIRI(String tripIRI) {
+		
+		Holiday trip = new Holiday();
+		NodeSet<OWLNamedIndividual> objectPropertyValues;
+		ReasonerFactory reasonerFactory = new ReasonerFactory();
+		OWLReasoner reasoner = reasonerFactory.createReasoner(holidayPlannerOntology);	
+		OWLObjectProperty objectPropertyTown = ontoManager.getOWLDataFactory().getOWLObjectProperty(IRI.create(ontologyIRIStr + "hasTown"));
+		OWLObjectProperty objectPropertyPlaceToStay = ontoManager.getOWLDataFactory().getOWLObjectProperty(IRI.create(ontologyIRIStr + "hasPlaceToStay"));
+		OWLObjectProperty objectPropertyTripType = ontoManager.getOWLDataFactory().getOWLObjectProperty(IRI.create(ontologyIRIStr + "hasTripType"));
+		OWLObjectProperty objectPropertyDestination = ontoManager.getOWLDataFactory().getOWLObjectProperty(IRI.create(ontologyIRIStr + "hasDestination"));
+		Set<OWLAnnotation> annotations;
+		
+        // Create an IRI object from the input string
+		IRI individualIRI = IRI.create(tripIRI);
+		
 
-	        // Create an IRI object from the input string
-			IRI individualIRI = IRI.create(tripIRI);
-
-			// Use the dataFactory to get the OWLNamedIndividual
-			OWLNamedIndividual individual = dataFactory.getOWLNamedIndividual(individualIRI);
-			
-			for (OWLObjectProperty OWLobjectProperty : holidayPlannerOntology.getObjectPropertiesInSignature()) {
-			
-			objectPropertyValues = reasoner.getObjectPropertyValues(individual, OWLobjectProperty);
-			
-			//for (OWLObjectProperty OWLobjectProperty : holidayPlannerOntology.getObjectPropertiesInSignature()) {
-	    	    // Get object property values for the individual
-	    	    //objectPropertyValues = reasoner.getObjectPropertyValues(individual, OWLobjectProperty);
-
+		// Use the dataFactory to get the OWLNamedIndividual
+		OWLNamedIndividual individual = dataFactory.getOWLNamedIndividual(individualIRI);
+		
+		trip.setIri(individual.getIRI().toString());
+	    trip.setId(individual.getIRI().toString());
+	    annotations = individual.getAnnotations(holidayPlannerOntology);
+	    
+		for (OWLObjectProperty OWLobjectProperty : holidayPlannerOntology.getObjectPropertiesInSignature()) {
+		
+		objectPropertyValues = reasoner.getObjectPropertyValues(individual, OWLobjectProperty);
 	    	    
-	    	    // Check if there are any values related to the individual through this property
-	    	    if (!objectPropertyValues.isEmpty() && OWLobjectProperty.equals(objectPropertyTown)) {
-	    	        //System.out.println("Object Property IRI: " + OWLobjectProperty.getIRI().toString());
-	    	       
-	    	        // Iterate through the individuals related to the individual through the object property
-	    	        for (Node<OWLNamedIndividual> value : objectPropertyValues) {
-	    	            for (OWLNamedIndividual relatedIndividual : value.getEntities()) {
-	    	                //System.out.println("Related Individual: " + relatedIndividual.getIRI());
-	    	                trip.setTown(getClassFriendlyName(relatedIndividual.getIRI().toString()));
-	    	            }
-	    	        }
-	    	    }
+	    // Check if there are any values related to the individual through this property
+	    if (!objectPropertyValues.isEmpty() && OWLobjectProperty.equals(objectPropertyTown)) {
+	       
+	        // Iterate through the individuals related to the individual through the object property
+	        for (Node<OWLNamedIndividual> value : objectPropertyValues) {
+	            for (OWLNamedIndividual relatedIndividual : value.getEntities()) {
+	                trip.setTown(getClassFriendlyName(relatedIndividual.getIRI().toString()));
+	            }
+	        }
+	    }
 	    	    
 	    	    if (!objectPropertyValues.isEmpty() && OWLobjectProperty.equals(objectPropertyPlaceToStay)) {
 	    	        System.out.println("Object Property IRI: " + OWLobjectProperty.getIRI().toString());
@@ -603,6 +592,43 @@ public List<Holiday> getAllTripTypesFromOntology(String tripTypeInput, String tr
 	    	    
 	   }
 			
+		 for (OWLDataPropertyAssertionAxiom dataPropertyAssertion : holidayPlannerOntology.getDataPropertyAssertionAxioms(individual)) {
+		        OWLDataProperty property = (OWLDataProperty) dataPropertyAssertion.getProperty();
+		        OWLLiteral value = dataPropertyAssertion.getObject();
+		        
+		        System.out.println("Data Property: " + getClassFriendlyName(property.toString()));
+		        System.out.println("Value: " + value.getLiteral());
+		        
+		        if(getClassFriendlyName(property.toString()).equals("name") ) {
+		        	trip.setName(getClassFriendlyName(value.getLiteral().toString()));
+		        }
+		        
+		        if(getClassFriendlyName(property.toString()).equals("inSeason") ) {
+		        	trip.setSeason(value.getLiteral().toString());
+		        }
+		        
+		        if(getClassFriendlyName(property.toString()).equals("travelBy") ) {
+		        	trip.setTransportation(value.getLiteral().toString());
+		        }
+		        
+		        if(getClassFriendlyName(property.toString()).equals("image") ) {
+		        	trip.setImage(value.getLiteral().toString());
+		        }
+		    }
+		 
+		 for (OWLAnnotation annotation : annotations) {
+		    	if(annotation.getValue().toString().contains("@en")) {
+		    		
+		    		trip.setDescription(annotation.getValue().toString().replaceAll("\"", ""));
+		    		 System.out.println("Annotation Property: " + annotation.getProperty());
+
+		 	        System.out.println("Annotation Value: " + annotation.getValue());
+		    	}
+		    	
+		       
+		        
+		        
+		    }
 
 			return trip;
 	    }
@@ -618,33 +644,14 @@ public List<Holiday> getAllTripTypesFromOntology(String tripTypeInput, String tr
 		OWLClass tripTypeClass = dataFactory.getOWLClass(IRI.create(ontologyIRIStr + tripType));
 		System.out.println("tripTypeClass: " + tripTypeClass.getSubClasses(holidayPlannerOntology));
 		System.out.println("trip_type: " + tripType);
-		//OWLClass tripTypeClass = dataFactory.getOWLClass(IRI.create(ontologyIRIStr + "TripTypes"));
-
+		
 		for(OWLClassExpression tripTypeOWL : 
 			tripTypeClass.getSubClasses(holidayPlannerOntology)) {
 
 			results.add(getClassFriendlyName(tripTypeOWL.toString()));
 		}
 		
-		/*for(OWLIndividual tripType : 
-			tripTypeClass.getIndividuals(holidayPlannerOntology)) {
-
-			results.add(getClassFriendlyName(tripType.toString()));
-		}*/
-		
 		return results;
-		
-		/*List<String> results = new ArrayList<>();
-
-		OWLClass tripTypeClass = dataFactory.getOWLClass(IRI.create(ontologyIRIStr + "TripTypes"));
-	
-		for(OWLIndividual tripType : 
-			tripTypeClass.getIndividuals(holidayPlannerOntology)) {
-
-			results.add(getClassFriendlyName(tripType.toString()));
-		}
-		
-		return results;*/
 	}
 	
 	public ArrayList<TripType> getAllTripTypesArray() {
@@ -894,27 +901,17 @@ public List<Holiday> getAllTripTypesFromOntology(String tripTypeInput, String tr
 
 	public void addTown(String townType, String townName) {
 
-		OWLClass townClass = dataFactory.getOWLClass(
-				IRI.create(ontologyIRIStr + townName));
-		//System.out.println("Onto - addTrip - tripClass - " + townClass);
+		OWLClass townClass = dataFactory.getOWLClass(IRI.create(ontologyIRIStr + townName));
 		
-		OWLClass paretClass = dataFactory.getOWLClass(
-				IRI.create(ontologyIRIStr + townType));
-	
-		//System.out.println("Onto - addTrip - paretClass - " + paretClass);
-		
-		OWLSubClassOfAxiom subClassOf = dataFactory.
-				getOWLSubClassOfAxiom(townClass, paretClass);
-		
-		//System.out.println("Onto - addTrip - subClassOf - " + subClassOf);		
+		OWLClass paretClass = dataFactory.getOWLClass(IRI.create(ontologyIRIStr + townType));
+
+		OWLSubClassOfAxiom subClassOf = dataFactory.getOWLSubClassOfAxiom(townClass, paretClass);
 		
 		AddAxiom axiom = new AddAxiom(holidayPlannerOntology, subClassOf);
 		
-		//System.out.println("Onto - addTrip - axiom - " + axiom);
 		List<AddAxiom> changes = new ArrayList<>(); ;
 		changes.add(axiom);
 		
-		//ontoManager.applyChange(axiom);
 		ontoManager.applyChanges(changes);
 
 		saveOntology();		

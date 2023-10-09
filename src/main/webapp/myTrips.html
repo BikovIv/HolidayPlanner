@@ -36,11 +36,11 @@
 			<!--<link rel="stylesheet" href="css/owl.carousel.css">-->				
 			
 		</head>
-		<body  onpageshow="fillHolidayTypeDropdown('Trip')">	
+		<body  onpageshow="getAllUsertrips()">	
 			
 			
 			<!-- start banner Area -->
-			<section class="banner-area relative">
+			<section class="banner-area relative" style="height: 25vh;">
 				<!-- <div class="overlay overlay-bg"></div>				-->
 				<div class="container">
 				<header id="header">
@@ -76,7 +76,6 @@
 				          <!--<li><a href="about.html">About</a></li>
 				          <li><a href="packages.html">Packages</a></li>
 				          <li><a href="hotels.html">Hotels</a></li>-->
-				          <li><a href="myTrips.html">My trips</a></li>
 				          <!--<li><a href="insurance.html">Insurence</a></li>
 				          <li class="menu-has-children"><a href="">Blog</a>
 				            <ul>
@@ -95,7 +94,7 @@
 						          </li>					                		
 				            </ul>
 				          </li>			          					          		          
-				         <!-- <li><a href="contact.html">Contact</a></li>-->	
+				          <!--<li><a href="contact.html">Contact</a></li>-->	
 				          <li>
                                     <a href="index.html" id="logout">
                                         <span aria-hidden="true"></span>
@@ -108,50 +107,7 @@
 				</div>
 			</header><!-- #header -->
 				
-					<div class="row-custom" > <!-- fullscreen align-items-center justify-content-between" -->
-						<div class="col-lg-6 col-md-6 banner-left">
-							<!--  <h6 class="text-white">Away from monotonous life</h6>-->
-							<h1 class="text-white">Holiday Planner</h1>
-							<p class="text-white">
-								Book your trip or search one by type!</p>
-							<p class="text-white" style="display:hidden">
-								
-							</p>
-							<!--<a href="#" class="primary-btn text-uppercase">Get Started</a>-->
-							<button id="add-activity" type="button" class="primary-btn text-uppercase" data-toggle="modal" onClick="renderSelectedHoliday('1')">Book trip</button>
-						</div>
-
-						<div class="col-lg-4 col-md-6 banner-right" style="margin-left:15%">
-							<ul class="nav nav-tabs" id="myTab" role="tablist">
-							  <!--<li class="nav-item">
-							    <a class="nav-link" id="hotel-tab" data-toggle="tab" href="#hotel" role="tab" aria-controls="hotel" aria-selected="false">Hotels</a>
-							  </li>-->
-							  <li class="nav-item">
-							    <a class="nav-link active" id="holiday-tab" data-toggle="tab" href="#holiday" role="tab" aria-controls="holiday" aria-selected="false">Trips</a>
-							  </li>
-							</ul>
-							<div class="tab-content" id="myTabContent"> 
-							 <!-- <div class="tab-pane fade" id="hotel" role="tabpanel" aria-labelledby="hotel-tab">
-								<form class="form-wrap">
-									<input type="text" class="form-control" name="name" placeholder="From " onfocus="this.placeholder = ''" onblur="this.placeholder = 'From '">
-									<a href="#" class="primary-btn text-uppercase">Search Hotels</a>		
-								</form>							  	
-							  </div>-->
-							  <div class="tab-pane fade show active" id="holiday-search-form" role="tabpanel" aria-labelledby="holiday-tab">
-								
-		<form class="form-wrap" id="holiday-search-form" method="POST" >
-	            <select id="trip-criteria-select" name="tripType" class="form-control" onchange="fillTripTypeDropdown(value)">
-	               <option id="activitySelectSearchCloneMe" value="1" style="display:none" >Select trip type...</option>
-	            </select> 
-	            
-	            <select id="trip-type-select" name="tripSubType" class="form-control hidden" style="display:none"> </select> 
-	            															
-					<input type="submit" value="Search Trips" class="primary-btn text-uppercase">
-		</form>							  	
-							  </div>
-							</div>
-						</div>
-					</div>
+					
 				</div>					
 			</section>
 			<!-- End banner Area -->
@@ -168,7 +124,7 @@
                            <h4>Trip Data</h4>
                         </div>
 <!-- , , , , , , , , user_id,  ,   -->                        
-                           <form id="activity-form"  method="POST" enctype="multipart/form-data" class="form-wrap" action="/userTrip/add">
+                           <form id="activity-form"  method="POST" enctype="multipart/form-data" class="form-wrap" action="/userTrip/edit">
                               <!-- action="/userTrip/add" -->
                               <div class="form-group">
                                  <!--<label for="title">name</label>-->
@@ -186,13 +142,9 @@
                                  <p class="help-block">The field "town" is empty</p>
                               </div>
                               <div class="form-group">
-                                 <!--<label for="title">trip_desctiption</label>
+                                 <!--<label for="title">trip_desctiption</label>-->
                                  <input type="text" class="form-control" id="trip_desctiption" name="trip_desctiption" placeholder="trip_desctiption" value="">
-                                 <p class="help-block">The field "trip description" is empty</p>-->
-                                 
-                                 <textarea id="trip_desctiption" name="trip_desctiption" rows="4" cols="30">
-
-</textarea>
+                                 <p class="help-block">The field "trip description" is empty</p>
                               </div>
                               <div class="form-group">
                                  <!--<label for="title">trip_destination</label>-->
@@ -229,13 +181,13 @@
                                  <p class="help-block">The field "" is empty</p>
                               </div>
                               
-                             <!-- <div class="form-group">
+                              <div class="form-group">
                                  
                                  <input type="file" name="file" id="activityImage"/>
-                              </div> --> 
-                              <!-- <div class="form-group" style="display:none;">
-                                 <input type="number" name="user_activity_id" id="user_activity_id" value="1"/>
-                              </div> -->
+                              </div>  
+                               <div class="form-group" >
+                                 <input type="number" name="user_trip_id" id="user_trip_id" value="0"/>
+                              </div>
                               <div class="form-group" style="display:none;">
                                  <input type="number" name="user_id" id="user_id" value="1"/>
                               </div>
@@ -243,11 +195,7 @@
                                  <input type="number" name="activity_id" id="activity_id" value="1"/>
                               </div>
                               
-                              <div class="form-group" style="display:none;">
-                                 <input type="text" name="image" id="image" value="1"/>
-                              </div>
-                              
-                              <input type="submit" value="Book Trip" class="primary-btn text-uppercase">
+                              <input type="submit" value="Save changes to Trip" class="primary-btn text-uppercase">
                            </form>
                            <!--<div>
                                 <form id="image-form" method="POST" enctype="multipart/form-data" id="image-form">
@@ -270,27 +218,45 @@
                </div>
 <!--add new activity modal end-->
 
+			
 
-			<!-- Start popular-destination Area -->
-			<section id="holidays-list" class="popular-destination-area section-gap">
+			
+			
+
+			<!-- Start other-issue Area -->
+			<section class="other-issue-area">
 				<div class="container">
 		            <div class="row d-flex justify-content-center">
-		                <div class="menu-content pb-70 col-lg-8">
+		                <div class="menu-content pb-30 col-lg-9">
 		                    <div class="title text-center">
-		                        <h1 class="mb-10">Popular Destinations</h1>
-		                        <p>We all live in an age that belongs to the young at heart. Life that is becoming extremely fast, day.</p>
+		                        <h1 class="mb-10">My booked trips</h1>
+		                        <p>Monitor, comment and share your trips.</p>
 		                    </div>
 		                </div>
-		            </div>	
-		             				
-					<div class="row"  id="template">
+		            </div>					
+					<div class="row">
+					
+					<!--  {
+    "id": 3,
+    "tripIRI": "String tripiri",
+    "name": "Test name",
+    "town": "test town",
+    "place_to_stay_id": 1,
+    "trip_type": "String trip_type",
+    "trip_destination": "trip destination",
+    "trip_season": "trip season",
+    "trip_transportation": "trip transport",
+    "trip_desctiption": "trip desript"
+}-->
+					
+					<!--<div class="row"  id="template">
 						<div class="col-lg-4" id="tripBox" style="display: none">
 							<div class="single-destination relative" id="single-destination" >
 								<div class="thumb relative" id="thumb">
 								<div id="season">Season: </div>
 								<div id="transportation">Travel by: </div>
-									<div class="overlay overlay-bg" id ="overlay"></div>
-									<img class="img-fluid" src="assets/img/d1.jpg" alt="" id="tripBoxImage">
+								<div class="overlay overlay-bg" id ="overlay"></div>
+								<img class="img-fluid" src="assets/img/d1.jpg" alt="" id="tripBoxImage">
 								</div>
 								<div class="desc">	
 									<a onclick="renderSelectedHoliday(id)" class="price-btn" id="tripBoxButton">Book now</a>			
@@ -300,193 +266,36 @@
 							</div>
 						</div>
 													
-					</div>
+					</div>-->
 					
 					<div class="row" id="tripContainer"> </div>
-					<div id="result"></div>	
-				</div>	
-			</section>
-			<!-- End popular-destination Area -->
-			
-
-			<!-- Start price Area -->
-			<!--<section class="price-area section-gap">
-				<div class="container">
-		            <div class="row d-flex justify-content-center">
-		                <div class="menu-content pb-70 col-lg-8">
-		                    <div class="title text-center">
-		                        <h1 class="mb-10">We Provide Affordable Prices</h1>
-		                        <p>Well educated, intellectual people, especially scientists at all times demonstrate considerably.</p>
-		                    </div>
-		                </div>
-		            </div>						
-					<div class="row">
-						<div class="col-lg-4">
-							<div class="single-price">
-								<h4>Cheap Packages</h4>
-								<ul class="price-list">
-									<li class="d-flex justify-content-between align-items-center">
-										<span>New York</span>
-										<a href="#" class="price-btn">$1500</a>
-									</li>
-									<li class="d-flex justify-content-between align-items-center">
-										<span>Maldives</span>
-										<a href="#" class="price-btn">$1500</a>
-									</li>
-									<li class="d-flex justify-content-between align-items-center">
-										<span>Sri Lanka</span>
-										<a href="#" class="price-btn">$1500</a>
-									</li>
-									<li class="d-flex justify-content-between align-items-center">
-										<span>Nepal</span>
-										<a href="#" class="price-btn">$1500</a>
-									</li>
-									<li class="d-flex justify-content-between align-items-center">
-										<span>Thiland</span>
-										<a href="#" class="price-btn">$1500</a>
-									</li>	
-									<li class="d-flex justify-content-between align-items-center">
-										<span>Singapore</span>
-										<a href="#" class="price-btn">$1500</a>
-									</li>														
-								</ul>
-							</div>
-						</div>
-						<div class="col-lg-4">
-							<div class="single-price">
-								<h4>Luxury Packages</h4>
-								<ul class="price-list">
-									<li class="d-flex justify-content-between align-items-center">
-										<span>New York</span>
-										<a href="#" class="price-btn">$1500</a>
-									</li>
-									<li class="d-flex justify-content-between align-items-center">
-										<span>Maldives</span>
-										<a href="#" class="price-btn">$1500</a>
-									</li>
-									<li class="d-flex justify-content-between align-items-center">
-										<span>Sri Lanka</span>
-										<a href="#" class="price-btn">$1500</a>
-									</li>
-									<li class="d-flex justify-content-between align-items-center">
-										<span>Nepal</span>
-										<a href="#" class="price-btn">$1500</a>
-									</li>
-									<li class="d-flex justify-content-between align-items-center">
-										<span>Thiland</span>
-										<a href="#" class="price-btn">$1500</a>
-									</li>	
-									<li class="d-flex justify-content-between align-items-center">
-										<span>Singapore</span>
-										<a href="#" class="price-btn">$1500</a>
-									</li>														
-								</ul>
-							</div>
-						</div>
-						<div class="col-lg-4">
-							<div class="single-price">
-								<h4>Camping Packages</h4>
-								<ul class="price-list">
-									<li class="d-flex justify-content-between align-items-center">
-										<span>New York</span>
-										<a href="#" class="price-btn">$1500</a>
-									</li>
-									<li class="d-flex justify-content-between align-items-center">
-										<span>Maldives</span>
-										<a href="#" class="price-btn">$1500</a>
-									</li>
-									<li class="d-flex justify-content-between align-items-center">
-										<span>Sri Lanka</span>
-										<a href="#" class="price-btn">$1500</a>
-									</li>
-									<li class="d-flex justify-content-between align-items-center">
-										<span>Nepal</span>
-										<a href="#" class="price-btn">$1500</a>
-									</li>
-									<li class="d-flex justify-content-between align-items-center">
-										<span>Thiland</span>
-										<a href="#" class="price-btn">$1500</a>
-									</li>	
-									<li class="d-flex justify-content-between align-items-center">
-										<span>Singapore</span>
-										<a href="#" class="price-btn">$1500</a>
-									</li>														
-								</ul>
-							</div>
-						</div>												
-					</div>
-				</div>	
-			</section>-->
-			<!-- End price Area -->
-			
-
-			<!-- Start other-issue Area -->
-			<!-- <section class="other-issue-area section-gap">
-				<div class="container">
-		            <div class="row d-flex justify-content-center">
-		                <div class="menu-content pb-70 col-lg-9">
-		                    <div class="title text-center">
-		                        <h1 class="mb-10">Other issues we can help you with</h1>
-		                        <p>We all live in an age that belongs to the young at heart. Life that is.</p>
-		                    </div>
-		                </div>
-		            </div>					
-					<div class="row">
-						<div class="col-lg-3 col-md-6">
-							<div class="single-other-issue">
-								<div class="thumb">
-									<img class="img-fluid" src="assets/img/o1.jpg" alt="">					
-								</div>
-								<a href="#">
-									<h4>Rent a Car</h4>
+					
+					
+						<div class="col-lg-3 col-md-6" id ="template" style="display:none;">
+							<div class="single-other-issue" id="tripBox" style="margin-right: 0.5%;">
+								<a onclick="renderSelectedHoliday(id, this.getAttribute('data-userTripId'))" class="price-btn" id="tripBoxButton"
+									data-userTripId="12345"> <!-- href="#"  -->
+									<div class="thumb" id="thumb">
+										<img class="img-fluid" src="assets/img/o1.jpg" alt="" id="image" style="height:160px; width:260px">				
+									</div>
+									<div class="form-group" > <!-- style="display:none" -->
+                                 	<input type="number" name="user_trip_id_template" id="user_trip_id_template" value="1"/>
+                              		</div>
+									<h4 id="tripBoxTitle">Rent a Car</h4>
 								</a>
-								<p>
+								<!--<div id="season">Season: </div>
+								<div id="transportation">Travel by: </div>	-->
+								<p id="tripBoxDecription">
 									The preservation of human life is the ultimate value, a pillar of ethics and the foundation.
 								</p>
+								
 							</div>
 						</div>
-						<div class="col-lg-3 col-md-6">
-							<div class="single-other-issue">
-								<div class="thumb">
-									<img class="img-fluid" src="assets/img/o2.jpg" alt="">					
-								</div>
-								<a href="#">
-									<h4>Cruise Booking</h4>
-								</a>
-								<p>
-									I was always somebody who felt quite sorry for myself, what I had not got compared.
-								</p>
-							</div>
-						</div>
-						<div class="col-lg-3 col-md-6">
-							<div class="single-other-issue">
-								<div class="thumb">
-									<img class="img-fluid" src="assets/img/o3.jpg" alt="">					
-								</div>
-								<a href="#">
-									<h4>To Do List</h4>
-								</a>
-								<p>
-									The following article covers a topic that has recently moved to center stage–at least it seems.
-								</p>
-							</div>
-						</div>
-						<div class="col-lg-3 col-md-6">
-							<div class="single-other-issue">
-								<div class="thumb">
-									<img class="img-fluid" src="assets/img/o4.jpg" alt="">					
-								</div>
-								<a href="#">
-									<h4>Food Features</h4>
-								</a>
-								<p>
-									There are many kinds of narratives and organizing principles. Science is driven by evidence.
-								</p>
-							</div>
-						</div>																		
+						
+																		
 					</div>
 				</div>	
-			</section>-->
+			</section>
 			<!-- End other-issue Area -->
 			
 
@@ -797,7 +606,7 @@
 			<footer class="footer-area section-gap">
 				<div class="container">
 
-					<!--<div class="row">
+					<div class="row">
 						<div class="col-lg-3  col-md-6 col-sm-6">
 							<div class="single-footer-widget">
 								<h6>About Agency</h6>
@@ -861,7 +670,7 @@
 								</ul>
 							</div>
 						</div>						
-					</div>-->
+					</div>
 
 					<div class="row footer-bottom d-flex justify-content-between align-items-center">
 						<p class="col-lg-8 col-sm-12 footer-text m-0"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
@@ -893,40 +702,78 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			<script src="js/owl.carousel.min.js"></script>							
 			<script src="js/mail-script.js"></script>	
 			<script src="js/main.js"></script>	
-			
-			<script>		
-			function fillTripTypeDropdown(tripType) {
-				var x = document.getElementById("trip-type-select");
-				while (x.firstChild) {
-	                x.removeChild(x.firstChild);
-	            }
-	            // Create a new XMLHttpRequest object or use fetch API
-	            const xhr = new XMLHttpRequest();
 
-	            // Configure the request
-	            xhr.open("POST", "/userActivity/getAllActivityTypesFromOntology", true);
-	            xhr.setRequestHeader("Content-Type", "application/json");
+<script>
+	function getAllUsertrips() {	
+          const xhr = new XMLHttpRequest();
 
-	            // Set up a callback function to handle the response
-	            xhr.onreadystatechange = function () {
-	                if (xhr.readyState === 4 && xhr.status === 200) {
-	                    const response = JSON.parse(xhr.responseText);
-	                    response.forEach(function(response){
-		         			var option = document.createElement("option");
-		         			option.text = response;
-		         			option.value = response;
-		         			x.add(option);	
-		      			});
-	                    x.style.display = "";
-	                    
-	                }
-	            };
+          // Configure the request
+          xhr.open("POST", "/userTrip/getUserTripsByUserId", true);
+          xhr.setRequestHeader("Content-Type", "application/json");
 
-	            // Convert the selected value to JSON and send the request
-	            const data = JSON.stringify({ tripType });
-	            xhr.send(data);
-	        }
-			</script>
+          // Set up a callback function to handle the response
+          xhr.onreadystatechange = function () {
+              if (xhr.readyState === 4 && xhr.status === 200) {
+                   const response = JSON.parse(xhr.responseText);
+                   
+                   response.sort((a, b) => {
+                   	  // Sort alphabetically by the "name" property
+                	   return b.id - a.id;
+                   	});
+                   
+                  // jsonData.forEach(item => {
+                   //	  console.log(`Name: ${item.name}, Age: ${item.age}`);
+                   //	});
+                  
+                  response.forEach(function(response){
+                	  //console.log(response);
+                	  createAndAppendElement(response);
+        			/*var option = document.createElement("option");
+        			option.text = response;
+        			option.value = response;
+        			x.add(option);*/ 
+     			});
+              }
+          };
+
+          // Convert the selected value to JSON and send the request
+          const data = JSON.stringify({  });
+          xhr.send(data);
+	}
+</script>
+
+<script>		
+	function fillTripTypeDropdown(tripType) {
+		var x = document.getElementById("trip-type-select");
+		while (x.firstChild) {
+	              x.removeChild(x.firstChild);
+	          }
+	          // Create a new XMLHttpRequest object or use fetch API
+	          const xhr = new XMLHttpRequest();
+	
+	          // Configure the request
+	          xhr.open("POST", "/userActivity/getAllActivityTypesFromOntology", true);
+	          xhr.setRequestHeader("Content-Type", "application/json");
+	
+	          // Set up a callback function to handle the response
+	          xhr.onreadystatechange = function () {
+	              if (xhr.readyState === 4 && xhr.status === 200) {
+	                  const response = JSON.parse(xhr.responseText);
+	                  response.forEach(function(response){
+	        			var option = document.createElement("option");
+	        			option.text = response;
+	        			option.value = response;
+	        			x.add(option);	
+	     			});
+	                  x.style.display = "";
+	              }
+	          };
+	
+	          // Convert the selected value to JSON and send the request
+	          const data = JSON.stringify({ tripType });
+	          xhr.send(data);
+      }
+</script>
 
 			<script type="text/javascript">
 
@@ -950,18 +797,12 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 				         			option.value = response;
 				         			x.add(option);	
 				      			}); 
-			                    
-			                    
-			     				
 			                }
 			            };
 					  
 			            const data = JSON.stringify({ tripType });
 			            //console.log(data);
-			            
-			            	   xhr.send(data);
-			            
-			         
+			            xhr.send(data);
 			              
 					console.log("Filled dropdown with holiday types" + data)
 				
@@ -1005,19 +846,15 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	                resultDiv.innerHTML = `<p>API Response:</p><pre>${JSON.stringify(apiData, null, 2)}</pre>`;
 	                
 	                var result = JSON.stringify(apiData, null, 2);
-
+	
 	         			 apiData.forEach(data => {
 				            createAndAppendElement(data);
-				        });				         			
+				        });
 	                                           
 	            })
 	            .catch(error => {
 	                console.error("Error:", error);
 	            });
-	            
-	            $('html, body').animate({
- 			        scrollTop: $("#holidays-list").offset().top
- 			    }, 2000);
 	        }
 
 	        // Attach the form submission handler to the form
@@ -1025,139 +862,78 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	        form.addEventListener("submit", handleSubmit);
 	        
 	        
-	        function createAndAppendElement(data) {
-	        	
+function createAndAppendElement(data) {
+	        	//var userTripIdTemplate = document.getElementById("user_trip_id_template");
 	        	// Get the template element by its id
 	        	const template = document.getElementById("tripBox");
-	        	//template.style.display="";
+	        	
+	        	template.style.display="";
 	        	// Clone the template and its content
 	        	const clone = template.cloneNode(true);
-	        	clone.id="dataname";
+	        	clone.id=data.tripIRI;
+	        	
 	        	clone.style.display="";
-	        	// Modify the cloned content as needed
-	        	clone.querySelector("#tripBoxImage").src = "assets/img/" + data.image;  //"assets/img/" + d1.jpg";
-	        	clone.querySelector("#tripBoxButton").textContent = "Reserve/Modify Trip";
-	        	clone.querySelector("#tripBoxButton").id = data.iri;
-	        	clone.querySelector("#tripBoxTitle").textContent = data.town;
-	        	clone.querySelector("#tripBoxTitle").textContent = data.name;
-	        	clone.querySelector("#tripBoxDecription").textContent = data.description.split('\\').join('').replace("@en", "");;
-	        	clone.querySelector("#season").textContent = "Season: " + data.season;
-	        	clone.querySelector("#transportation").textContent = "Travel by: " + data.transportation;
-	        	//clone.querySelector("#tripBoxDecription").textContent = data.type;
+	        	//clone.data-userTripId.setAttribute("44544");
 
+	        	// Modify the cloned content as needed
+	        	//clone.querySelector("#tripBoxImage").src = "assets/img/d1.jpg";
+/*  {    "id": 3,
+    "tripIRI": "String tripiri",
+    "name": "Test name",
+    "town": "test town",
+    "place_to_stay_id": 1,
+    "trip_type": "String trip_type",
+    "trip_destination": "trip destination",
+    "trip_season": "trip season",
+    "trip_transportation": "trip transport",
+    "trip_desctiption": "trip desript"}*/
+//console.log(data.id);
+//console.log(clone.querySelector("#user_trip_id_template").value);
+
+console.log("data.id");
+console.log(data.id);
+
+console.log("clone.querySelector(#tripBoxButton).getAttribute(data-userTripId).value");
+console.log(clone.querySelector("#tripBoxButton").getAttribute("data-userTripId"));
+//userTripIdTemplate.value = data.id
+				clone.querySelector("#user_trip_id_template").value = data.id;
+				//clone.querySelector("#user_trip_id_template").id = data.id;
+				clone.querySelector("#tripBoxButton").setAttribute("data-userTripId", data.id); // = data.id;// dataset.data-userTripId;
+	        	clone.querySelector("#tripBoxButton").id = data.tripIRI;
+	        	clone.querySelector("#image").src = "assets/img/" + data.image; 
+	        	//$('#foo').data('fruit', 'apple');
+	        	//var myElement = clone.querySelector("#tripBoxButton").getAttribute("data-userTripId").value;
+	        	var customAttributeValue = clone.dataset.myElement;
+	        	console.log(customAttributeValue); // "custom-value"
+
+	        	clone.querySelector("#tripBoxTitle").textContent = data.town;
+	        	
+	        	if(data.name.length > 27){
+	        		clone.querySelector("#tripBoxTitle").textContent = data.name.slice(0,27) + "...";
+	        	}else{
+	        		clone.querySelector("#tripBoxTitle").textContent = data.name;
+	        	}
+	        	
+	        	//clone.querySelector("#tripBoxTitle").textContent = data.name;
+	        	if(data.trip_desctiption.split('\\').join('').replace("@en", "").length > 40){
+	        		clone.querySelector("#tripBoxDecription").textContent = data.trip_desctiption.split('\\').join('').replace("@en", "").slice(0,40) + "...";
+	        	}else{
+	        		clone.querySelector("#tripBoxDecription").textContent = data.trip_desctiption.split('\\').join('').replace("@en", "");
+	        	}
+	        	//clone.querySelector("#season").textContent = "Season: " + data.trip_season;
+	        	//clone.querySelector("#transportation").textContent = "Travel by: " + data.trip_transportation;
+				
+	        	//document.getElementById("user_trip_id_template").value = "16";
+	        	//console.log("clone");
+	        	//console.log(clone);
+	        	//console.log(data);
+	        	
 	        	// Append the modified clone to the container (e.g., the document body or another target element)
 	        	const container = document.getElementById("tripContainer");
 	            container.appendChild(clone);
 	        }
 	        
 	    </script>
-	
-			
-	<script>
-	
-	
-	
-	/*$(document).ready(function(){
-	
-	const tripType = document.getElementById("trip-criteria-select").value;
-    const tripSubType = document.getElementById("trip-type-select").value;
- 	
- const searchForm = document.forms['holiday-search-form'];
- const searchFormData = new FormData();
- 
- const handleSearchSubmit = (event) => {
-    event.preventDefault();	  
-    //const form = document.forms['userActivity-search-form'];
-	
-	searchFormData.append("tripType", searchForm.tripType.value);
-	searchFormData.append("tripSubType", searchForm.tripSubType.value);	
-	
-	for (const p of searchFormData){
-		//console.log(p);
-	}
-	
-	console.log("searchFormData: ");
-    console.log(searchFormData);
-    	      	
-    fetch("http://localhost:8080/userActivity/getHolidayByUserParameters", {
-        method: "get",
-        body: searchFormData
-    }).then(response => response.text())
-    .then((response) => {
-        console.log(response);
-        console.log("here");
-    })
-    .catch((error) => ("Something went wrong!", error));
- };
- 
- searchForm.addEventListener("submit", handleSearchSubmit);    	
-	});
-	*/
-	
-	</script>
-			
-	
-
-    <script>
-        // Function to handle form submission
-        /*function handleSubmit(event) {
-            event.preventDefault(); // Prevent the default form submission behavior
-            
-            // Get form data
-            const formData = new FormData(event.target);
-            
-            //console.log(formData);
-            
-            var x = document.getElementById("holiday-search-form");
-			  var option = document.createElement("option");
-			const tripType = document.getElementById("trip-criteria-select").value;
-	         const tripSubType = document.getElementById("trip-type-select").value;
-	         //console.log("tripType, tripSubType: " + tripType, tripSubType);
-			  const xhr = new XMLHttpRequest();
-
-	            // Configure the request
-	            xhr.open("POST", "/userActivity/getHolidayByUserParameters", true);
-	            xhr.setRequestHeader("Content-Type", "application/json");
-	            
-	            xhr.onreadystatechange = function () {
-	                if (xhr.readyState === 4 && xhr.status === 200) {
-	                    const response = JSON.parse(xhr.responseText);
-	                    console.log("response: " + response);
-	                    response.forEach(function(response){
-		         			var option = document.createElement("option");
-		         			option.text = response;
-		         			option.value = response;
-		         			//x.add(option);	
-		      			}); 
-	                }
-	            };*/
-			  
-	          /*  const data = JSON.stringify({ tripType, tripSubType });
-	            console.log("req_data: " + data);
-	            xhr.send(data);*/
-
-            // Make an AJAX POST request to the server
-           /* $.ajax({
-                url: "http://localhost:8080/userActivity/getHolidayByUserParameters", // Replace with your server endpoint
-                method: "POST",
-                data: formData,
-               // processData: false,
-               // contentType: false,
-                success: function(response) {
-                    // Display the response in the result div
-                    const resultDiv = document.getElementById("result");
-                    resultDiv.innerHTML = response;
-                },
-                error: function(error) {
-                    console.error("Error:", error);
-                }
-            });*/
-       // }
-
-        // Attach the form submission handler to the form
-      //  const holidaySearchForm = document.getElementById("holiday-search-form");
-       // holidaySearchForm.addEventListener("submit", handleSubmit);
-    </script>
     
     <script type="text/javascript">
 
@@ -1194,246 +970,61 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 				
 			</script>
 
-			
-			
-			<script type="text/javascript">
-			
-			        // Function to handle form submission
-			        /*function handleSubmit(event) {
-			            event.preventDefault(); // Prevent the default form submission behavior
-			            
-			            // Get form data
-			            const formData = new FormData(event.target);
-			            const data = {};
-			            
-			            formData.forEach((value, key) => {
-			                data[key] = value;
-			            });
-
-			            // Simulate sending the data to the server (replace this with your actual server request)
-			            setTimeout(() => {
-			                // Display the result in a div
-			                const resultDiv = document.getElementById("result");
-			                resultDiv.innerHTML = `<p>Form data submitted:</p><pre>${JSON.stringify(data, null, 2)}</pre>`;
-			            }, 1000); // Simulating a delay for demonstration purposes
-			        }*/
-
-			        // Attach the form submission handler to the form
-			        //const form = document.getElementById("holiday-search-form");
-			        //form.addEventListener("submit", handleSubmit);	
-			</script>
-
-			<script type="text/javascript">
-			
-			//const search_text = document.getElementById("activitiy-search-string") ;	
-         	//const tripType = document.getElementById("trip-criteria-select");
-         	//const tripSubType = document.getElementById("trip-type-select");
-         	//
-         	//const searchForm = document.forms['holiday-search-form']; /*holiday-search-form*/
-         	// const searchFormData = new FormData();
-			
-			/* const aSearchSubmit = (event) => {
-	            event.preventDefault();	  
-	            //const form = document.forms['userActivity-search-form'];
-				
-				//searchFormData.append("title", searchForm.title.value);
-	        	searchFormData.append("tripType", searchForm.tripType.value);
-	        	searchFormData.append("tripSubType", searchForm.tripSubType.value);
-				
-	        	for (const p of searchFormData){
-	        		console.log(p);
-	        	}
-				
-	            console.log(searchFormData);
-	            	      	
-	            fetch("http://localhost:8080/userActivity/getHolidayByUserParameters", {
-	                method: "get",
-	                body: searchFormData
-	            }).then(response => response.text())
-	            .then((response) => {
-	                console.log(response);
-	                console.log("here");
-	            })
-	            .catch((error) => ("Something went wrong!", error));
-	         };
-			*/
-			//$("#holiday-search-form").submit(function(e) {
-			 //   e.preventDefault();
-			    
-			  //  const searchForm = document.forms['holiday-search-form']; /*holiday-search-form*/
-		      //  const searchFormData = new FormData();
-			    
-			    //$(this).attr('action',$(this).attr('action')+$('#agent').val());
-				//searchFormData.append("activity_id", searchForm.activity_id.value);
-				//searchFormData.append("activity_id2", searchForm.activity_id2.value);
-				//console.log("searchForm.activity_id.value");
-				//console.log(searchForm.activity_id.value);
-			    //searchFormData.append("activity_id", e.target.elements.activity_id.value);
-				//e.target.elements.forEach(function(date){
-				//	console.log(e.target.elements.activity_id.value);
-					//console.log(formData.values[0]);
-				//}); 
-				
-				//	for (const p of searchFormData){
-		        //		console.log(p);
-		        //	}
-					
-			    
-			   //console.log($(this).attr('trip-type-select',$(this).attr('holiday-type-select')).val)
-			   //.getparameter("agent_id");
-			   //holiday-type-select
-			  // getHolidayByUserParameters(searchFormData)
-				
-			    //$('html, body').animate({
-			   //     scrollTop: $("#holidays-list").offset().top
-			    //}, 2000);
-				//});
-			
-			/*function getHolidayByUserParameters(searchFormData) {	
-				console.log("searched: " + searchFormData)
-				
-					$.ajax({
-      			url: "http://localhost:8080/userActivity/getHolidayByUserParameters",
-      			method: "GET",
-      			body: searchFormData,
-      			//data: {tripType: tripType},
-      			success: function(data){
-      					//addUserActivityToUI(activity.title, activity.description, activity.imagePath, activity.id, activity.activity);
-	
-         		data.forEach(function(data){
-         			console.log(data)
-         		//var theActivity = $('#userActivityCloneMe').clone();
-         		//theActivity.find('img').attr('src', activity.imagePath);
-         		//theActivity.find('h2').text(activity.title);
-         		//theActivity.find('p').text(activity.description);
-         		//theActivity.attr('id', activity.id);
-         		
-         		//theActivity.find('button').click(function(){
-         		//	deleteUserActivity(id, theActivity);
-         		});
-
-         		//$('#userActivitiy-list').prepend(theActivity);
-         		//theActivity.show();    		
-      			//});
-      			}
-      		});
-				
-				
-			}*/
-			</script>
-
 	<script type="text/javascript">
-				
-		function renderSelectedHoliday(tripIRI){
+			
+		function renderSelectedHoliday(tripIRI, user_trip_id_db){
 			
 			var x = document.getElementById("activity-form");
-			var trip_criteria_select = document.getElementById("trip-criteria-select");
-			console.log("trip_criteria_select");
-			console.log(trip_criteria_select);
-			var trip_type_select = document.getElementById("trip-type-select");
-			var divToAddTripCriteriaSelectTo = document.getElementById('modal-trip-criteria-select');
-			console.log("divToAddTripCriteriaSelectTo");
-			console.log(divToAddTripCriteriaSelectTo);
-			var divToAddTripTypeSelectTo = document.getElementById('modal-trip-type-select');
-			//while (x.firstChild) {
-            //    x.removeChild(x.firstChild);
-            //}
-            // Create a new XMLHttpRequest object or use fetch API
+			console.log("user_trip_id_db");
+			console.log(user_trip_id_db);
             const xhr = new XMLHttpRequest();
 
             // Configure the request
-            xhr.open("POST", "/userActivity/getHolidayByIRI", true);
+            xhr.open("POST", "/userTrip/getUserTripById", true);
             xhr.setRequestHeader("Content-Type", "application/json");
 
             // Set up a callback function to handle the response
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     const response = JSON.parse(xhr.responseText);
-                    //console.log(response);
-                    //response.forEach(function(response){
-	         			//var option = document.createElement("option");
-	         			//option.text = response;
-	         			//option.value = response;
-	         			//x.add(option);	
-	         			//console.log(xhr.responseText);
-	         			//console.log(x);
+             
+                    
 	         			x.querySelector('#name').value = response.name;
 	         			x.querySelector('#place_to_stay_id').value = 1;
 	         			x.querySelector('#town').value = response.town;
-	         			x.querySelector('#trip_desctiption').value = response.description;
-	         			x.querySelector('#trip_destination').value = response.destination;
-	         			x.querySelector('#trip_season').value = response.season;
-	         			x.querySelector('#trip_transportation').value = response.transportation;
-	         			x.querySelector('#trip_type').value = response.type;
-	         			x.querySelector('#tripiri').value = response.iri;
-	         			x.querySelector('#image').value = response.image;
+	         			x.querySelector('#trip_desctiption').value = response.trip_desctiption;
+	         			x.querySelector('#trip_destination').value = response.trip_destination;
+	         			x.querySelector('#trip_season').value = response.trip_season;
+	         			x.querySelector('#trip_transportation').value = response.trip_transportation;
+	         			x.querySelector('#trip_type').value = response.trip_type;
+	         			x.querySelector('#tripiri').value = response.tripIRI;
 
 	         			// Optionally, you can set values for the hidden input fields
 	         			x.querySelector('#user_id').value = '1';
 	         			x.querySelector('#activity_id').value = '1';
-	         			divToAddTripCriteriaSelectTo.appendChild(trip_criteria_select);
-	         			divToAddTripTypeSelectTo.appendChild(trip_type_select);
-	      			//});
-                    //x.style.display = "";
+	         			x.querySelector('#user_trip_id').value = user_trip_id_db;
+	         			console.log("response");
+	         			console.log(response);
                 }
             };
 
-            // Convert the selected value to JSON and send the request
-            const data = JSON.stringify({ tripIRI });
-            //console.log(data);
+            const data = JSON.stringify({ "trip_id": parseInt(user_trip_id_db) });
             xhr.send(data);
             
     		var textInputElement = document.getElementById('trip_type');
 
     		// Add an event listener to the select element
-    		trip_type_select.addEventListener('change', function() {
+    		//trip_type_select.addEventListener('change', function() {
     		  // Get the selected option's value
-    		  var selectedOptionValue = trip_type_select.value;
+    		 // var selectedOptionValue = trip_type_select.value;
 
     		  // Update the value of the text input with the selected option's value
-    		  textInputElement.value = selectedOptionValue;
-    		});
+    		 // textInputElement.value = selectedOptionValue;
+    		//});
  		
  			$('#activity-form-modal').modal('show');
  		}
 
-	</script>
-	
-	<script>
-	//function changeTextInModal(){
-		// Get references to the select and text input elements
-		/*var selectElement = document.getElementById('trip_type_select');
-		var textInputElement = document.getElementById('trip_type');
-
-		// Add an event listener to the select element
-		selectElement.addEventListener('change', function() {
-		  // Get the selected option's value
-		  var selectedOptionValue = selectElement.value;
-
-		  // Update the value of the text input with the selected option's value
-		  textInputElement.value = selectedOptionValue;
-		});*/
-
-		
-	//}
-	</script>
-	
-	<script>
-	
-		function getSessionParameters(){
-			$.ajax({
-				  url: '/getSessionParameters', // Replace with the server endpoint that retrieves the session parameter
-				  type: 'GET',
-				  success: function(data) {
-				    var userId = data.user_id;
-				    console.log('Session Parameter Value: ' + userId);
-				  },
-				  error: function(xhr, status, error) {
-				    console.error('Error retrieving session parameter: ' + error);
-				  }
-				});
-		}
-	
 	</script>
 	
 	<script>		

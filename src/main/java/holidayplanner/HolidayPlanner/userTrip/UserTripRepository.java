@@ -11,9 +11,9 @@ import holidayplanner.HolidayPlanner.activity.ActivityEntity;
 @Repository
 public interface UserTripRepository extends JpaRepository<UserTripEntity, Integer>{
 		
-		//List<UserTripEntity> findByActivityId(int activity_id);
-		
-		List<UserTripEntity> findAll();
+	UserTripEntity findById(int id);
+	List<UserTripEntity> findByUserId(int user_id);
+	List<UserTripEntity> findAll();
 
 	/*@Query("SELECT ua "//ua.id, ua.description, ua.title, a.id, a.description, a.title "
 			+ "FROM UserActivityEntity ua inner join ActivityEntity a on ua.activity = a.id " 

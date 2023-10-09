@@ -205,6 +205,16 @@
     
 
 
+    <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#image -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#image">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#Trip"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#inSeason -->
 
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#inSeason">
@@ -1296,6 +1306,7 @@
         <hasTripType rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#HolidayTrip"/>
         <dayLong rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</dayLong>
         <endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-06-02T00:00:00Z</endDate>
+        <image>d1.jpg</image>
         <inSeason>Winter</inSeason>
         <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Holiday in Bansko</name>
         <startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-06-01T00:00:00Z</startDate>
@@ -1639,10 +1650,12 @@
         <hasTripType rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#HolidayTrip"/>
         <dayLong rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">10</dayLong>
         <endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-06-11T00:00:00Z</endDate>
+        <image>d3.jpg</image>
         <inSeason>Spring</inSeason>
+        <name>Holiday in Pamporovo hotel</name>
         <startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-06-01T00:00:00Z</startDate>
         <travelBy>Car</travelBy>
-        <rdfs:comment xml:lang="en">Holiday in Pamporovo</rdfs:comment>
+        <rdfs:comment xml:lang="en">Holiday in mountain destination Pamporovo with place to stay &quot;Pamporovo Hotel&quot;</rdfs:comment>
         <rdfs:comment xml:lang="bg">Почивка в планиска дестинация Пампорово с престой в &quot;Пампорово Хотел&quot;</rdfs:comment>
     </owl:NamedIndividual>
     
@@ -1707,10 +1720,12 @@
         <travelForEvent rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#MMASportEvent"/>
         <dayLong rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</dayLong>
         <endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-06-01T00:00:00Z</endDate>
+        <image>PlovdivIMG.png</image>
         <inSeason>Summer</inSeason>
+        <name>Weekend trip to Plovdiv</name>
         <startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-05-31T00:00:00Z</startDate>
         <travelBy>Bus</travelBy>
-        <rdfs:comment xml:lang="en">Weekend trip to Plovdiv</rdfs:comment>
+        <rdfs:comment xml:lang="en">For event &quot;MMA Sport Event&quot; by Bus</rdfs:comment>
         <rdfs:comment xml:lang="bg">Уиикенд пътуване в Пловдив</rdfs:comment>
     </owl:NamedIndividual>
     
@@ -1799,9 +1814,12 @@
         <hasTripType rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#HolidayTrip"/>
         <dayLong rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">8</dayLong>
         <endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-05-11T00:00:00Z</endDate>
+        <image>SofiaIMG.png</image>
         <inSeason>Summer</inSeason>
+        <name>Trip to Sofia in luxury Establishment</name>
         <startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-06-03T00:00:00Z</startDate>
         <travelBy>Car</travelBy>
+        <rdfs:comment xml:lang="en">Holiday Trip to Sofia in &quot;Sofia Luxury Hotel&quot;</rdfs:comment>
     </owl:NamedIndividual>
     
 
@@ -1841,10 +1859,12 @@
         <hasTripType rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#BussinesTrip"/>
         <dayLong rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</dayLong>
         <endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-06-02T00:00:00Z</endDate>
+        <image>STZIMG.png</image>
         <inSeason>Fall</inSeason>
+        <name>Bussines to Stara Zagora</name>
         <startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-06-01T00:00:00Z</startDate>
         <travelBy>Car</travelBy>
-        <rdfs:comment xml:lang="en">Bussines Trip to Stara Zagora</rdfs:comment>
+        <rdfs:comment xml:lang="en">In motel &quot;Stara Zagora&quot;</rdfs:comment>
         <rdfs:comment xml:lang="bg">Еднодневно Бизнес пътуване в Стара Загора</rdfs:comment>
     </owl:NamedIndividual>
     
@@ -1902,10 +1922,12 @@
         <hasTripType rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#BussinesTrip"/>
         <dayLong rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</dayLong>
         <endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-06-20T00:00:00Z</endDate>
+        <image>VarnaIMG.png</image>
         <inSeason>Summer</inSeason>
+        <name>Bussiness to Varna</name>
         <startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-06-18T00:00:00Z</startDate>
         <travelBy>Train</travelBy>
-        <rdfs:comment xml:lang="en">Bussines trip to Varna</rdfs:comment>
+        <rdfs:comment xml:lang="en">Bussines trip to Varna with hotel place</rdfs:comment>
         <rdfs:comment xml:lang="bg">Еднодневно Бизнес пътуване до Варна</rdfs:comment>
     </owl:NamedIndividual>
     
@@ -1921,10 +1943,12 @@
         <travelForEvent rdf:resource="http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#JewelryExpositionEvent"/>
         <dayLong rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2</dayLong>
         <endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-06-17T00:00:00Z</endDate>
+        <image>Varna2IMG.png</image>
         <inSeason>Spring</inSeason>
+        <name>One weekend in Varna</name>
         <startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-06-16T00:00:00Z</startDate>
         <travelBy>Bus</travelBy>
-        <rdfs:comment xml:lang="en">Weekend trip to Varna</rdfs:comment>
+        <rdfs:comment xml:lang="en">Weekend trip to Varna for &quot;Jewelry Exposition&quot;</rdfs:comment>
         <rdfs:comment xml:lang="bg">Уиикенд пътуване до Варна</rdfs:comment>
     </owl:NamedIndividual>
     

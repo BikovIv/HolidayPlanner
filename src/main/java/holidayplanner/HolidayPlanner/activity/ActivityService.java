@@ -20,7 +20,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import holidayplanner.HolidayPlanner.common.PasswordServices;
-import holidayplanner.HolidayPlanner.user.UserEntity;
+//import holidayplanner.HolidayPlanner.user.UserEntity;
 import holidayplanner.HolidayPlanner.user.UserRepository;
 import holidayplanner.HolidayPlanner.user.WebSecurityConfig;
 

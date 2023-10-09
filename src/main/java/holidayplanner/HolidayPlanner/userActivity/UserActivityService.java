@@ -13,7 +13,8 @@ import holidayplanner.HolidayPlanner.HolidayPlannerAgent;
 import holidayplanner.HolidayPlanner.activity.ActivityEntity;
 import holidayplanner.HolidayPlanner.activity.ActivityRepository;
 import holidayplanner.HolidayPlanner.file.FileService;
-import holidayplanner.HolidayPlanner.user.UserEntity;
+import holidayplanner.HolidayPlanner.user.User;
+//import holidayplanner.HolidayPlanner.user.UserEntity;
 
 @Service
 public class UserActivityService {
@@ -37,7 +38,7 @@ public class UserActivityService {
 	}
 	
 	public UserActivityEntity addUserActivity(String title, String description, /*String imagePath,*/ int activity_id, MultipartFile file, 
-												int user_activity_id, UserEntity user) {
+												int user_activity_id, User user) {
 		System.out.println(user);
 		String imageName;
 		String imagePath = "";

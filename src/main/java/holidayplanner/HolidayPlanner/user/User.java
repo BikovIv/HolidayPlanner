@@ -1,9 +1,14 @@
 package holidayplanner.HolidayPlanner.user;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import holidayplanner.HolidayPlanner.userTrip.UserTripEntity;
 
 @Entity
 @Table(name = "users")
@@ -24,10 +29,14 @@ public class User {
 	    private String email;
 	    
 	    @ManyToMany
-		@JoinTable(name = "account_role",
-			joinColumns = @JoinColumn(name="account_id"),
+		@JoinTable(name = "user_roles",
+			joinColumns = @JoinColumn(name="user_id"),
 			inverseJoinColumns = @JoinColumn(name="role_id"))
 		private Set<RoleEntity> roles;
+	    
+	    @JsonSerialize()
+	    @OneToMany(mappedBy = "user")
+	    private List<UserTripEntity> trips;
 	    
 	    //@Autowired
 	    public User() {
@@ -76,6 +85,14 @@ public class User {
 			return roles;
 		}
 
+		public void setTrips(Set<UserTripEntity> trips) {
+			this.trips = (List<UserTripEntity>) trips;
+		}
+		
+		public Set<UserTripEntity> getTrips() {
+			return (Set<UserTripEntity>) trips;
+		}
+
 		public void setRoles(Set<RoleEntity> roles) {
 			this.roles = roles;
 		}
@@ -83,6 +100,7 @@ public class User {
 	    @Override
 	    public String toString() {
 	        return "User { " +
+	        		" UserID = '" + id + '\'' +
 	                " Username = '" + username + '\'' +
 	                ", Email = " + email +
 	                '}';

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 import holidayplanner.HolidayPlanner.HolidayPlannerOntology;
 import holidayplanner.HolidayPlanner.activity.ActivityEntity;
@@ -74,7 +75,7 @@ public class Startup {
 				+ "national park, mountain, or a market. On a sightseeing vacation, you enjoy the thrilling beauty of a place. It can be a bit expensive, "
 				+ "but with early planning, you can manage it."); 
 	}
-	
+	 
 	@EventListener 
     public void onApplicationEvent(ContextRefreshedEvent event) {
 		/*initRoles();
@@ -91,6 +92,10 @@ public class Startup {
 		//System.out.println(userTripService.getAll().toString());
 		//holidayPlannerOntology.getTripByIRI(null)
 		//holidayPlannerOntology.getTripByIRI(String tripIRI));
+		
+		/*userTripService.addUserTrip("Test name", 1, "test town", "trip desript", 
+				"trip destination", "trip season", "trip transport", "String trip_type", 
+				1, 1, "String tripiri", null);*/
 		
     }
 }

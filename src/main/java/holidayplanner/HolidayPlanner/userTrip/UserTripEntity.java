@@ -13,10 +13,11 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import holidayplanner.HolidayPlanner.activity.ActivityEntity;
 import holidayplanner.HolidayPlanner.user.User;
-import holidayplanner.HolidayPlanner.user.UserEntity;
+
 
 @Entity
 @Table(name = "booked_trips")
@@ -26,11 +27,58 @@ public class UserTripEntity implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(nullable = false, length = 500)
-	private String trip_id;
+	@Column(length = 100, nullable = true)
+	private String tripIRI;
 	
-	@Column(nullable = false)
-	private int user_id;
+	//@Column(nullable = true)
+	//private boolean shared;
+	
+	//@Column(nullable = true)
+	//private int rated; 
+	
+	@Column(nullable = true)
+	private String image;
+		
+	
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+	
+	public String getTripIRI() {
+		return tripIRI;
+	}
+
+	public void setTripIRI(String tripIRI) {
+		this.tripIRI = tripIRI;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public ActivityEntity getActivity() {
+		return activity;
+	}
+
+	public void setActivity(ActivityEntity activity) {
+		this.activity = activity;
+	}
+
+	
+	/* to get joined data in json*/
+	@ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+	@JsonIgnore
+	/* to get joined data in json*/
+    private User user;
 	
 	@Column(length = 100, nullable = true)
 	private String name;
@@ -50,11 +98,11 @@ public class UserTripEntity implements Serializable{
 	@Column(length = 2000, nullable = true)
 	private String trip_desctiption;
 	
-	//@JsonProperty("province_id") //to get activity table data in json :@
-	//@ManyToOne(fetch = FetchType.EAGER)
-    //@JoinColumn(name = "user_id", referencedColumnName = "id")
-	//@JsonIgnore
-	//private User userr;
+	@JsonProperty("province_id") //to get activity table data in json :@
+	@ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "activity_id", referencedColumnName = "id")
+	@JsonIgnore
+	private ActivityEntity activity;
 	
 	public int getId() {
 		return id;
@@ -62,22 +110,6 @@ public class UserTripEntity implements Serializable{
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public String getTrip_id() {
-		return trip_id;
-	}
-
-	public void setTrip_id(String trip_id) {
-		this.trip_id = trip_id;
-	}
-
-	public int getUser_id() {
-		return user_id;
-	}
-
-	public void setUser_id(int user_id) {
-		this.user_id = user_id;
 	}
 
 	public String getName() {
@@ -144,16 +176,6 @@ public class UserTripEntity implements Serializable{
 		this.trip_desctiption = trip_desctiption;
 	}
 
-	/*public User getUserr() {
-		return userr;
-	}
-
-	public void setUserr(User userr) {
-		this.userr = userr;
-	}*/
-
-	
-	
 	/*//THIS WORKS
 	@JsonProperty("province_id") //to get activity table data in json :@
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -166,29 +188,16 @@ public class UserTripEntity implements Serializable{
 		joinColumns = @JoinColumn(name="account_id"),
 		inverseJoinColumns = @JoinColumn(name="role_id"))
 	private Set<RoleEntity> roles;*/
-	
-	// @JsonProperty("province_id") //to get activity table data in json :@
-	//@ManyToOne(fetch = FetchType.EAGER)
-    //@JoinColumn(name = "user_id", referencedColumnName = "id")
-	//@JsonIgnore
-	//private UserEntity user;
-	
 	 
 	//@OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
 	//private List<CommentEntity> comments;
 
 	public UserTripEntity() {	}
 	
-	/*public UserActivityEntity(String title, String description) {
-		this.title = title;
-		this.description = description;
-	}*/
-	
 	public UserTripEntity(String trip_id, int user_id, String name, String town, int place_to_stay_id, String trip_type,
 							String trip_destination, String trip_season, String trip_transportation, String trip_desctiption) {
-		
-		this.trip_id = trip_id;
-		this.user_id = user_id;
+		//this.trip_id = trip_id;
+		//this.user_id = user_id;
 		this.name = name;
 		this.town = town;
 		this.place_to_stay_id = place_to_stay_id;
@@ -197,12 +206,5 @@ public class UserTripEntity implements Serializable{
 		this.trip_season = trip_season;
 		this.trip_transportation = trip_transportation;
 		this.trip_desctiption = trip_desctiption;
-
 	}
-	
-	/*public UserTripEntity(String title, String description) {
-		this.title = title;
-		this.description = description;
-	}*/
-	
 }

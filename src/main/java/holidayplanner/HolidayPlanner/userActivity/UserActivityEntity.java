@@ -15,7 +15,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import holidayplanner.HolidayPlanner.activity.ActivityEntity;
-import holidayplanner.HolidayPlanner.user.UserEntity;
+import holidayplanner.HolidayPlanner.user.User;
+//import holidayplanner.HolidayPlanner.user.UserEntity;
 
 @Entity
 //@Table(name = "userActivity")
@@ -74,7 +75,7 @@ public class UserActivityEntity implements Serializable{
 	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
 	@JsonIgnore
-	private UserEntity user;
+	private User user;
 	
 	 
 	//@OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
@@ -87,7 +88,7 @@ public class UserActivityEntity implements Serializable{
 		this.description = description;
 	}*/
 	
-	public UserActivityEntity(String title, String description, String imagePath, ActivityEntity activity, UserEntity user) {
+	public UserActivityEntity(String title, String description, String imagePath, ActivityEntity activity, User user) {
 		this.title = title;
 		this.description = description;
 		this.imagePath = imagePath;

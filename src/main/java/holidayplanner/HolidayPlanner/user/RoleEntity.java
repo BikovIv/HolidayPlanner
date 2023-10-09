@@ -10,11 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-//@Table(name = "role")
+@Table(name = "roles")
 public class RoleEntity implements Serializable {
 
 	@Id
-	@Column(name ="role_id")
+	//@Column(name ="role_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	

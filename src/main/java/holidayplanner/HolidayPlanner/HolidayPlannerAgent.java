@@ -21,123 +21,69 @@ import jade.lang.acl.MessageTemplate;
 
 public class HolidayPlannerAgent extends Agent{
 	
-	public HolidayPlannerAgent() {
-		
-	}
-	
+	public HolidayPlannerAgent() {}
+	public List<String> allTripTypes;
 	private HolidayPlannerOntology holidayPlannerOntology =  new HolidayPlannerOntology();
-	
-	HolidayPlannerAgentGUI gui;
 	
 	@Override
 	protected void setup() {
 		
-		//System.out.println("1 + " + this);
-		
-		gui = new HolidayPlannerAgentGUI(this);
-		
-		System.out.println("Started HolidayPlannerAgent(" + this.toString() + ")");
-		//holidayPlannerOntology = new HolidayPlannerOntology();
-		
+		System.out.println("Started HolidayPlannerAgent(" + this.getName() + ")");
+
 		DFAgentDescription dfd = new DFAgentDescription();
 		dfd.setName(getAID());
 		
 		Object services[] = {"holidayPlanner","initializeData"};
 		
 		  for(int i=0;i < services.length ;i++){
-			  //dfd = new DFAgentDescription();
-			     //dfd.setName(getAID());
+
 			  ServiceDescription sd  = new ServiceDescription();
 			        sd.setType((String)services[i]);
 			        sd.setName("happy holiday");
 			        dfd.addServices(sd);
-			        //register( sd );
 			  }
-		
-		//ServiceDescription sd = new ServiceDescription();
-		//sd.setType("holidayPlanner");
-		//sd.setType((String)services[0]);
-		//sd.setName("happy holiday");	
-		//dfd.addServices(sd);
-		//ServiceDescription sdAllTowns = new ServiceDescription();
-		//sdAllTowns.setType("allTowns");
-		//sdAllTowns.setName("all towns");
-		
-		//dfd.addServices(sdAllTowns);
 		
 		try {
 			DFService.register(this, dfd);
 		} catch (FIPAException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		//holidayPlannerOntology.addTown("PlainTown", "TestPlaintown");
-		
-		
-		/*for(String s : holidayPlannerOntology.getAllTowns()) {
-			System.out.println(s);
-		};
-		
-		for(String s : holidayPlannerOntology.getAllTownTypes()) {
-			System.out.println(s);
-		};
-		*/
-		
-		/*try {
-			addTrip("HolidayTrip", "TripFromApp444", "Plovdiv", "PlainTown", "Hotel", "testAdded444", 444.99);
-		} catch (OWLOntologyStorageException e1) {
-			// TODO Auto-generated catch blockS
-			e1.printStackTrace();
-		}
-		
-		try {
-			addPlaceToStay("Hotel","TestHotel22", 343.6);
-		} catch (OWLOntologyStorageException e) {
-		
-			e.printStackTrace();
-		}*/
-		
-		//for(Holiday s : 
-			//holidayPlannerOntology.getHolidayByUserParameters("WeekendTrip", "Hotel", "PlainTown", 0); //) {
-		//	System.out.println(s.getId());
-		//};
-		
-		//System.out.println("System.out.println(holidayPlannerOntology.getAllTripTypesFromOntology());");
-		//System.out.println(holidayPlannerOntology.getAllTripTypesFromOntology());
-		
 		
 		addBehaviour(new HolidayReqestBehaviour());
 		addBehaviour(new InitializeReqestBehaviour());
-		//addBehaviour(new TownsReqestBehaviour());
 	}
 	
 	private class HolidayReqestBehaviour extends CyclicBehaviour{
 
 		@Override
 		public void action() {
-			MessageTemplate mt = MessageTemplate.
-					MatchPerformative(ACLMessage.CFP);
+			MessageTemplate mt = MessageTemplate.MatchPerformative(ACLMessage.CFP);
 			
 			ACLMessage msg = receive(mt);
 			
+			if(msg != null) {System.out.println(msg.getConversationId() + ": got message" + msg);}
+			
+			
 			if(msg != null && msg.getConversationId() == "holiday_stuff") {
 				
-				//System.out.println(msg);
-				//String town = msg.getUserDefinedParameter("AllTownTypesArray");
-				
-				String tripType = msg.getUserDefinedParameter("tripType");
-				String placeToStayType = msg.getUserDefinedParameter("placeToStayType");
-				String tripTownType = msg.getUserDefinedParameter("tripTownType");
-				double placeToStayPrice = Double.parseDouble(msg.getUserDefinedParameter("placeToStayPrice"));//Double.parseDouble(placeToStayPriceCB.getText());
+				String tripType = "HolidayTrip";//msg.getUserDefinedParameter("tripType");
+				String placeToStayType = "Hotel";//msg.getUserDefinedParameter("placeToStayType");
+				String tripTownType = "PlainTown";//msg.getUserDefinedParameter("tripTownType");
+				double placeToStayPrice = 10;//Double.parseDouble(msg.getUserDefinedParameter("placeToStayPrice"));
 				
 				System.out.println("HolidayPlannerAgent: Somebody search for holiday with tripType:  " + tripType +
 						", placeToStayType :" + placeToStayType + ", tripTownType :" + tripTownType + ", placeToStayPrice :" + placeToStayPrice);
 				
 				ACLMessage reply = msg.createReply();
 				
-				ArrayList<Holiday> result = null;
-						//holidayPlannerOntology.getHolidayByUserParameters(tripType, placeToStayType, tripTownType, placeToStayPrice);
+				ArrayList<Holiday> result = new ArrayList<>();
+				
+				try {
+					result.add(getHolidayByIRI("<http://www.semanticweb.org/ivan/ontologies/2023/4/holiday-planner-ontology#BanskoHolidayTrip01>"));
+				} catch (OWLOntologyStorageException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}//= holidayPlannerOntology.getHolidayByUserParameters(tripType, placeToStayType, tripTownType, "", placeToStayPrice);
 				
 				if(result.size() > 0) {
 					
@@ -147,8 +93,7 @@ public class HolidayPlannerAgent extends Agent{
 					reply.setPerformative(ACLMessage.PROPOSE);
 					
 					try {
-						reply.setContent(
-								mapper.writeValueAsString(result));
+						reply.setContent(mapper.writeValueAsString(result));
 					
 						reply.setLanguage("JSON");
 						
@@ -193,12 +138,13 @@ public class HolidayPlannerAgent extends Agent{
 				ArrayList<TripTownType> townTypes = 
 						holidayPlannerOntology.getAllTownTypesArray();
 				
+				allTripTypes = holidayPlannerOntology.getAllTripTypes("Trip");
 				
 				///for(PlaceToStayType p : placeToStayTypes) {
 				//	System.out.println("p: " + p);			
 				//}
 				
-				if(result.size() > 0 && placeToStayTypes.size() > 0) {
+				if((result.size() > 0 && placeToStayTypes.size() > 0) || allTripTypes.size() > 0) {
 					
 					System.out.println("HolidayPlannerAgent: Initial data collected");
 					ObjectMapper mapper = new ObjectMapper();
@@ -216,7 +162,9 @@ public class HolidayPlannerAgent extends Agent{
 						reply.addUserDefinedParameter("AllTripTypesArray", mapper.writeValueAsString(result));
 						reply.addUserDefinedParameter("AllPlaceToStayTypesArray", mapper.writeValueAsString(placeToStayTypes));
 						reply.addUserDefinedParameter("AllTownTypesArray", mapper.writeValueAsString(townTypes));
-					
+						
+						reply.addUserDefinedParameter("AllTripTypes", mapper.writeValueAsString(allTripTypes));
+						
 						reply.setLanguage("JSON");
 						
 					} catch (JsonProcessingException e) {

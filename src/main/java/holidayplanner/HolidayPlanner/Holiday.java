@@ -28,10 +28,9 @@ public class Holiday implements Serializable{
 	private String season;
 	private String transportation;
 	private String description;
+	private String image;
 	
-	public Holiday() { //��������� �� � �� �� ���� �� ������� ������ � json 
-		
-	}
+	public Holiday() {}
 	
 	public Holiday(String iri, String name, String town, String placeToStay, String type, String destination, String season, String transportation) {
 		this.iri = iri;
@@ -133,5 +132,13 @@ public class Holiday implements Serializable{
         Holiday other = (Holiday) o;
         return id == other.id && Objects.equals(id, other.id);
     }
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
 }
 

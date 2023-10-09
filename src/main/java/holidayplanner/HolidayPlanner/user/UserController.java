@@ -35,7 +35,7 @@ public class UserController {
 	}	
 	
 	@PostMapping(path = "/register")
-	public User /*Entity*/ register( @RequestParam(value = "email") String email, 
+	public User register( @RequestParam(value = "email") String email, 
 								@RequestParam(value = "username") String username, 
 								@RequestParam(value = "password") String password, 
 								@RequestParam(value = "repeatPassword") String repeatPassword) {
@@ -53,7 +53,9 @@ public class UserController {
 		
 		User/*Entity*/ user = userService.login(username, password, session);
 		
+		System.out.println("session.getAttribute(\"loggedUser\")" + session.getAttribute("loggedUser"));
 		System.out.println("session.getAttribute(\"loggedUserId\")" + session.getAttribute("loggedUserId"));
+		System.out.println("session.getAttribute(\"userClientAgent\")" + session.getAttribute("userClientAgent"));
 		
 		if(user != null) {
 			return "home.html";
@@ -68,7 +70,7 @@ public class UserController {
 	@GetMapping(path = "/getSessionParameters")
 	public int getSessionParameters(HttpServletRequest request, HttpSession session) { 
 		
-		UserEntity user = (UserEntity)session.getAttribute("loggedUser");
+		User user = (User)session.getAttribute("loggedUser");
 		
 		System.out.println("user" + user);
 		//HttpSession session = request.getSession();
@@ -87,7 +89,7 @@ public class UserController {
 	@GetMapping(path = "/whoAmI")
 	public ResponseEntity<Integer> loggedUserId(HttpSession session){
 		
-		UserEntity user = (UserEntity)session.getAttribute("loggedUser");
+		User user = (User)session.getAttribute("loggedUser");
 		
 		if(user != null) {
 			return new ResponseEntity<Integer>(user.getId(), HttpStatus.OK);			
@@ -119,7 +121,7 @@ public class UserController {
 	@PostMapping(path = "/logout")
 	public ResponseEntity<Boolean> logout(HttpSession session){
 		
-		UserEntity user = (UserEntity)session.getAttribute("loggedUser");
+		User user = (User)session.getAttribute("loggedUser");
 		
 		if(user != null) {
 			session.invalidate();

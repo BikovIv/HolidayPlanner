@@ -48,6 +48,9 @@ $black			: #222;
 /* =================================== */
 /*  Basic Style 
 /* =================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap');
+
 ::-moz-selection {
   /* Code for Firefox */
   background-color: #f8b600;
@@ -2097,12 +2100,21 @@ h1, h2, h3, h4, h5, h6 {
 .main-menu {
   padding-bottom: 20px;
   padding-top: 20px;
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.35);
   padding-left: 15px;
   padding-right: 15px;
 }
 
 #header {
+ 
+  left: 0;
+  top: 0;
+  right: 0;
+  transition: all 0.5s;
+  z-index: 997;
+}
+
+#footer {
   position: fixed;
   left: 0;
   top: 0;
@@ -2373,6 +2385,13 @@ body.mobile-nav-active #mobile-nav-toggle {
   padding-left: 15px;
 }
 
+#logo-index {
+  padding-left: 15px;
+  padding-right: 100%;
+}
+
+
+
 #nav-menu-container {
   padding-right: 15px;
 }
@@ -2485,6 +2504,8 @@ body.mobile-nav-active #mobile-nav-toggle {
 .banner-area {
   background: url(../img/hero-bg.jpg) center;
   background-size: cover;
+      width: 100%;
+    height: 100vh; /* 100% of viewport height */
 }
 
 .banner-area .overlay-bg {
@@ -2625,7 +2646,7 @@ body.mobile-nav-active #mobile-nav-toggle {
     color:red;
 }
 
-.modal-content{border-radius: 0;padding: 40px 30px;}
+.modal-content{border-radius: 0; top:25%; height:100%}
 
 #activityImage{  width: 115px; overflow: hidden;}
 
@@ -4551,4 +4572,20 @@ body.mobile-nav-active #mobile-nav-toggle {
         background-color: rgba(4, 9, 30, 0.4);
      	color:white;
     }
+    
+   
+    
+  .row-custom{
+      display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+    /*position: fixed;*/
+    /*top: 30%;*/
+    margin-top: 15%;
+  }
+  
+ .col-lg-4-col-md-6-banner-right-custom{
+ margin-top: 40px;
+ }
     
